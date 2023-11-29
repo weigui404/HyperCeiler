@@ -59,7 +59,7 @@
     <string name="rest_ask">Deseja recuperar seu backup?</string>
     <string name="rest_permission">Agora você precisa ativar manualmente as permissões para esta opção.</string>
     <string name="disable_detailed_log">Desativar registro detalhado</string>
-    <string name="disable_detailed_log_desc">Reinicie para aplicar</string>
+    <string name="restart_module_to_apply">Reinicie para aplicar</string>
     <string name="settings_safe_mode">Modo seguro</string>
     <string name="settings_safe_mode_desc">Parar função do módulo</string>
     <string name="about_developer_title">Desenvolvedores</string>

@@ -44,7 +44,7 @@
     <string name="rest_ask">Yedeklemenizi kurtarmak ister misiniz?</string>
     <string name="rest_permission">Şimdi bu seçenek için izinleri manuel olarak etkinleştirmeniz gerekiyor.</string>
     <string name="disable_detailed_log">Ayrıntılı günlüğü devre dışı bırak</string>
-    <string name="disable_detailed_log_desc">Uygulamak için yeniden başlat</string>
+    <string name="restart_module_to_apply">Uygulamak için yeniden başlat</string>
     <string name="settings_safe_mode">Güvenli mod.</string>
     <string name="settings_safe_mode_desc">Modül işlevini durdur</string>
     <string name="about_developer_title">Geliştirici</string>

@@ -2,6 +2,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/settings_show_title">
+
+        <DropDownPreference
+            android:key="prefs_key_show_language"
+            android:title="@string/show_language"
+            app:entries="@array/language"
+            app:entryValues="@array/language_value"
+            android:defaultValue="default"
+            android:summary="@string/restart_module_to_apply"/>
+
         <SwitchPreference
             android:defaultValue="true"
             android:key="prefs_key_settings_hide_app_icon"
@@ -54,7 +63,7 @@
             android:title="@string/log_level"
             app:entries="@array/log_level"
             app:entryValues="@array/log_level_value"
-            android:summary="@string/disable_detailed_log_desc"/>
+            android:summary="@string/restart_module_to_apply"/>
 
         <Preference
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.DevelopmentFragment"

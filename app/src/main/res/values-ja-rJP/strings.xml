@@ -8,7 +8,7 @@
     <string name="new_cta_app_main_purpose">システムアプリの変更</string>
     <string name="new_cta_app_all_purpose_title">HyperCeiler へようこそ。このアプリはシステムの機能強化をするために Xposed フレームワークを利用して対応アプリを改変します。使用中、より多くの機能を提供するために root/su 権限の許可を求める場合があります。お使いの root/su マネージャーにアクセスして許可してください。</string>
     <!--HyperCeiler Settings/About Page-->
-    <string name="language">Japanese (日本語)</string>
+    <string name="language">日本語</string>
     <string name="translator">AndroPlus</string>
     <string name="translator_url">https://github.com/AndroPlus-org</string>
     <string name="home">ホーム</string>
@@ -58,7 +58,7 @@
     <string name="rest_ask">バックアップを復元しますか？</string>
     <string name="rest_permission">このオプションは手動で許可する必要があります。</string>
     <string name="disable_detailed_log">詳細なログを無効化</string>
-    <string name="disable_detailed_log_desc">適用するには再起動してください</string>
+    <string name="restart_module_to_apply">適用するには再起動してください</string>
     <string name="settings_safe_mode">セーフモード</string>
     <string name="settings_safe_mode_desc">モジュールの機能を停止</string>
     <string name="about_developer_title">開発者</string>

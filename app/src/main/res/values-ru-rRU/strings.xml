@@ -44,7 +44,7 @@
     <string name="rest_ask">Восстановить резервную копию?</string>
     <string name="rest_permission">Теперь нужно вручную включить разрешения для этой опции</string>
     <string name="disable_detailed_log">Отключить подробный журнал</string>
-    <string name="disable_detailed_log_desc">Перезагрузите телефон для применения эффекта</string>
+    <string name="restart_module_to_apply">Перезагрузите телефон для применения эффекта</string>
     <string name="settings_safe_mode">Безопасный режим</string>
     <string name="settings_safe_mode_desc">Остановить работу модуля</string>
     <string name="about_developer_title">Разработчики</string>

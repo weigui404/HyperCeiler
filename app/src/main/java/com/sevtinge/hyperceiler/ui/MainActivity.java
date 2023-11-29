@@ -1,16 +1,25 @@
 package com.sevtinge.hyperceiler.ui;
 
+import static miui.util.TypefaceUtils.getContext;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.LocaleList;
 
 import androidx.annotation.Nullable;
 
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.base.NavigationActivity;
+import com.sevtinge.hyperceiler.ui.fragment.ModuleSettingsFragment;
 import com.sevtinge.hyperceiler.utils.BackupUtils;
 import com.sevtinge.hyperceiler.utils.Helpers;
+import com.sevtinge.hyperceiler.utils.PrefsUtils;
 import com.sevtinge.hyperceiler.utils.SearchHelper;
 import com.sevtinge.hyperceiler.utils.ShellUtils;
+
+import java.util.Objects;
 
 import moralnorm.appcompat.app.AlertDialog;
 
@@ -19,6 +28,7 @@ public class MainActivity extends NavigationActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        changeLanguage(PrefsUtils.getSharedStringPrefs(getContext(), "prefs_key_show_language", "default"));
         new Thread(new Runnable() {
             public void run() {
                 SearchHelper.getAllMods(MainActivity.this, savedInstanceState != null);
@@ -35,6 +45,18 @@ public class MainActivity extends NavigationActivity {
                 .show();
         }
     }
+
+    public void changeLanguage(String languageCode){
+        if (Objects.equals(languageCode, "default")) languageCode = getLocalLanguage();
+        LanguageManager.changeLanguage(this, languageCode);
+    }
+
+    public String getLocalLanguage() {
+        Configuration configuration = getResources().getConfiguration();
+        LocaleList localeList = configuration.getLocales();
+        return localeList.get(0).getLanguage();
+    }
+
 
     private void requestCta() {
         /*if (!CtaUtils.isCtaEnabled(this)) {

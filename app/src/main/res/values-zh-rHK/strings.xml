@@ -52,7 +52,7 @@
     <string name="rest_ask">您是否要還原備份？</string>
     <string name="rest_permission">現在您必須手動啟用此選項的權限。</string>
     <string name="disable_detailed_log">禁用詳細日誌輸出</string>
-    <string name="disable_detailed_log_desc">重新啟動設備以應用更改</string>
+    <string name="restart_module_to_apply">重新啟動設備以應用更改</string>
     <string name="settings_safe_mode">安全模式</string>
     <string name="settings_safe_mode_desc">禁用模組功能</string>
     <string name="about_developer_title">開發者</string>

@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">HyperCeiler</string>
-    <string name="system_ui_status_bar_icon_nfc" translatable="false">NFC</string>
-    <string name="system_ui_status_bar_icon_vpn" translatable="false">VPN</string>
-    <string name="location_simulation_gps" translatable="false">GPS</string>
-    <string name="system_ui_statusbar_network_speed_speedunits" translatable="false">KMG</string>
-    <string name="array_netspeedicons_arrows" translatable="false">△▽ (▲▼)</string>
-    <string name="array_netspeedicons_bullets" translatable="false">☖ ⛉ ( ☗ ⛊ )</string>
-    <string name="array_netspeedicons_arrows_small" translatable="false">▵ ▿ ( ▴ ▾ )</string>
-    <string name="array_netspeedicons_arrows_long1" translatable="false">↑ ↓</string>
-    <string name="array_netspeedicons_arrows_long2" translatable="false">⇧ ⇩</string>
-    <string name="system_ui_display_toast_title" translatable="false">Toast</string>
-    <string name="summary_collapsed_preference_list" translatable="false">%1$s%2$s</string>
-    <string name="networkboost" translatable="false">NetworkBoost</string>
-
-    <string name="home_title_custom_anim_param_1_title" translatable="false">BREAK_OPEN</string>
-    <string name="home_title_custom_anim_param_2_title" translatable="false">OPEN_FROM_HOME</string>
-    <string name="home_title_custom_anim_param_3_title" translatable="false">OPEN_FROM_RECENTS</string>
-    <string name="home_title_custom_anim_param_4_title" translatable="false">CLOSE_TO_RECENTS</string>
-    <string name="home_title_custom_anim_param_5_title" translatable="false">CLOSE_TO_HOME</string>
-    <string name="home_title_custom_anim_param_6_title" translatable="false">CLOSE_FROM_FEED</string>
-    <string name="home_title_custom_anim_param_7_title" translatable="false">APP_TO_APP</string>
-    <string name="home_title_custom_anim_param_8_title" translatable="false">START_FIRST_TASK</string>
-    <string name="home_title_custom_anim_param_RECT_CENTERX_title" translatable="false">RECT_CENTERX</string>
-    <string name="home_title_custom_anim_param_RECT_CENTERY_title" translatable="false">RECT_CENTERY</string>
-    <string name="home_title_custom_anim_param_RECT_WIDTH_title" translatable="false">RECT_WIDTH</string>
-    <string name="home_title_custom_anim_param_RECT_RATIO_title" translatable="false">RECT_RATIO</string>
-    <string name="home_title_custom_anim_param_RADIUS_title" translatable="false">RADIUS</string>
-    <string name="home_title_custom_anim_param_ALPHA_title" translatable="false">ALPHA</string>
     <!--Introduction to Xposed Modules-->
     <string name="xposed_description">Make HyperOS Great Again!</string>
 
@@ -1380,10 +1352,6 @@
     <string name="browser_disable_blacklist">Disable URL Blacklist</string>
     <string name="log_level">Log level</string>
     <string name="log_level_none">Disable log</string>
-    <string name="log_level_error" translatable="false">Error</string>
-    <string name="log_level_warn" translatable="false">Warn</string>
-    <string name="log_level_info" translatable="false">Info</string>
-    <string name="log_level_debug" translatable="false">Debug</string>
     <string name="system_ui_control_center_more_card_tiles">Show Card Tiles</string>
     <string name="system_ui_control_center_more_card_tiles_less">None</string>
     <string name="system_ui_control_center_more_card_tiles_more">More</string>
@@ -1395,15 +1363,6 @@
     <string name="disable_suggest">Disable Suggest</string>
     <string name="enable_suggest">Enable Suggest</string>
     <string name="show_language">Language</string>
-    <string name="language_en_us" translatable="false">English (America)</string>
-    <string name="language_ja_jp" translatable="false">日本語</string>
-    <string name="language_pt_br" translatable="false">Português (Brasil)</string>
-    <string name="language_ru_ru" translatable="false">Русский</string>
-    <string name="language_tr_tr" translatable="false">İngilizce</string>
-    <string name="language_vi_vn" translatable="false">Tiếng Việt</string>
-    <string name="language_zh_cn" translatable="false">简体中文</string>
-    <string name="language_zh_hk" translatable="false">繁體中文 (香港)</string>
-    <string name="language_zh_tw" translatable="false">繁體中文 (台灣)</string>
     <!--Tip-->
     <string name="tip_0">Tip: Here\'s a tip!</string>
     <string name="tip_1">Tip: You can support us by donating in \"About - Support\".</string>
