@@ -62,7 +62,7 @@
             android:summary="@string/system_ui_control_center_notification_blur_fix_desc"
             android:title="@string/system_ui_control_center_notification_blur_fix" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="56"
             android:dependency="prefs_key_n_enable"
             android:key="prefs_key_system_ui_control_center_blur_radius"
@@ -75,7 +75,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="48"
             android:dependency="prefs_key_n_enable"
             android:key="prefs_key_system_ui_control_center_corner_radius"
@@ -87,7 +87,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="100"
             android:dependency="prefs_key_n_enable"
             android:key="prefs_key_system_ui_control_center_blur_background_alpha"
@@ -99,7 +99,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="200"
             android:dependency="prefs_key_n_enable"
             android:key="prefs_key_system_ui_control_center_default_background_alpha"
@@ -119,7 +119,7 @@
             android:key="prefs_key_system_ui_control_center_fix_media_control_panel"
             android:title="@string/system_ui_control_center_fix_media_control_panel" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="0"
             android:key="prefs_key_system_control_center_qs_detail_bg"
             android:title="@string/system_control_center_qs_detail_bg"
@@ -129,7 +129,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="255"
             android:key="prefs_key_system_ui_control_center_control_detail_background_alpha"
             android:title="@string/system_ui_control_center_control_detail_background_alpha"
@@ -224,7 +224,7 @@
             android:key="prefs_key_system_ui_control_center_statusbar_blur"
             android:title="@string/system_ui_control_center_statusbar_blur" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="72"
             android:key="prefs_key_system_ui_control_center_rounded_rect_radius"
             android:title="@string/system_ui_control_center_rounded_rect_radius"
@@ -268,7 +268,7 @@
             app:entries="@array/control_center_cc_bluetooth_tile_style"
             app:entryValues="@array/control_center_cc_bluetooth_tile_style_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:key="prefs_key_system_control_center_cc_rows"
             android:title="@string/system_control_center_qs_rows"
@@ -279,7 +279,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:key="prefs_key_system_control_center_cc_columns"
             android:title="@string/system_control_center_qs_columns"
@@ -303,7 +303,7 @@
             android:key="prefs_key_system_control_center_old_enable_1"
             android:title="@string/system_ui_controlcenter_enable_title" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="1"
             android:dependency="prefs_key_system_control_center_old_enable_1"
             android:key="prefs_key_system_control_center_old_qs_row"
@@ -316,7 +316,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="2"
             android:dependency="prefs_key_system_control_center_old_enable_1"
             android:key="prefs_key_system_control_center_old_qs_column"
@@ -329,7 +329,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="2"
             android:dependency="prefs_key_system_control_center_old_enable_1"
             android:key="prefs_key_system_control_center_old_qs_grid_column"
@@ -347,7 +347,7 @@
             android:key="prefs_key_system_control_center_old_enable"
             android:title="@string/system_ui_controlcenter_enable_title" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="3"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_rows"
@@ -359,7 +359,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="2"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_rows_horizontal"
@@ -371,7 +371,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_columns"
@@ -383,7 +383,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="5"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_columns_horizontal"
@@ -395,7 +395,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="5"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_grid_columns"
@@ -407,7 +407,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="6"
             android:dependency="prefs_key_system_control_center_old_enable"
             android:key="prefs_key_system_control_center_old_qs_grid_columns_horizontal"

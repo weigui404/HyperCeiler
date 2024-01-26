@@ -59,7 +59,7 @@
             android:key="prefs_key_system_ui_statusbar_battery_bold"
             android:title="@string/system_ui_statusbar_indicator_bold" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="13"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_size"
@@ -70,7 +70,7 @@
             app:minValue="8"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="2"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_update_spacing"
@@ -89,7 +89,7 @@
             app:entries="@array/system_ui_status_bar_horizontal_align"
             app:entryValues="@array/system_ui_status_bar_horizontal_align_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="10"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_fixedcontent_width"
@@ -101,7 +101,7 @@
             app:minValue="10"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_left_margin"
@@ -113,7 +113,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_right_margin"
@@ -125,7 +125,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="8"
             android:dependency="prefs_key_system_ui_statusbar_battery_enable"
             android:key="prefs_key_system_ui_statusbar_battery_vertical_offset"
@@ -197,7 +197,7 @@
             android:key="prefs_key_system_ui_statusbar_temp_bold"
             android:title="@string/system_ui_statusbar_indicator_bold" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="13"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_size"
@@ -208,7 +208,7 @@
             app:minValue="8"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="2"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_update_spacing"
@@ -227,7 +227,7 @@
             app:entries="@array/system_ui_status_bar_horizontal_align"
             app:entryValues="@array/system_ui_status_bar_horizontal_align_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="10"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_fixedcontent_width"
@@ -239,7 +239,7 @@
             app:minValue="10"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_left_margin"
@@ -251,7 +251,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="4"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_right_margin"
@@ -263,7 +263,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="8"
             android:dependency="prefs_key_system_ui_statusbar_temp_enable"
             android:key="prefs_key_system_ui_statusbar_temp_vertical_offset"

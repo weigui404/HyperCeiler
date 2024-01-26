@@ -16,7 +16,7 @@
             android:key="prefs_key_system_ui_statusbar_network_speed_font_size_enable"
             android:title="@string/system_ui_statusbar_network_speed_font_size" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="13"
             android:dependency="prefs_key_system_ui_statusbar_network_speed_font_size_enable"
             android:key="prefs_key_system_ui_statusbar_network_speed_font_size"
@@ -59,7 +59,7 @@
             android:key="prefs_key_system_ui_statusbar_network_speed_hide_all"
             android:title="@string/system_ui_statusbar_network_speed_hide_all" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="64"
             android:key="prefs_key_system_ui_statusbar_network_speed_hide_slow"
             android:summary="@string/system_ui_statusbar_network_speed_hide_slow_desc"
@@ -71,7 +71,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="3"
             android:key="prefs_key_system_ui_statusbar_network_speed_update_spacing"
             android:title="@string/system_ui_statusbar_network_speed_update_spacing"
@@ -113,7 +113,7 @@
             app:entries="@array/system_ui_status_bar_horizontal_align"
             app:entryValues="@array/system_ui_status_bar_horizontal_align_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="10"
             android:key="prefs_key_system_ui_statusbar_network_speed_fixedcontent_width"
             android:summary="@string/system_ui_statusbar_indicator_fixedcontent_width_desc"
@@ -125,7 +125,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="17"
             android:key="prefs_key_system_ui_statusbar_network_speed_spacing_margin"
             android:title="@string/spacing_margin"
@@ -136,7 +136,7 @@
             app:minValue="14"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="0"
             android:key="prefs_key_system_ui_statusbar_network_speed_left_margin"
             android:title="@string/left_margin"
@@ -147,7 +147,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="0"
             android:key="prefs_key_system_ui_statusbar_network_speed_right_margin"
             android:title="@string/right_margin"
@@ -158,7 +158,7 @@
             app:minValue="0"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="8"
             android:key="prefs_key_system_ui_statusbar_network_speed_vertical_offset"
             android:title="@string/vertical_offset"

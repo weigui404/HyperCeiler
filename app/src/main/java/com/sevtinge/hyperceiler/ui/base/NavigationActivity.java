@@ -77,19 +77,19 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
         setContentView(R.layout.activity_navigation);
         initSearchView();
         initNavigationView();
-        setRestartView(view -> DialogHelper.showRestartDialog(this));
+        /*setRestartView(view -> DialogHelper.showRestartDialog(this));*/
     }
 
     private void initSearchView() {
-        mSearchView = findViewById(R.id.search_view);
-        mSearchInputView = findViewById(android.R.id.input);
+        /*mSearchView = findViewById(R.id.search_view);*/
+        /*mSearchInputView = findViewById(android.R.id.input);*/
         mSearchResultView = findViewById(R.id.search_result_view);
         mSearchAdapter = new ModSearchAdapter();
-        mSearchInputView.setHint(getResources().getString(R.string.search));
+        /*mSearchInputView.setHint(getResources().getString(R.string.search));*/
         mSearchResultView.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultView.setAdapter(mSearchAdapter);
 
-        mSearchView.setOnClickListener(v -> startSearchMode());
+        /*mSearchView.setOnClickListener(v -> startSearchMode());*/
         mSearchAdapter.setOnItemClickListener((view, ad) -> onSearchItemClickListener(ad));
     }
 
@@ -135,7 +135,7 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
             @Override
             public void onPageSelected(int position) {
                 changeSelect(position);
-                mSearchView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+                /*mSearchView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);*/
             }
 
             @Override

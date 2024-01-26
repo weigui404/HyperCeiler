@@ -25,7 +25,7 @@
             android:title="@string/system_ui_statusbar_clock_fix_color"
             android:summary="@string/system_ui_statusbar_clock_fix_color_desc"/>
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:key="prefs_key_system_ui_statusbar_clock_vertical_offset"
             android:title="@string/vertical_offset"
             android:defaultValue="12"
@@ -96,7 +96,7 @@
             app:entries="@array/system_ui_status_bar_clock_double_mode"
             app:entryValues="@array/system_ui_status_bar_clock_double_mode_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:key="prefs_key_system_ui_statusbar_clock_size"
             android:dependency="prefs_key_system_ui_statusbar_clock_double"
             android:title="@string/system_ui_statusbar_clock_size"
@@ -107,7 +107,7 @@
             app:format="%d dp"
             app:showSeekBarValue="true" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:key="prefs_key_system_ui_statusbar_clock_double_size"
             android:title="@string/system_ui_statusbar_clock_double_size"
             android:defaultValue="0"
@@ -117,7 +117,7 @@
             app:format="%d dp"
             app:showSeekBarValue="true" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="17"
             android:key="prefs_key_system_ui_statusbar_clock_double_spacing_margin"
             android:summary="@string/system_ui_statusbar_clock_double_spacing_desc"
@@ -154,7 +154,7 @@
             app:entries="@array/system_ui_status_bar_clock_double_mode"
             app:entryValues="@array/system_ui_status_bar_clock_double_mode_value" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:key="prefs_key_system_ui_statusbar_clock_size_geek"
             android:title="@string/system_ui_statusbar_clock_size"
             android:defaultValue="0"
@@ -164,7 +164,7 @@
             app:format="%d dp"
             app:showSeekBarValue="true" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="17"
             android:key="prefs_key_system_ui_statusbar_clock_size_geek_spacing_margin"
             android:summary="@string/system_ui_statusbar_clock_double_spacing_desc"

@@ -42,7 +42,7 @@
         android:key="prefs_key_system_ui_statusbar_mobile_type_bold"
         android:title="@string/system_ui_statusbar_indicator_bold" />
 
-    <SeekBarPreferenceEx
+    <SeekBarPreference
         android:defaultValue="27"
         android:dependency="prefs_key_system_ui_statusbar_mobile_type_enable"
         android:key="prefs_key_system_ui_statusbar_mobile_type_font_size"
@@ -53,7 +53,7 @@
         app:minValue="18"
         app:stepValue="1" />
 
-    <SeekBarPreferenceEx
+    <SeekBarPreference
         android:defaultValue="7"
         android:dependency="prefs_key_system_ui_statusbar_mobile_type_enable"
         android:key="prefs_key_system_ui_statusbar_mobile_type_left_margin"
@@ -65,7 +65,7 @@
         app:minValue="0"
         app:stepValue="1" />
 
-    <SeekBarPreferenceEx
+    <SeekBarPreference
         android:defaultValue="0"
         android:dependency="prefs_key_system_ui_statusbar_mobile_type_enable"
         android:key="prefs_key_system_ui_statusbar_mobile_type_right_margin"
@@ -77,7 +77,7 @@
         app:minValue="0"
         app:stepValue="1" />
 
-    <SeekBarPreferenceEx
+    <SeekBarPreference
         android:defaultValue="8"
         android:dependency="prefs_key_system_ui_statusbar_mobile_type_enable"
         android:key="prefs_key_system_ui_statusbar_mobile_type_vertical_offset"

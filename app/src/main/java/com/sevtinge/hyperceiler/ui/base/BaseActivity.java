@@ -52,7 +52,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void initActionBar() {
-        setDisplayHomeAsUpEnabled(!(this instanceof NavigationActivity));
+        getAppCompatActionBar().hide();
+        /*setDisplayHomeAsUpEnabled(!(this instanceof NavigationActivity));*/
     }
 
     public void setDisplayHomeAsUpEnabled(boolean isEnable) {
@@ -70,9 +71,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setActionBarEndView(mRestartView);
     }
 
-    public void setRestartView(View.OnClickListener listener) {
+    /*public void setRestartView(View.OnClickListener listener) {
         if (listener != null) setActionBarEndIcon(R.drawable.ic_reboot_small, listener);
-    }
+    }*/
 
     private void registerObserver() {
         PrefsUtils.mSharedPreferences.registerOnSharedPreferenceChangeListener(mSharedPreferenceChangeListener);

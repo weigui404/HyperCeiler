@@ -7,7 +7,7 @@
             android:key="prefs_key_home_large_icon_enable"
             android:title="@string/home_large_icon_corner_radius" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="32"
             android:dependency="prefs_key_home_large_icon_enable"
             android:key="prefs_key_home_large_icon_corner_radius"
@@ -84,7 +84,7 @@
             android:key="prefs_key_home_title_custom_anim_param"
             android:title="@string/home_title_custom_anim_param" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="100"
             android:key="prefs_key_home_title_animation_speed"
             android:title="@string/home_title_animation_speed"
@@ -94,7 +94,7 @@
             app:minValue="10"
             app:showSeekBarValue="true" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="45"
             android:key="pref_key_home_title_icon_scale"
             android:title="@string/home_title_icon_scale"
@@ -145,7 +145,7 @@
             android:key="prefs_key_home_title_title_color"
             android:title="@string/home_title_title_color" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="12"
             android:dependency="prefs_key_home_drawer_font_hidden"
             android:key="prefs_key_home_title_font_size"

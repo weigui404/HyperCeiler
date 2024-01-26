@@ -24,6 +24,14 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getRomAuthor;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
@@ -51,6 +59,15 @@ public class MainFragment extends SettingsPreferenceFragment {
     @Override
     public int getContentResId() {
         return R.xml.prefs_main;
+    }
+
+    @NonNull
+    @Override
+    public View onInflateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) super.onInflateView(inflater, container, savedInstanceState);
+        View searchView = inflater.inflate(R.layout.view_search_stub, null);
+        view.addView(searchView, 0);
+        return view;
     }
 
     @Override

@@ -43,7 +43,7 @@
             android:key="prefs_key_home_layout_workspace_padding_top_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_workspace_padding_top"
             android:defaultValue="30"
@@ -59,7 +59,7 @@
             android:key="prefs_key_home_layout_workspace_padding_bottom_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_workspace_padding_bottom"
             android:defaultValue="120"
@@ -75,7 +75,7 @@
             android:key="prefs_key_home_layout_workspace_padding_horizontal_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_workspace_padding_horizontal"
             android:defaultValue="20"
@@ -92,7 +92,7 @@
             android:key="prefs_key_home_layout_hotseats_height_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_hotseats_height"
             android:defaultValue="80"
@@ -108,7 +108,7 @@
             android:key="prefs_key_home_layout_hotseats_margin_top_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_hotseats_margin_top"
             android:defaultValue="20"
@@ -124,7 +124,7 @@
             android:key="prefs_key_home_layout_hotseats_margin_bottom_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_hotseats_margin_bottom"
             android:defaultValue="70"
@@ -143,7 +143,7 @@
             android:key="prefs_key_home_layout_searchbar_margin_bottom_enable"
             android:defaultValue="false" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:layout="@layout/preference_seekbar_no_padding"
             android:key="prefs_key_home_layout_searchbar_margin_bottom"
             android:defaultValue="30"

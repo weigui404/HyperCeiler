@@ -139,7 +139,7 @@
             android:summary="@string/system_settings_develop_speed_mode_desc"
             android:title="@string/system_settings_develop_speed_mode" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="100"
             android:key="prefs_key_system_settings_window_animation_scale"
             android:title="@string/system_settings_window_animation_scale"
@@ -151,7 +151,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="100"
             android:key="prefs_key_system_settings_transition_animation_scale"
             android:title="@string/system_settings_transition_animation_scale"
@@ -163,7 +163,7 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <SeekBarPreferenceEx
+        <SeekBarPreference
             android:defaultValue="100"
             android:key="prefs_key_system_settings_animator_duration_scale"
             android:title="@string/system_settings_animator_duration_scale"

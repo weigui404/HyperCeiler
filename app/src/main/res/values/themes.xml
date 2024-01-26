@@ -3,7 +3,7 @@
         <item name="preferenceTheme">@style/ThemeOverlay.Preference.DayNight</item>
         <item name="rebootIconColor">@color/black</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="seekBarPreferenceExStyle">@style/Preference.SeekBarPreferenceEx</item>
+        <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
     </style>
 
     <style name="Base.Theme.HyperCeiler.DayNight.SystemBarBackgrounds" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -12,7 +12,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="seekBarPreferenceExStyle">@style/Preference.SeekBarPreferenceEx</item>
+        <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
     </style>
 
     <!-- Base application theme. -->
@@ -33,7 +33,7 @@
         <item name="windowActionBarOverlay">false</item>
     </style>
 
-    <style name="Preference.SeekBarPreferenceEx" parent="@style/Preference">
+    <style name="Preference.SeekBarPreference" parent="@style/Preference">
         <item name="android:layout">@layout/miuix_preference_widget_seekbar</item>
     </style>
 

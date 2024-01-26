@@ -8,10 +8,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/search_view"
-            layout="@layout/miuix_appcompat_search_stub" />
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/frame_page"
             android:layout_width="match_parent"

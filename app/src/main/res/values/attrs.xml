@@ -55,9 +55,9 @@
     </declare-styleable>
 
     <!-- Default style for seekbar preferences. -->
-    <attr name="seekBarPreferenceExStyle" format="reference" />
+    <attr name="SeekBarPreferenceStyle" format="reference" />
 
-    <declare-styleable name="SeekBarPreferenceEx">
+    <declare-styleable name="SeekBarPreference">
         <attr name="note" format="string" />
         <attr name="format" format="string" />
         <attr name="minValue" format="integer" />
