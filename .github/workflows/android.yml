@@ -33,7 +33,7 @@ jobs:
           cache: gradle
 
       - name: Create Sign File
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/Miuix_V3'
         run: |
           touch signing.properties
           echo storePassword=${{ secrets.KEY_STORE_PASSWORD }} >> signing.properties
@@ -76,7 +76,7 @@ jobs:
           echo "commit=$(echo $text | sed 's/\([][\\`.*^$\/+?{}()=!|:-]\)/\\\1/g')" >> $GITHUB_ENV
 
       - name: Post to Canary Channel
-        if: ${{ github.ref == 'refs/heads/main' && github.ref_type != 'tag' && contains(github.event.head_commit.message, '[skip post]') == false && contains(github.event.head_commit.message, 's#') == false }}
+        if: ${{ github.ref == 'refs/heads/Miuix_V3' && github.ref_type != 'tag' && contains(github.event.head_commit.message, '[skip post]') == false && contains(github.event.head_commit.message, 's#') == false }}
         shell: bash
         env:
           CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
