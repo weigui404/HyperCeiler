@@ -1,8 +1,8 @@
-name: Android Main CI
+name: Android Miuix_V3 CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Miuix_V3" ]
     paths-ignore:
       - ".github/**"
       - "!.github/workflows/**"
