@@ -34,8 +34,8 @@ import com.sevtinge.hyperceiler.utils.KillAppUtils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import moralnorm.preference.Preference;
-import moralnorm.preference.SwitchPreference;
+import fan.preference.Preference;
+import fan.preference.SwitchPreference;
 
 public class HomeOtherSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 

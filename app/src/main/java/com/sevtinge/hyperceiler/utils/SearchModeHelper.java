@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -26,8 +26,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import moralnorm.appcompat.app.AppCompatActivity;
-import moralnorm.view.SearchActionMode;
+import fan.appcompat.app.AppCompatActivity;
+import fan.view.SearchActionMode;
 
 public class SearchModeHelper {
 

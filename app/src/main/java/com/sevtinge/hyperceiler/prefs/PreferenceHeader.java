@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -26,21 +26,15 @@ import androidx.annotation.Nullable;
 
 import com.sevtinge.hyperceiler.R;
 
-import moralnorm.preference.Preference;
+import fan.preference.Preference;
 
 public class PreferenceHeader extends Preference {
 
     public PreferenceHeader(@NonNull Context context) {
         super(context);
-        init();
     }
 
     public PreferenceHeader(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
-    }
-
-    private void init() {
-        setLayoutResource(R.layout.preference_header);
     }
 }

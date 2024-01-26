@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -36,8 +36,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import moralnorm.appcompat.app.AlertDialog;
-import moralnorm.preference.Preference;
+import fan.appcompat.app.AlertDialog;
+import fan.preference.Preference;
 
 public class DevelopmentKillFragment extends SettingsPreferenceFragment {
     public List<AppData> appData = new ArrayList<>();

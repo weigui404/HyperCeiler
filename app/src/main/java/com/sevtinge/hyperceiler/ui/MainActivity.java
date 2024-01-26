@@ -32,7 +32,7 @@ import com.sevtinge.hyperceiler.utils.PropUtils;
 import com.sevtinge.hyperceiler.utils.SearchHelper;
 import com.sevtinge.hyperceiler.utils.api.ProjectApi;
 
-import moralnorm.appcompat.app.AlertDialog;
+import fan.appcompat.app.AlertDialog;
 
 public class MainActivity extends NavigationActivity {
 

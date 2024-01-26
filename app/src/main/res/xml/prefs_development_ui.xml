@@ -43,12 +43,12 @@
         android:title="SwitchPreference"
         android:defaultValue="false" />
 
-    <moralnorm.preference.RadioSetPreferenceCategory>
+    <fan.preference.RadioSetPreferenceCategory>
 
-        <moralnorm.preference.RadioButtonPreference
+        <fan.preference.RadioButtonPreference
             android:persistent="false"
             android:title="RadioButtonPreference"
-            android:layout="@layout/preference_radiobutton_two_state" />
+            android:layout="@layout/miuix_preference_radiobutton_two_state_background" />
 
-    </moralnorm.preference.RadioSetPreferenceCategory>
+    </fan.preference.RadioSetPreferenceCategory>
 </PreferenceScreen>

@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -31,7 +31,7 @@ import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import moralnorm.appcompat.app.AlertDialog;
+import fan.appcompat.app.AlertDialog;
 
 public abstract class BaseSettingsActivity extends BaseActivity {
 

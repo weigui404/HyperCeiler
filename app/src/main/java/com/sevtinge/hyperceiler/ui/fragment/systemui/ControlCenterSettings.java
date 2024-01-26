@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -37,11 +37,11 @@ import com.sevtinge.hyperceiler.utils.PrefsUtils;
 import com.sevtinge.hyperceiler.utils.ShellUtils;
 import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
 
+import fan.preference.SeekBarPreference;
 import miui.telephony.TelephonyManager;
-import moralnorm.preference.DropDownPreference;
-import moralnorm.preference.Preference;
-import moralnorm.preference.SeekBarPreferenceEx;
-import moralnorm.preference.SwitchPreference;
+import fan.preference.DropDownPreference;
+import fan.preference.Preference;
+import fan.preference.SwitchPreference;
 
 public class ControlCenterSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
@@ -49,13 +49,13 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
     Preference mExpandNotification;
     SwitchPreference mNotice;
     SwitchPreference mNoticex;
-    SeekBarPreferenceEx mNewCCGrid;
+    SeekBarPreference mNewCCGrid;
     SwitchPreference mNewCCGridRect;
     SwitchPreference mNewCCGridLabel;
     DropDownPreference mFiveG;
     DropDownPreference mBluetoothSytle;
     SwitchPreference mRoundedRect;
-    SeekBarPreferenceEx mRoundedRectRadius;
+    SeekBarPreference mRoundedRectRadius;
     SwitchPreference mThemeBlur;
 
     SwitchPreference mTaplus;
@@ -132,7 +132,7 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
 
         mRoundedRect.setOnPreferenceChangeListener(this);
 
-        ((SeekBarPreferenceEx) findPreference("prefs_key_system_control_center_old_qs_grid_columns")).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        /*((SeekBarPreference) findPreference("prefs_key_system_control_center_old_qs_grid_columns")).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (!fromUser) return;
@@ -151,7 +151,7 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-        });
+        });*/
     }
 
     public void killTaplus() {

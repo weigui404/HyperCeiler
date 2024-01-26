@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -47,8 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import moralnorm.appcompat.app.AlertDialog;
-import moralnorm.appcompat.app.AppCompatActivity;
+import fan.appcompat.app.AlertDialog;
+import fan.appcompat.app.AppCompatActivity;
 
 public class LocationDataActivity extends AppCompatActivity implements View.OnClickListener {
 

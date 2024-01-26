@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -31,8 +31,8 @@ import androidx.fragment.app.FragmentManager;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
 
-import moralnorm.appcompat.app.AppCompatActivity;
-import moralnorm.preference.Preference;
+import fan.appcompat.app.AppCompatActivity;
+import fan.preference.Preference;
 
 public class SettingsProxy extends BaseSettingsProxy {
 

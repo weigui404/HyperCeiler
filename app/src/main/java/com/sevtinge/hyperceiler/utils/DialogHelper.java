@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -25,7 +25,7 @@ import android.content.DialogInterface;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.view.RestartAlertDialog;
 
-import moralnorm.appcompat.app.AlertDialog;
+import fan.appcompat.app.AlertDialog;
 
 public class DialogHelper {
 

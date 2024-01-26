@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -22,14 +22,14 @@ import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import moralnorm.preference.DropDownPreference;
-import moralnorm.preference.SeekBarPreferenceEx;
+import fan.preference.DropDownPreference;
+import fan.preference.SeekBarPreference;
 
 public class AlertDialogSettings extends SettingsPreferenceFragment {
 
     private DropDownPreference mDialogGravity;
-    private SeekBarPreferenceEx mDialogHorizontalMargin;
-    private SeekBarPreferenceEx mDialogBottomMargin;
+    private SeekBarPreference mDialogHorizontalMargin;
+    private SeekBarPreference mDialogBottomMargin;
 
     @Override
     public int getContentResId() {

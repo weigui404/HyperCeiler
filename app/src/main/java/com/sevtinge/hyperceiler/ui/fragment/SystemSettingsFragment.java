@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -33,9 +33,8 @@ import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
 
-import moralnorm.preference.PreferenceCategory;
-import moralnorm.preference.SeekBarPreferenceEx;
-import moralnorm.preference.SwitchPreference;
+import fan.preference.SeekBarPreference;
+import fan.preference.SwitchPreference;
 
 public class SystemSettingsFragment extends SettingsPreferenceFragment {
     SwitchPreference mNewNfc; // 新版 NFC 界面
@@ -81,18 +80,23 @@ public class SystemSettingsFragment extends SettingsPreferenceFragment {
     }
 
     public void animationScale() {
-        SeekBarPreferenceEx seekBarPreferenceWn = findPreference("prefs_key_system_settings_window_animation_scale");
+        SeekBarPreference seekBarPreferenceWn = findPreference("prefs_key_system_settings_window_animation_scale");
         setOnSeekBarChangeListener(seekBarPreferenceWn, "window_animation_scale");
 
-        SeekBarPreferenceEx seekBarPreferenceTr = findPreference("prefs_key_system_settings_transition_animation_scale");
+        SeekBarPreference seekBarPreferenceTr = findPreference("prefs_key_system_settings_transition_animation_scale");
         setOnSeekBarChangeListener(seekBarPreferenceTr, "transition_animation_scale");
 
-        SeekBarPreferenceEx seekBarPreferenceAn = findPreference("prefs_key_system_settings_animator_duration_scale");
+        SeekBarPreference seekBarPreferenceAn = findPreference("prefs_key_system_settings_animator_duration_scale");
         setOnSeekBarChangeListener(seekBarPreferenceAn, "animator_duration_scale");
     }
 
-    public void setOnSeekBarChangeListener(SeekBarPreferenceEx mySeekBarPreference, String name) {
-        mySeekBarPreference.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    public void setOnSeekBarChangeListener(SeekBarPreference mySeekBarPreference, String name) {
+        mySeekBarPreference.setOnPreferenceChangeListener((preference, o) -> {
+            setAnimator((Integer) o, name);
+            return true;
+        });
+
+        /*mySeekBarPreference.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 setAnimator(progress, name);
@@ -105,7 +109,7 @@ public class SystemSettingsFragment extends SettingsPreferenceFragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-        });
+        });*/
     }
 
     public void setAnimator(int i, String name) {

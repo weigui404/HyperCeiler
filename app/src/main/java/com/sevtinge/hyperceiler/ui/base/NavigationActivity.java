@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -50,9 +50,10 @@ import com.sevtinge.hyperceiler.utils.blur.MiBlurUtils;
 
 import java.util.ArrayList;
 
-import moralnorm.preference.Preference;
-import moralnorm.preference.PreferenceFragmentCompat;
-import moralnorm.view.SearchActionMode;
+import fan.preference.Preference;
+import fan.preference.PreferenceFragmentCompat;
+import fan.preference.internal.compat.PreferenceFragmentCompat2;
+import fan.view.SearchActionMode;
 
 public abstract class NavigationActivity extends BaseActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -212,7 +213,7 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
     }
 
     @Override
-    public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat preferenceFragmentCompat, @NonNull Preference preference) {
+    public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat2 preferenceFragmentCompat2, @NonNull Preference preference) {
         mProxy.onStartSettingsForArguments(SubSettings.class, preference, false);
         return true;
     }

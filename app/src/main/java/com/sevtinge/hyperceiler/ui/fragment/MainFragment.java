@@ -33,7 +33,7 @@ import com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import moralnorm.preference.Preference;
+import fan.preference.Preference;
 
 public class MainFragment extends SettingsPreferenceFragment {
 

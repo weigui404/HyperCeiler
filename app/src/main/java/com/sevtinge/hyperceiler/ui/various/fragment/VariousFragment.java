@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -23,11 +23,11 @@ import android.util.Log;
 
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import moralnorm.preference.DropDownPreference;
-import moralnorm.preference.PreferenceCategory;
-import moralnorm.preference.PreferenceFragmentCompat;
-import moralnorm.preference.SeekBarPreference;
-import moralnorm.preference.SwitchPreference;
+import fan.preference.DropDownPreference;
+import fan.preference.PreferenceCategory;
+import fan.preference.PreferenceFragmentCompat;
+import fan.preference.SeekBarPreference;
+import fan.preference.SwitchPreference;
 
 public class VariousFragment extends PreferenceFragmentCompat {
 

@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -26,11 +26,11 @@ import androidx.fragment.app.Fragment;
 
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import moralnorm.preference.Preference;
-import moralnorm.preference.PreferenceManager;
-import moralnorm.preference.compat.PreferenceFragment;
+import fan.preference.PreferenceFragmentCompat;
+import fan.preference.Preference;
+import fan.preference.PreferenceManager;
 
-public class BasePreferenceFragment extends PreferenceFragment {
+public class BasePreferenceFragment extends PreferenceFragmentCompat {
 
     private PreferenceManager mPreferenceManager;
 

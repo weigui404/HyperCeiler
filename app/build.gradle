@@ -22,7 +22,7 @@ android {
     defaultConfig {
         namespace 'com.sevtinge.hyperceiler'
         applicationId namespace
-        minSdk 30
+        minSdk 33
         targetSdk 34
         versionCode 137
         versionName "2.3.137"
@@ -164,7 +164,9 @@ dependencies {
     implementation libs.vectordrawable.animated
     implementation libs.customview
     implementation libs.customview.poolingcontainer
-    implementation libs.constraintlayout
+    implementation (libs.constraintlayout) {
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
 
     implementation files(roots.animation)
     implementation files(roots.appcompat)
@@ -174,6 +176,8 @@ dependencies {
     implementation files(roots.smooth)
     implementation files(roots.springback)
     implementation files(roots.external)
+    implementation files(roots.graphics)
+    implementation files(roots.os)
 
     implementation files("libs/hyperceiler_expansion_packs-debug.aar")
 }

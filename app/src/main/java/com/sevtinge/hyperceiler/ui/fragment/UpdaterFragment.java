@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -27,9 +27,9 @@ import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import moralnorm.preference.DropDownPreference;
-import moralnorm.preference.EditTextPreference;
-import moralnorm.preference.Preference;
+import fan.preference.DropDownPreference;
+import fan.preference.EditTextPreference;
+import fan.preference.Preference;
 
 public class UpdaterFragment extends SettingsPreferenceFragment
     implements Preference.OnPreferenceChangeListener {

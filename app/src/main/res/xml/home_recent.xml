@@ -127,17 +127,15 @@
             app:format="%d f"
             app:stepValue="1" />
 
-        <moralnorm.preference.ColorPickerPreference
+        <ColorPickerPreference
             android:title="@string/home_recent_text_color"
             android:key="prefs_key_home_recent_text_color"
-            android:defaultValue="-1"
-            app:showAlphaSlider="true" />
+            android:defaultValue="-1" />
 
-        <moralnorm.preference.ColorPickerPreference
+        <ColorPickerPreference
             android:title="@string/home_recent_freeform_background_color"
             android:key="prefs_key_home_recent_freeform_background_color"
-            android:defaultValue="-1"
-            app:showAlphaSlider="true" />
+            android:defaultValue="-1" />
 
     </PreferenceCategory>
     <Preference android:enabled="false" />

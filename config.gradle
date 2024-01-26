@@ -25,6 +25,8 @@ ext {
             "preference" : "libs/preference-${BuildTypes}.aar",
             "smooth" : "libs/smooth-${BuildTypes}.aar",
             "springback" : "libs/springback-${BuildTypes}.aar",
-            "external" : "libs/external-${BuildTypes}.aar"
+            "external" : "libs/external-${BuildTypes}.aar",
+            "graphics" : "libs/graphics-${BuildTypes}.aar",
+            "os" : "libs/os-${BuildTypes}.aar"
     ]
 }

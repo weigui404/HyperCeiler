@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -28,16 +28,16 @@ import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import moralnorm.preference.DropDownPreference;
-import moralnorm.preference.Preference;
-import moralnorm.preference.SeekBarPreferenceEx;
-import moralnorm.preference.SwitchPreference;
+import fan.preference.DropDownPreference;
+import fan.preference.Preference;
+import fan.preference.SeekBarPreference;
+import fan.preference.SwitchPreference;
 
 public class NetworkSpeedIndicatorSettings extends SettingsPreferenceFragment
     implements Preference.OnPreferenceChangeListener {
 
-    SeekBarPreferenceEx mNetworkSpeedWidth; // 固定宽度
-    SeekBarPreferenceEx mNetworkSpeedSpacing; // 网速间间距
+    SeekBarPreference mNetworkSpeedWidth; // 固定宽度
+    SeekBarPreference mNetworkSpeedSpacing; // 网速间间距
     SwitchPreference mNetworkSwapIcon;
     SwitchPreference mNetworkSpeedSeparator;
     SwitchPreference mNetworkAllHide;
