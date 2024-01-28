@@ -83,7 +83,7 @@ jobs:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CANARY: ${{ env.APK_FILE_CANARY }}
           COMMIT_MESSAGE: |+
-            **New push to github\!**
+            **New push to github for Miuix V3\!**
 
             `${{ env.commit }}`
 
