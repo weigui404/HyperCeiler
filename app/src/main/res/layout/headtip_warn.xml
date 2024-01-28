@@ -16,63 +16,34 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="false"
-    android:clipChildren="false"
-    android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
-    android:paddingTop="6dp"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp"
-    android:paddingBottom="2dp">
-
-    <include layout="@layout/image_frame" />
+    android:background="?preferenceItemBackground"
+    android:clipChildren="false"
+    android:gravity="center_vertical">
 
     <RelativeLayout
-        android:gravity="center_vertical"
+        style="@style/Widget.PreferenceItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1.0">
+        android:layout_weight="1.0"
+        android:gravity="center_vertical">
 
         <TextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@android:id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/headtip_warn_background"
             android:textColor="#FF0000"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
             android:inputType="textMultiLine"
             android:textIsSelectable="true"
             android:enabled="false"
             android:clickable="true"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:longClickable="true"
-            />
+            android:longClickable="true" />
+
     </RelativeLayout>
-
-    <!-- Preference should place its actual preference widget here. -->
-    <LinearLayout
-        android:id="@android:id/widget_frame"
-        android:gravity="center"
-        android:clipChildren="false"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="@dimen/miuix_preference_widget_width" />
-
-    <ImageView
-        android:id="@+id/arrow_right"
-        android:gravity="center"
-        android:layout_gravity="center|end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/miuix_appcompat_intent_arrow_right" />
-
 </LinearLayout>

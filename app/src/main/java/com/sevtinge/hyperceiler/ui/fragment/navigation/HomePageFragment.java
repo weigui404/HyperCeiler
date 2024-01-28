@@ -1,22 +1,4 @@
-/*
-  * This file is part of HyperCeiler.
-
-  * HyperCeiler is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU Affero General Public License as
-  * published by the Free Software Foundation, either version 3 of the
-  * License.
-
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU Affero General Public License for more details.
-
-  * You should have received a copy of the GNU Affero General Public License
-  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-  * Copyright (C) 2023-2024 HyperCeiler Contributions
-*/
-package com.sevtinge.hyperceiler.ui.fragment;
+package com.sevtinge.hyperceiler.ui.fragment.navigation;
 
 import static com.sevtinge.hyperceiler.utils.api.VoyagerApisKt.isPad;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getBaseOs;
@@ -25,25 +7,69 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVers
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sevtinge.hyperceiler.R;
+import com.sevtinge.hyperceiler.data.ModData;
+import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
+import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.SearchModeHelper;
+import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
 import com.sevtinge.hyperceiler.utils.devicesdk.DeviceSDKKt;
 import com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
+import fan.appcompat.app.AppCompatActivity;
+import fan.appcompat.app.Fragment;
 import fan.preference.Preference;
+import fan.view.SearchActionMode;
 
-public class MainFragment extends SettingsPreferenceFragment {
+public class HomePageFragment extends SettingsPreferenceFragment {
+
+    String lastFilter;
+    View mContainer;
+    View mSearchView;
+    TextView mSearchInputView;
+    RecyclerView mSearchResultView;
+    ModSearchAdapter mSearchAdapter;
+    TextWatcher mSearchResultListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            findMod(s.toString());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            findMod(s.toString());
+        }
+    };
+    ModSearchAdapter.onItemClickListener onSearchItemClickListener = (view, ad) -> {
+        Bundle args = new Bundle();
+        args.putString(":settings:fragment_args_key", ad.key);
+        SettingLauncherHelper.onStartSettingsForArguments(
+            getContext(),
+            SubSettings.class,
+            ad.fragment,
+            args,
+            ad.catTitleResId
+        );
+    };
 
     Preference mPowerSetting;
     Preference mMTB;
@@ -61,13 +87,15 @@ public class MainFragment extends SettingsPreferenceFragment {
         return R.xml.prefs_main;
     }
 
-    @NonNull
     @Override
     public View onInflateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) super.onInflateView(inflater, container, savedInstanceState);
-        View searchView = inflater.inflate(R.layout.view_search_stub, null);
-        view.addView(searchView, 0);
-        return view;
+        mContainer = super.onInflateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.view_search_stub, null);
+        mSearchResultView = new RecyclerView(getContext());
+        ((ViewGroup) mContainer).addView(view, 0);
+        ((ViewGroup) mContainer).addView(mSearchResultView, 1);
+        initView();
+        return mContainer;
     }
 
     @Override
@@ -109,6 +137,41 @@ public class MainFragment extends SettingsPreferenceFragment {
 
         isOfficialRom();
         if(!getIsOfficialRom()) isSignPass();
+    }
+
+    private void initView() {
+        mSearchResultView.setLayoutManager(new LinearLayoutManager(getContext()));
+        initSearchView();
+    }
+
+    private void initSearchView() {
+        mSearchView = mContainer.findViewById(R.id.search_view);
+        mSearchInputView = mContainer.findViewById(android.R.id.input);
+        mSearchAdapter = new ModSearchAdapter();
+        mSearchInputView.setHint(getResources().getString(R.string.search));
+        mSearchResultView.setAdapter(mSearchAdapter);
+
+        mSearchView.setOnClickListener(v -> startSearchMode());
+        mSearchAdapter.setOnItemClickListener(onSearchItemClickListener);
+    }
+
+    private SearchActionMode startSearchMode() {
+        return SearchModeHelper.startSearchMode(
+            this,
+            mSearchResultView,
+            mContainer.findViewById(android.R.id.list_container),
+            mSearchView,
+            mSearchView,
+            mSearchResultListener
+        );
+    }
+
+    void findMod(String filter) {
+        lastFilter = filter;
+        mSearchResultView.setVisibility(filter.equals("") ? View.GONE : View.VISIBLE);
+        ModSearchAdapter adapter = (ModSearchAdapter) mSearchResultView.getAdapter();
+        if (adapter == null) return;
+        adapter.getFilter().filter(filter);
     }
 
     public void isOfficialRom() {

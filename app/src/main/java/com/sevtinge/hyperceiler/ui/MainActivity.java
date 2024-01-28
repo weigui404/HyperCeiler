@@ -42,16 +42,22 @@ public class MainActivity extends NavigationActivity {
         super.onCreate(savedInstanceState);
         new Thread(() -> SearchHelper.getAllMods(MainActivity.this, savedInstanceState != null)).start();
         Helpers.checkXposedActivateState(this);
-        if (!PropUtils.setProp("persist.hyperceiler.log.level",
-            (ProjectApi.isRelease() ? def : ProjectApi.isCanary() ? (def == 0 ? 3 : 4) : def))) {
-            new AlertDialog.Builder(this)
-                .setCancelable(false)
-                .setTitle(getResources().getString(R.string.tip))
-                .setMessage(getResources().getString(R.string.root))
-                .setHapticFeedbackEnabled(true)
-                .setPositiveButton(android.R.string.ok, null)
-                .show();
+        if (!ProjectApi.isDebug()) {
+            if (!PropUtils.setProp("persist.hyperceiler.log.level",
+                (ProjectApi.isRelease() ? def : ProjectApi.isCanary() ? (def == 0 ? 3 : 4) : def))) {
+                new AlertDialog.Builder(this)
+                    .setCancelable(false)
+                    .setTitle(getResources().getString(R.string.tip))
+                    .setMessage(getResources().getString(R.string.root))
+                    .setHapticFeedbackEnabled(true)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show();
+            }
         }
+    }
+
+    public int getBottomTabMenu() {
+        return R.menu.menu_navigation;
     }
 
     private void requestCta() {

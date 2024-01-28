@@ -1,26 +1,9 @@
-/*
-  * This file is part of HyperCeiler.
-
-  * HyperCeiler is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU Affero General Public License as
-  * published by the Free Software Foundation, either version 3 of the
-  * License.
-
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU Affero General Public License for more details.
-
-  * You should have received a copy of the GNU Affero General Public License
-  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-  * Copyright (C) 2023-2024 HyperCeiler Contributions
-*/
-package com.sevtinge.hyperceiler.ui.fragment.settings;
+package com.sevtinge.hyperceiler.ui.fragment.navigation;
 
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.sevtinge.hyperceiler.BuildConfig;
@@ -37,12 +20,12 @@ import fan.preference.DropDownPreference;
 import fan.preference.Preference;
 import fan.preference.SwitchPreference;
 
-public class ModuleSettingsFragment extends SettingsPreferenceFragment
-    implements Preference.OnPreferenceChangeListener {
+public class SettingsPageFragment extends SettingsPreferenceFragment implements
+    Preference.OnPreferenceChangeListener {
+
     DropDownPreference mIconModePreference;
     DropDownPreference mIconModeValue;
     SwitchPreference mHideAppIcon;
-
     DropDownPreference mLogLevel;
 
     @Override

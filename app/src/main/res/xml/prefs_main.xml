@@ -6,10 +6,9 @@
             android:layout="@layout/headtip_warn"
             android:key="prefs_key_headtip_warn"
             android:enabled="false"
-            android:title="This is warn of headtip."
             app:isPreferenceVisible="false" />
 
-        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+        <Preference
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.SystemFrameworkFragment"
             android:icon="@drawable/ic_android"
             android:key="prefs_key_system_framework"

@@ -27,7 +27,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.sevtinge.hyperceiler.ui.base.BaseActivity;
+import com.sevtinge.hyperceiler.ui.base.NavigationActivity;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
+
+import fan.appcompat.app.ActionBar;
 
 public abstract class SettingsPreferenceFragment extends BasePreferenceFragment {
 
@@ -47,6 +50,7 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initActionBar();
         if (savedInstanceState != null) {
             mPreferenceHighlighted = savedInstanceState.getBoolean(SAVE_HIGHLIGHTED_KEY);
         }
@@ -72,6 +76,12 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
         /*((BaseActivity) getActivity()).setRestartView(addRestartListener());*/
     }
 
+    private void initActionBar() {
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(!(getActivity() instanceof NavigationActivity));
+        }
+    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

@@ -13,6 +13,8 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
+        <item name="windowSplitActionBar">true</item>
+        <item name="windowActionBarOverlay">false</item>
     </style>
 
     <!-- Base application theme. -->
