@@ -26,6 +26,8 @@ import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.TabNavigatorContentFragment;
 
+import fan.external.view.weatherview.HolidayTheme;
+import fan.external.view.weatherview.HolidayThemeHelper;
 import fan.preference.Preference;
 import fan.preference.PreferenceFragment;
 import fan.preference.internal.compat.PreferenceFragmentCompat;
@@ -38,6 +40,12 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_sub);
+        HolidayThemeHelper.setup(this,
+            findViewById(R.id.weather_view),
+            findViewById(R.id.holiday_header),
+            HolidayTheme.THEME_AUTO,
+            getWindowManager().getDefaultDisplay().getRotation()
+        );
         setFragment(new TabNavigatorContentFragment());
         /*setRestartView(view -> DialogHelper.showRestartDialog(this));*/
     }
@@ -46,5 +54,23 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
     public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat preferenceFragmentCompat, @NonNull Preference preference) {
         mProxy.onStartSettingsForArguments(SubSettings.class, preference, false);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        HolidayThemeHelper.onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        HolidayThemeHelper.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        HolidayThemeHelper.onDestroy();
+        super.onDestroy();
     }
 }
