@@ -29,6 +29,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.provider.SharedPrefsProvider;
@@ -51,25 +52,36 @@ public abstract class BaseActivity extends AppCompatActivity {
         registerObserver();
     }
 
+    public void setFragment(Fragment fragment) {
+        getSupportFragmentManager()
+            .beginTransaction()
+            .replace(R.id.frame_content, fragment)
+            .commit();
+    }
+
     protected void initActionBar() {
-        getAppCompatActionBar().hide();
+        hideActionBar();
         /*setDisplayHomeAsUpEnabled(!(this instanceof NavigationActivity));*/
+    }
+
+    protected void hideActionBar() {
+        getAppCompatActionBar().hide();
     }
 
     public void setDisplayHomeAsUpEnabled(boolean isEnable) {
         getAppCompatActionBar().setDisplayHomeAsUpEnabled(isEnable);
     }
 
-    public void setActionBarEndView(View view) {
+    /*public void setActionBarEndView(View view) {
         getAppCompatActionBar().setEndView(view);
-    }
+    }*/
 
-    public void setActionBarEndIcon(@DrawableRes int resId, View.OnClickListener listener) {
+    /*public void setActionBarEndIcon(@DrawableRes int resId, View.OnClickListener listener) {
         ImageView mRestartView = new ImageView(this);
         mRestartView.setImageResource(resId);
         mRestartView.setOnClickListener(listener);
         setActionBarEndView(mRestartView);
-    }
+    }*/
 
     /*public void setRestartView(View.OnClickListener listener) {
         if (listener != null) setActionBarEndIcon(R.drawable.ic_reboot_small, listener);

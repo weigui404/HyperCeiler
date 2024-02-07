@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.sevtinge.hyperceiler.BuildConfig;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.LauncherActivity;
+import com.sevtinge.hyperceiler.ui.fragment.base.NavigatorFragment;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.BackupUtils;
 import com.sevtinge.hyperceiler.utils.DialogHelper;
@@ -20,7 +21,7 @@ import fan.preference.DropDownPreference;
 import fan.preference.Preference;
 import fan.preference.SwitchPreference;
 
-public class SettingsPageFragment extends SettingsPreferenceFragment implements
+public class SettingsPageFragment extends NavigatorFragment implements
     Preference.OnPreferenceChangeListener {
 
     DropDownPreference mIconModePreference;

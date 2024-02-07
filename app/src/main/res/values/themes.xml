@@ -39,4 +39,11 @@
         <item name="android:layout">@layout/miuix_preference_widget_seekbar</item>
     </style>
 
+    <style name="TabNavigatorContentFragmentTheme" parent="@style/AppTheme">
+        <item name="android:actionBarStyle">@style/Widget.ActionBar.NoBack</item>
+    </style>
+
+    <style name="Widget.ActionBar.NoBack">
+        <item name="android:displayOptions">showTitle</item>
+    </style>
 </resources>

@@ -9,12 +9,13 @@ import android.os.Bundle;
 import com.sevtinge.hyperceiler.BuildConfig;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.expansionpacks.utils.ClickCountsUtils;
+import com.sevtinge.hyperceiler.ui.fragment.base.NavigatorFragment;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 
 import fan.preference.Preference;
 import fan.preference.SwitchPreference;
 
-public class AboutPageFragment extends SettingsPreferenceFragment {
+public class AboutPageFragment extends NavigatorFragment {
 
     private int lIIlIll = 100 >>> 7;
     private int lIIlIlI = 100 >>> 6;

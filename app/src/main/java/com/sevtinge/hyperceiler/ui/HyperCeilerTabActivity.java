@@ -1,21 +1,3 @@
-/*
-  * This file is part of HyperCeiler.
-
- * HyperCeiler is free software: you can redistribute it and/or modify
-  * it under the terms of the GNU Affero General Public License as
-  * published by the Free Software Foundation, either version 3 of the
-  * License.
-
-  * This program is distributed in the hope that it will be useful,
-  * but WITHOUT ANY WARRANTY; without even the implied warranty of
-  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  * GNU Affero General Public License for more details.
-
-  * You should have received a copy of the GNU Affero General Public License
-  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-  * Copyright (C) 2023-2024 HyperCeiler Contributions
-*/
 package com.sevtinge.hyperceiler.ui;
 
 import android.content.Intent;
@@ -34,13 +16,20 @@ import com.sevtinge.hyperceiler.utils.api.ProjectApi;
 
 import fan.appcompat.app.AlertDialog;
 
-public class MainActivity extends NavigationActivity {
+public class HyperCeilerTabActivity extends NavigationActivity {
+
+
+    @Override
+    public int getBottomTabMenu() {
+        return R.menu.menu_navigation;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         int def = Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_log_level", "2"));
+
         super.onCreate(savedInstanceState);
-        new Thread(() -> SearchHelper.getAllMods(MainActivity.this, savedInstanceState != null)).start();
+        new Thread(() -> SearchHelper.getAllMods(this, savedInstanceState != null)).start();
         Helpers.checkXposedActivateState(this);
         if (!ProjectApi.isDebug()) {
             if (!PropUtils.setProp("persist.hyperceiler.log.level",
@@ -56,20 +45,16 @@ public class MainActivity extends NavigationActivity {
         }
     }
 
-    public int getBottomTabMenu() {
-        return R.menu.menu_navigation;
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        requestCta();
     }
 
     private void requestCta() {
         /*if (!CtaUtils.isCtaEnabled(this)) {
             CtaUtils.showCtaDialog(this, REQUEST_CODE);
         }*/
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        requestCta();
     }
 
     @Override
@@ -106,5 +91,4 @@ public class MainActivity extends NavigationActivity {
             alert.show();
         }
     }
-
 }

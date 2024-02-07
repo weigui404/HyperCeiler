@@ -31,10 +31,10 @@ import com.sevtinge.hyperceiler.ui.fragment.sub.MultiActionSettings;
 import com.sevtinge.hyperceiler.ui.fragment.various.AlertDialogSettings;
 
 import fan.preference.Preference;
-import fan.preference.PreferenceFragmentCompat;
+import fan.preference.internal.compat.PreferenceFragmentCompat;
 import fan.preference.internal.compat.PreferenceFragmentCompat2;
 
-public abstract class SettingsActivity extends BaseSettingsActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+public abstract class SettingsActivity extends BaseSettingsActivity implements fan.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,4 +59,18 @@ public abstract class SettingsActivity extends BaseSettingsActivity implements P
         onStartSettingsForArguments(preference, isBundleEnable);
         return true;
     }
+
+
+
+    /*@Override
+    public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat preferenceFragmentCompat, @NonNull Preference preference) {
+        boolean isBundleEnable = preferenceFragmentCompat instanceof OtherSettings ||
+            preferenceFragmentCompat instanceof HomeDockSettings ||
+            preferenceFragmentCompat instanceof HomeFolderSettings ||
+            preferenceFragmentCompat instanceof AlertDialogSettings ||
+            preferenceFragmentCompat instanceof HomeGestureSettings ||
+            preferenceFragmentCompat instanceof MultiActionSettings;
+        onStartSettingsForArguments(preference, isBundleEnable);
+        return true;
+    }*/
 }

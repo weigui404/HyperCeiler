@@ -4,18 +4,25 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/frame_page"
+        <include layout="@layout/view_search_stub" />
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/frame_page"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
     </LinearLayout>
 
     <RadioGroup
-        android:visibility="gone"
         android:id="@+id/navigation"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -23,8 +30,7 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         android:checkedButton="@id/navigation_home"
-        android:gravity="center"
-        android:paddingVertical="12dp">
+        android:gravity="center">
 
         <RadioButton
             android:id="@+id/navigation_home"
@@ -36,7 +42,8 @@
             android:drawablePadding="2dp"
             android:gravity="center"
             android:text="@string/home"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:paddingVertical="12dp"/>
 
         <RadioButton
             android:id="@+id/navigation_settings"
@@ -48,7 +55,8 @@
             android:drawablePadding="2dp"
             android:gravity="center"
             android:text="@string/settings"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:paddingVertical="12dp"/>
 
         <RadioButton
             android:id="@+id/navigation_about"
@@ -60,7 +68,8 @@
             android:drawablePadding="2dp"
             android:gravity="center"
             android:text="@string/about"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:paddingVertical="12dp"/>
 
     </RadioGroup>
 

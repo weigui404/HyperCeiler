@@ -24,6 +24,7 @@ import com.sevtinge.hyperceiler.data.ModData;
 import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 import com.sevtinge.hyperceiler.ui.SubSettings;
+import com.sevtinge.hyperceiler.ui.fragment.base.NavigatorFragment;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.SearchModeHelper;
 import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
@@ -37,39 +38,7 @@ import fan.appcompat.app.Fragment;
 import fan.preference.Preference;
 import fan.view.SearchActionMode;
 
-public class HomePageFragment extends SettingsPreferenceFragment {
-
-    String lastFilter;
-    View mContainer;
-    View mSearchView;
-    TextView mSearchInputView;
-    RecyclerView mSearchResultView;
-    ModSearchAdapter mSearchAdapter;
-    TextWatcher mSearchResultListener = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            findMod(s.toString());
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            findMod(s.toString());
-        }
-    };
-    ModSearchAdapter.onItemClickListener onSearchItemClickListener = (view, ad) -> {
-        Bundle args = new Bundle();
-        args.putString(":settings:fragment_args_key", ad.key);
-        SettingLauncherHelper.onStartSettingsForArguments(
-            getContext(),
-            SubSettings.class,
-            ad.fragment,
-            args,
-            ad.catTitleResId
-        );
-    };
+public class HomePageFragment extends NavigatorFragment {
 
     Preference mPowerSetting;
     Preference mMTB;
@@ -88,14 +57,9 @@ public class HomePageFragment extends SettingsPreferenceFragment {
     }
 
     @Override
-    public View onInflateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContainer = super.onInflateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.view_search_stub, null);
-        mSearchResultView = new RecyclerView(getContext());
-        ((ViewGroup) mContainer).addView(view, 0);
-        ((ViewGroup) mContainer).addView(mSearchResultView, 1);
-        initView();
-        return mContainer;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActionBar().hide();
     }
 
     @Override
@@ -137,41 +101,6 @@ public class HomePageFragment extends SettingsPreferenceFragment {
 
         isOfficialRom();
         if(!getIsOfficialRom()) isSignPass();
-    }
-
-    private void initView() {
-        mSearchResultView.setLayoutManager(new LinearLayoutManager(getContext()));
-        initSearchView();
-    }
-
-    private void initSearchView() {
-        mSearchView = mContainer.findViewById(R.id.search_view);
-        mSearchInputView = mContainer.findViewById(android.R.id.input);
-        mSearchAdapter = new ModSearchAdapter();
-        mSearchInputView.setHint(getResources().getString(R.string.search));
-        mSearchResultView.setAdapter(mSearchAdapter);
-
-        mSearchView.setOnClickListener(v -> startSearchMode());
-        mSearchAdapter.setOnItemClickListener(onSearchItemClickListener);
-    }
-
-    private SearchActionMode startSearchMode() {
-        return SearchModeHelper.startSearchMode(
-            this,
-            mSearchResultView,
-            mContainer.findViewById(android.R.id.list_container),
-            mSearchView,
-            mSearchView,
-            mSearchResultListener
-        );
-    }
-
-    void findMod(String filter) {
-        lastFilter = filter;
-        mSearchResultView.setVisibility(filter.equals("") ? View.GONE : View.VISIBLE);
-        ModSearchAdapter adapter = (ModSearchAdapter) mSearchResultView.getAdapter();
-        if (adapter == null) return;
-        adapter.getFilter().filter(filter);
     }
 
     public void isOfficialRom() {

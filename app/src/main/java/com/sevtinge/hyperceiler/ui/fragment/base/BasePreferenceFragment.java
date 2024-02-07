@@ -19,15 +19,24 @@
 package com.sevtinge.hyperceiler.ui.fragment.base;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
-import fan.preference.PreferenceFragmentCompat;
 import fan.preference.Preference;
+import fan.preference.PreferenceFragment;
+import fan.preference.PreferenceFragmentCompat;
 import fan.preference.PreferenceManager;
 
 public class BasePreferenceFragment extends PreferenceFragmentCompat {
