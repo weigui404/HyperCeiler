@@ -1,4 +1,4 @@
-package com.sevtinge.hyperceiler.ui.fragment.navigation;
+package com.sevtinge.hyperceiler.ui.fragment.base.navigation;
 
 import android.app.Activity;
 import android.content.ComponentName;

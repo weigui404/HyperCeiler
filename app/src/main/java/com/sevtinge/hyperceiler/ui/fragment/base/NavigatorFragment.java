@@ -20,7 +20,7 @@ public abstract class NavigatorFragment extends PreferenceFragment {
     @Override
     public void onCreatePreferences(@Nullable Bundle bundle, @Nullable String s) {
         FragmentProxy mProxy = new FragmentProxy(this);
-        mProxy.onCreatePreferences(getPreferenceManager());
+        mProxy.onCreatePreferenceManager(getPreferenceManager());
         if (getContentResId() != 0) {
             setPreferencesFromResource(getContentResId(), s);
             initPrefs();

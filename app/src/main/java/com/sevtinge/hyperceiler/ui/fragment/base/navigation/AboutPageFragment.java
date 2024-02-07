@@ -1,4 +1,4 @@
-package com.sevtinge.hyperceiler.ui.fragment.navigation;
+package com.sevtinge.hyperceiler.ui.fragment.base.navigation;
 
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 

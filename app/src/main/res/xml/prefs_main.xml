@@ -2,6 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory>
+
+        <com.sevtinge.hyperceiler.prefs.TipsPreference
+            android:key="prefs_key_tips" />
+
         <Preference
             android:layout="@layout/headtip_warn"
             android:key="prefs_key_headtip_warn"
@@ -372,12 +376,6 @@
             android:title="@string/various" />
 
     </PreferenceCategory>
-
-    <Preference
-        android:enabled="false"
-        android:key="prefs_key_tip"
-        android:layout="@layout/preference_text"
-        android:summary="@string/tip_default" />
 
     <Preference android:enabled="false" />
 </PreferenceScreen>

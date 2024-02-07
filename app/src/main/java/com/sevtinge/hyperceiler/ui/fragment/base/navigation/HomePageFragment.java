@@ -1,4 +1,4 @@
-package com.sevtinge.hyperceiler.ui.fragment.navigation;
+package com.sevtinge.hyperceiler.ui.fragment.base.navigation;
 
 import static com.sevtinge.hyperceiler.utils.api.VoyagerApisKt.isPad;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getBaseOs;
@@ -7,6 +7,8 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVers
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.data.ModData;
 import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
+import com.sevtinge.hyperceiler.prefs.TipsPreference;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.NavigatorFragment;
@@ -47,9 +50,22 @@ public class HomePageFragment extends NavigatorFragment {
     Preference mAod;
     Preference mGuardProvider;
     Preference mMirror;
-    Preference mTip;
     Preference mHeadtipWarn;
+
+    TipsPreference mTips;
     MainActivityContextHelper mainActivityContextHelper;
+
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0x11) {
+                mTips.updateTips();//在这里写需要刷新完成的代码
+                removeMessages(0x11);
+                sendEmptyMessageDelayed(0x11, 6000);//这里想几秒刷新一次就写几秒*/
+            }
+        }
+    };
 
     @Override
     public int getContentResId() {
@@ -60,6 +76,8 @@ public class HomePageFragment extends NavigatorFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().hide();
+        Message message = mHandler.obtainMessage(0x11);
+        mHandler.sendMessageDelayed(message, 6000);
     }
 
     @Override
@@ -71,8 +89,8 @@ public class HomePageFragment extends NavigatorFragment {
         mAod = findPreference("prefs_key_aod");
         mGuardProvider = findPreference("prefs_key_guardprovider");
         mMirror = findPreference("prefs_key_mirror");
-        mTip = findPreference("prefs_key_tip");
         mHeadtipWarn = findPreference("prefs_key_headtip_warn");
+        mTips = findPreference("prefs_key_tips");
 
         mPowerSetting.setVisible(!isAndroidVersion(30));
         mMTB.setVisible(!isAndroidVersion(30));
@@ -96,8 +114,6 @@ public class HomePageFragment extends NavigatorFragment {
         }
 
         mainActivityContextHelper = new MainActivityContextHelper(requireContext());
-        String randomTip = mainActivityContextHelper.getRandomTip();
-        mTip.setSummary("Tip: " + randomTip);
 
         isOfficialRom();
         if(!getIsOfficialRom()) isSignPass();

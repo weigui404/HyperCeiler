@@ -22,6 +22,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.framework.OtherSettings;
 import com.sevtinge.hyperceiler.ui.fragment.home.HomeDockSettings;
@@ -31,7 +32,6 @@ import com.sevtinge.hyperceiler.ui.fragment.sub.MultiActionSettings;
 import com.sevtinge.hyperceiler.ui.fragment.various.AlertDialogSettings;
 
 import fan.preference.Preference;
-import fan.preference.internal.compat.PreferenceFragmentCompat;
 import fan.preference.internal.compat.PreferenceFragmentCompat2;
 
 public abstract class SettingsActivity extends BaseSettingsActivity implements fan.preference.PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {

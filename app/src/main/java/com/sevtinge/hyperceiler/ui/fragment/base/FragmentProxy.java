@@ -18,7 +18,7 @@ public class FragmentProxy {
     public FragmentProxy(Fragment fragment) {
     }
 
-    public void onCreatePreferences(PreferenceManager preferenceManager) {
+    public void onCreatePreferenceManager(PreferenceManager preferenceManager) {
         preferenceManager.setSharedPreferencesName(PrefsUtils.mPrefsName);
         preferenceManager.setSharedPreferencesMode(Context.MODE_PRIVATE);
         preferenceManager.setStorageDeviceProtected();

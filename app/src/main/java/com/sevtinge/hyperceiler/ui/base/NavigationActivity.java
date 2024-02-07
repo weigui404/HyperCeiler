@@ -32,20 +32,13 @@ import fan.preference.Preference;
 import fan.preference.PreferenceFragment;
 import fan.preference.internal.compat.PreferenceFragmentCompat;
 
-public abstract class NavigationActivity extends BaseActivity implements PreferenceFragment.OnPreferenceStartFragmentCallback {
+public abstract class NavigationActivity extends SettingsActivity implements PreferenceFragment.OnPreferenceStartFragmentCallback {
 
     public abstract int getBottomTabMenu();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_sub);
-        HolidayThemeHelper.setup(this,
-            findViewById(R.id.weather_view),
-            findViewById(R.id.holiday_header),
-            HolidayTheme.THEME_AUTO,
-            getWindowManager().getDefaultDisplay().getRotation()
-        );
         setFragment(new TabNavigatorContentFragment());
         /*setRestartView(view -> DialogHelper.showRestartDialog(this));*/
     }

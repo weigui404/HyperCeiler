@@ -32,12 +32,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fan.appcompat.app.AlertDialog;
+import fan.external.view.weatherview.HolidayTheme;
+import fan.external.view.weatherview.HolidayThemeHelper;
 
 public abstract class BaseSettingsActivity extends BaseActivity {
 
     private String initialFragmentName;
     public Fragment mFragment;
-    public static List<BaseSettingsActivity> mActivityList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,17 @@ public abstract class BaseSettingsActivity extends BaseActivity {
 
     protected void createUiFromIntent(Bundle savedInstanceState, Intent intent) {
         mProxy.setupContentView();
-        mActivityList.add(this);
         Fragment targetFragment = mProxy.getTargetFragment(this, initialFragmentName, savedInstanceState);
         if (targetFragment != null) {
             targetFragment.setArguments(mProxy.getArguments(intent));
             setFragment(targetFragment);
         }
+        HolidayThemeHelper.setup(this,
+            findViewById(R.id.weather_view),
+            findViewById(R.id.holiday_header),
+            HolidayTheme.THEME_AUTO,
+            getWindowManager().getDefaultDisplay().getRotation()
+        );
     }
 
     public void showRestartSystemDialog() {

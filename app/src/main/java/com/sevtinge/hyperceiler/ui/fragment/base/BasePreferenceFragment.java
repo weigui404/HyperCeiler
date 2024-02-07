@@ -41,14 +41,10 @@ import fan.preference.PreferenceManager;
 
 public class BasePreferenceFragment extends PreferenceFragmentCompat {
 
-    private PreferenceManager mPreferenceManager;
-
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
-        mPreferenceManager = getPreferenceManager();
-        mPreferenceManager.setSharedPreferencesName(PrefsUtils.mPrefsName);
-        mPreferenceManager.setSharedPreferencesMode(Context.MODE_PRIVATE);
-        mPreferenceManager.setStorageDeviceProtected();
+        FragmentProxy mProxy = new FragmentProxy(this);
+        mProxy.onCreatePreferenceManager(getPreferenceManager());
     }
 
     public void setTitle(int titleResId) {

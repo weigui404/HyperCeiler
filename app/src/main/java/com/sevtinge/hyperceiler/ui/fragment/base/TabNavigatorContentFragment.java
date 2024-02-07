@@ -2,8 +2,6 @@ package com.sevtinge.hyperceiler.ui.fragment.base;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -22,11 +20,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
 import com.sevtinge.hyperceiler.data.adapter.NavigationPagerAdapter;
-import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 import com.sevtinge.hyperceiler.ui.SubSettings;
-import com.sevtinge.hyperceiler.ui.fragment.navigation.AboutPageFragment;
-import com.sevtinge.hyperceiler.ui.fragment.navigation.HomePageFragment;
-import com.sevtinge.hyperceiler.ui.fragment.navigation.SettingsPageFragment;
+import com.sevtinge.hyperceiler.ui.fragment.base.navigation.AboutPageFragment;
+import com.sevtinge.hyperceiler.ui.fragment.base.navigation.HomePageFragment;
+import com.sevtinge.hyperceiler.ui.fragment.base.navigation.SettingsPageFragment;
 import com.sevtinge.hyperceiler.utils.Helpers;
 import com.sevtinge.hyperceiler.utils.SearchModeHelper;
 import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
@@ -80,19 +77,6 @@ public class TabNavigatorContentFragment extends Fragment {
     AboutPageFragment mAboutPage = new AboutPageFragment();
     NavigationPagerAdapter mNavigationPagerAdapter;
     List<androidx.fragment.app.Fragment> mFragmentList = new ArrayList<>();
-    MainActivityContextHelper mainActivityContextHelper;
-    Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 0x11) {
-                updateSearchHint();//在这里写需要刷新完成的代码
-                removeMessages(0x11);
-                sendEmptyMessageDelayed(0x11, 10000);//这里想几秒刷新一次就写几秒*/
-            }
-        }
-    };
-
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -115,8 +99,6 @@ public class TabNavigatorContentFragment extends Fragment {
         super.onViewCreated(view, bundle);
         initSearchView(view);
         initNavigationView(view);
-        Message message = mHandler.obtainMessage(0x11);
-        mHandler.sendMessageDelayed(message, 3000);
     }
 
     private void initSearchView(View view) {
@@ -129,12 +111,6 @@ public class TabNavigatorContentFragment extends Fragment {
 
         mSearchView.setOnClickListener(v -> startSearchMode());
         mSearchAdapter.setOnItemClickListener(onSearchItemClickListener);
-    }
-
-    private void updateSearchHint() {
-        mainActivityContextHelper = new MainActivityContextHelper(requireContext());
-        String randomTip = mainActivityContextHelper.getRandomTip();
-        mSearchInputView.setHint("Tip: " + randomTip);
     }
 
     private void initNavigationView(View view) {

@@ -68,10 +68,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         getAppCompatActionBar().hide();
     }
 
-    public void setDisplayHomeAsUpEnabled(boolean isEnable) {
-        getAppCompatActionBar().setDisplayHomeAsUpEnabled(isEnable);
-    }
-
     /*public void setActionBarEndView(View view) {
         getAppCompatActionBar().setEndView(view);
     }*/
