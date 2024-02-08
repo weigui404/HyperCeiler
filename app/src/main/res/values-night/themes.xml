@@ -1,9 +1,13 @@
 <resources>
     <style name="Base.Theme.HyperCeiler.DayNight" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="windowSplitActionBar">true</item>
+        <item name="windowActionBarOverlay">false</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference.DayNight</item>
         <item name="android:forceDarkAllowed">false</item>
         <item name="rebootIconColor">@color/white</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
     </style>
 

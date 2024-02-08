@@ -65,8 +65,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.HyperCeilerTabActivity"
-            android:exported="true"
-            android:theme="@style/Base.Theme.HyperCeiler.DayNight.SystemBarBackgrounds">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS" />
@@ -102,9 +101,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.ModuleSettingsActivity"
-            android:label="@string/settings" />
+
         <activity android:name=".ui.SubPickerActivity" />
 
         <provider

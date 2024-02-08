@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 
 import fan.preference.Preference;
@@ -25,6 +26,7 @@ public class TipsPreference extends Preference {
     public TipsPreference(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setEnabled(false);
+        setLayoutResource(R.layout.preference_tips);
         updateTips();
     }
 
