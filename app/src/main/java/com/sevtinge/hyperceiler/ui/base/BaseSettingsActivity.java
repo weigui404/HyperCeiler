@@ -28,12 +28,7 @@ import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.utils.ShellUtils;
 import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fan.appcompat.app.AlertDialog;
-import fan.external.view.weatherview.HolidayTheme;
-import fan.external.view.weatherview.HolidayThemeHelper;
 
 public abstract class BaseSettingsActivity extends BaseActivity {
 
@@ -58,12 +53,6 @@ public abstract class BaseSettingsActivity extends BaseActivity {
             targetFragment.setArguments(mProxy.getArguments(intent));
             setFragment(targetFragment);
         }
-        HolidayThemeHelper.setup(this,
-            findViewById(R.id.weather_view),
-            findViewById(R.id.holiday_header),
-            HolidayTheme.THEME_AUTO,
-            getWindowManager().getDefaultDisplay().getRotation()
-        );
     }
 
     public void showRestartSystemDialog() {

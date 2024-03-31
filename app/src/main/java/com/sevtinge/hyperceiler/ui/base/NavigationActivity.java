@@ -22,12 +22,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
-import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.TabNavigatorContentFragment;
 
-import fan.external.view.weatherview.HolidayTheme;
-import fan.external.view.weatherview.HolidayThemeHelper;
 import fan.preference.Preference;
 import fan.preference.PreferenceFragment;
 import fan.preference.internal.compat.PreferenceFragmentCompat;
@@ -47,23 +44,5 @@ public abstract class NavigationActivity extends SettingsActivity implements Pre
     public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat preferenceFragmentCompat, @NonNull Preference preference) {
         mProxy.onStartSettingsForArguments(SubSettings.class, preference, false);
         return true;
-    }
-
-    @Override
-    protected void onResume() {
-        HolidayThemeHelper.onResume();
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        HolidayThemeHelper.onPause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        HolidayThemeHelper.onDestroy();
-        super.onDestroy();
     }
 }
