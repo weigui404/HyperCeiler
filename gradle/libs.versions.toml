@@ -22,11 +22,6 @@ ezXHelper = "2.1.2"
 accompanist = "0.34.0"
 hiddenapibypass = "4.3"
 commons-codec = "1.16.1"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
-material = "1.10.0"
 
 [libraries]
 core = { group = "androidx.core", name = "core", version.ref = "core" }
@@ -50,11 +45,6 @@ ezXHelper = { group = "com.github.kyuubiran", name = "EzXHelper", version.ref = 
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 hiddenapibypass = { group = "org.lsposed.hiddenapibypass", name = "hiddenapibypass", version.ref = "hiddenapibypass" }
 commons-codec = { group = "commons-codec", name = "commons-codec", version.ref = "commons-codec" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
