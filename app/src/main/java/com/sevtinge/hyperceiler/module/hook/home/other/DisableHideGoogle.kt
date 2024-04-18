@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -22,12 +22,12 @@ import android.content.ComponentName
 import com.sevtinge.hyperceiler.module.base.BaseHook
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedHelpers
-import miui.os.Build
+import fan.os.BuildCompat
 
 @Suppress("UNCHECKED_CAST")
 object DisableHideGoogle : BaseHook() {
     override fun init() {
-        if (Build.IS_INTERNATIONAL_BUILD)
+        if (BuildCompat.IS_INTERNATIONAL_BUILD)
             return
 
         XposedHelpers.findAndHookConstructor(

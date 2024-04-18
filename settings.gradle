@@ -32,3 +32,5 @@ dependencyResolutionManagement {
 rootProject.name = "HyperCeiler"
 include ':app'
 include ':hidden-api'
+include ':common'
+include ':common:ui'

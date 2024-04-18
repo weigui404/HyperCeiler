@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -24,10 +24,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.SettingsActivity;
+import com.sevtinge.hyperceiler.ui.SettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 
 public class LocationSimulationActivity extends SettingsActivity {

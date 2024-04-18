@@ -27,12 +27,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import fan.appcompat.app.AppCompatActivity;
-import fan.appcompat.app.Fragment;
 import fan.view.SearchActionMode;
 
 public class SearchModeHelper {
 
-    public static SearchActionMode startSearchMode(Fragment fragment, RecyclerView resultView, View contentView, View anchorView, View animateView, TextWatcher watcher) {
+    public static SearchActionMode startSearchMode(AppCompatActivity fragment, RecyclerView resultView, View contentView, View anchorView, View animateView, TextWatcher watcher) {
         contentView.setVisibility(View.GONE);
         resultView.setVisibility(View.VISIBLE);
         SearchActionMode searchActionMode = (SearchActionMode) fragment.startActionMode(new SearchActionMode.Callback() {

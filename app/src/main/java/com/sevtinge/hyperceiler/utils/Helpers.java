@@ -177,7 +177,7 @@ public class Helpers {
         return stackTrace[4].getMethodName();
     }
 
-    public static ActivityOptions makeFreeformActivityOptions(Context context, String str) {
+    /*public static ActivityOptions makeFreeformActivityOptions(Context context, String str) {
 
         ActivityOptions activityOptions;
         try {
@@ -197,7 +197,7 @@ public class Helpers {
         Rect rect = (Rect) ReflectUtils.callObjectMethod("android.util.MiuiMultiWindowUtils", "getFreeformRect", new Class[]{Context.class}, new Object[]{context});
         makeBasic.setLaunchBounds(rect);
         return makeBasic;
-    }
+    }*/
 
     public static void openAppInfo(Context context, String pkg, int user) {
         try {

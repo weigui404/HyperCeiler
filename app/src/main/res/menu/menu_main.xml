@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/miuix_action_end_menu_group">
+        <item
+            android:id="@+id/restart"
+            android:title="@string/hyperceiler_restart_quick" />
 
-    <item
-        android:id="@+id/restart"
-        android:title="@string/hyperceiler_restart_quick" />
+        <item
+            android:id="@+id/settings"
+            android:title="@string/settings" />
 
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings" />
-
-    <item
-        android:id="@+id/about"
-        android:title="@string/about" />
-
+        <item
+            android:id="@+id/about"
+            android:title="@string/about" />
+    </group>
 </menu>

@@ -18,17 +18,14 @@
 */
 package com.sevtinge.hyperceiler.ui.fragment;
 
-import static com.sevtinge.hyperceiler.utils.api.VoyagerApisKt.isPad;
-import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
-import android.content.Intent;
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.SubPickerActivity;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.SwitchPreference;
 
@@ -43,7 +40,7 @@ public class MiLinkFragment extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(!isMoreHyperOSVersion(1f) ? R.string.milink : R.string.milink_hyperos),
             "com.milink.service"
         );

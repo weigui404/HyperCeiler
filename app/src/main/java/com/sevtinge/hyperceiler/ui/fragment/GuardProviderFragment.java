@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -23,8 +23,9 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOS
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 public class GuardProviderFragment extends SettingsPreferenceFragment {
     @Override
@@ -34,7 +35,7 @@ public class GuardProviderFragment extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(!isMoreHyperOSVersion(1f) ? R.string.guard_provider : R.string.guard_provider_hyperos),
             "com.miui.guardprovider"
         );

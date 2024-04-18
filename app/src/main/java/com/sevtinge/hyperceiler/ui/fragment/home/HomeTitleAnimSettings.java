@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -21,8 +21,9 @@ package com.sevtinge.hyperceiler.ui.fragment.home;
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 public class HomeTitleAnimSettings extends SettingsPreferenceFragment {
     @Override
@@ -32,7 +33,7 @@ public class HomeTitleAnimSettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(R.string.mihome),
             "com.miui.home"
         );

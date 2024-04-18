@@ -30,8 +30,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.Preference;
 import fan.preference.SwitchPreference;
@@ -53,7 +54,7 @@ public class SecurityCenterFragment extends SettingsPreferenceFragment {
     @Override
     public View.OnClickListener addRestartListener() {
         mSecurity = getResources().getString(!isMoreHyperOSVersion(1f) ? (!isPad() ? R.string.security_center : R.string.security_center_pad) : R.string.security_center_hyperos);
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             mSecurity,
             "com.miui.securitycenter"
         );

@@ -21,17 +21,18 @@ package com.sevtinge.hyperceiler.ui.fragment.base;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseActivity;
-import com.sevtinge.hyperceiler.ui.base.NavigationActivity;
+import com.fan.common.base.BasePreferenceFragment;
+import com.fan.common.base.FragmentTag;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
-
-import fan.appcompat.app.ActionBar;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 public abstract class SettingsPreferenceFragment extends BasePreferenceFragment {
 
@@ -39,6 +40,7 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
     public String mPreferenceKey;
     public int mContentResId = 0;
     public int mTitleResId = 0;
+    public MenuItem mRestartMenu;
     private boolean mPreferenceHighlighted = false;
     private final String SAVE_HIGHLIGHTED_KEY = "android:preference_highlighted";
 
@@ -51,7 +53,6 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initActionBar();
         if (savedInstanceState != null) {
             mPreferenceHighlighted = savedInstanceState.getBoolean(SAVE_HIGHLIGHTED_KEY);
         }
@@ -74,13 +75,13 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
             setPreferencesFromResource(mContentResId, s);
             initPrefs();
         }
-        /*((BaseActivity) getActivity()).setRestartView(addRestartListener());*/
     }
 
-    private void initActionBar() {
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(!(getActivity() instanceof NavigationActivity));
+    public void showRestartListener(int appLabel, String packageName) {
+        if (packageName.equals("system")) {
+            RestartHelper.showRestartSystemDialog(requireContext());
+        } else {
+            RestartHelper.showRestartDialog(requireContext(), getString(appLabel), packageName);
         }
     }
 
@@ -114,4 +115,29 @@ public abstract class SettingsPreferenceFragment extends BasePreferenceFragment 
 
     public abstract int getContentResId();
 
+    private void analysisAnnocation(SettingsPreferenceFragment fragment) {
+        Class<?> clazz = fragment.getClass();
+        if (clazz.isAnnotationPresent(FragmentTag.class)) {
+            FragmentTag tag = clazz.getAnnotation(FragmentTag.class);
+            int resId = tag.resId();
+            String pkg = tag.pkg();
+            if (resId > 0) {
+                fragment.showRestartListener(resId, pkg);
+            }
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(com.fan.common.R.menu.menu_sub, menu);
+        mRestartMenu = menu.findItem(com.fan.common.R.id.restart);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item == mRestartMenu) {
+            analysisAnnocation(this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -91,6 +91,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|end"
         android:gravity="center"
-        android:src="@drawable/miuix_appcompat_intent_arrow_right"
+        android:src="?arrowRight"
         tools:ignore="ContentDescription,PrivateResource" />
 </LinearLayout>

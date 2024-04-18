@@ -26,8 +26,9 @@ import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.ui.SubPickerActivity;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.Preference;
 import fan.preference.SwitchPreference;
@@ -46,7 +47,7 @@ public class HomeTitleSettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity) getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(R.string.mihome),
             "com.miui.home"
         );

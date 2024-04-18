@@ -1,0 +1,53 @@
+plugins {
+    alias(libs.plugins.androidLibrary)
+}
+
+android {
+    namespace 'com.fan.common'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 33
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes.configureEach {
+        consumerProguardFiles "proguard-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_19
+        targetCompatibility JavaVersion.VERSION_19
+    }
+}
+
+dependencies {
+    /*implementation files(roots.animation)*/
+    api files(roots.appcompat)
+    api files(roots.core)
+    api files(roots.haptic)
+    api files(roots.folme)
+    api files(roots.nestedheader)
+    api files(roots.preference)
+    api files(roots.recyclerview)
+    api files(roots.smooth)
+    api files(roots.springback)
+    /*implementation files(roots.external)*/
+    api files(roots.graphics)
+    /*implementation files(roots.os)*/
+
+    api libs.core
+    api libs.collection
+    api libs.recyclerview
+    api libs.fragment
+    api libs.lifecycle.common
+    api libs.vectordrawable
+    api libs.vectordrawable.animated
+    api libs.customview
+    api libs.customview.poolingcontainer
+    api (libs.constraintlayout) {
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
+}

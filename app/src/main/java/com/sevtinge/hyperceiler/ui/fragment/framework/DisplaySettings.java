@@ -19,11 +19,11 @@
 package com.sevtinge.hyperceiler.ui.fragment.framework;
 
 import android.view.View;
-import android.widget.SeekBar;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.SeekBarPreference;
 
@@ -39,7 +39,7 @@ public class DisplaySettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartSystemDialog();
+        return view -> RestartHelper.showRestartSystemDialog(requireContext());
     }
 
     @Override

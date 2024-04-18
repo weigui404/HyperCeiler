@@ -21,8 +21,9 @@ package com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar;
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 import com.sevtinge.hyperceiler.utils.api.miuiStringToast.MiuiStringToast;
 
 import fan.preference.Preference;
@@ -53,7 +54,7 @@ public class StrongToastSettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(R.string.system_ui),
             "com.android.systemui"
         );

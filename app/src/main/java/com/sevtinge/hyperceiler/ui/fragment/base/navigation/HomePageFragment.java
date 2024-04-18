@@ -9,37 +9,19 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOS
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.data.ModData;
-import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
 import com.sevtinge.hyperceiler.prefs.TipsPreference;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
-import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.NavigatorFragment;
-import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
-import com.sevtinge.hyperceiler.utils.SearchModeHelper;
-import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
 import com.sevtinge.hyperceiler.utils.devicesdk.DeviceSDKKt;
 import com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt;
 
 import java.util.Objects;
 
-import fan.appcompat.app.AppCompatActivity;
-import fan.appcompat.app.Fragment;
 import fan.preference.Preference;
-import fan.view.SearchActionMode;
 
 public class HomePageFragment extends NavigatorFragment {
 
@@ -75,7 +57,7 @@ public class HomePageFragment extends NavigatorFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().hide();
+        /*getActionBar().hide();*/
         Message message = mHandler.obtainMessage(0x11);
         mHandler.sendMessageDelayed(message, 6000);
     }

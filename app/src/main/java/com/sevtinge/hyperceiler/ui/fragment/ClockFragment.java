@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -18,23 +18,15 @@
 */
 package com.sevtinge.hyperceiler.ui.fragment;
 
-import android.view.View;
 
+import com.fan.common.base.FragmentTag;
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 
+@FragmentTag(resId = R.string.clock, pkg = "com.android.deskclock")
 public class ClockFragment extends SettingsPreferenceFragment {
     @Override
     public int getContentResId() {
         return R.xml.clock;
-    }
-
-    @Override
-    public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
-            getResources().getString(R.string.clock),
-            "com.android.deskclock"
-        );
     }
 }

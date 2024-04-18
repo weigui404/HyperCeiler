@@ -23,13 +23,16 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreMiuiVer
 
 import android.view.View;
 
+import com.fan.common.base.FragmentTag;
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.PreferenceCategory;
 import fan.preference.SwitchPreference;
 
+@FragmentTag(resId = R.string.theme_manager, pkg = "com.android.thememanager")
 public class ThemeManagerFragment extends SettingsPreferenceFragment {
 
     PreferenceCategory mVersionCodeModifyPreferenceCat;
@@ -38,14 +41,6 @@ public class ThemeManagerFragment extends SettingsPreferenceFragment {
     @Override
     public int getContentResId() {
         return R.xml.theme_manager;
-    }
-
-    @Override
-    public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity) getActivity()).showRestartDialog(
-            getResources().getString(R.string.theme_manager),
-            "com.android.thememanager"
-        );
     }
 
     @Override

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.NavigationActivity;
 import com.sevtinge.hyperceiler.utils.BackupUtils;
 import com.sevtinge.hyperceiler.utils.Helpers;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;

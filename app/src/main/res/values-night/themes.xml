@@ -1,5 +1,5 @@
 <resources>
-    <style name="Base.Theme.HyperCeiler.DayNight" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Base.Theme.HyperCeiler.DayNight" parent="Theme.AppCompat.DayNight">
         <item name="windowSplitActionBar">true</item>
         <item name="windowActionBarOverlay">false</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference.DayNight</item>
@@ -11,7 +11,7 @@
         <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
     </style>
 
-    <style name="Base.Theme.HyperCeiler.DayNight.SystemBarBackgrounds" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Base.Theme.HyperCeiler.DayNight.SystemBarBackgrounds" parent="Theme.AppCompat.DayNight">
         <item name="preferenceTheme">@style/ThemeOverlay.Preference.DayNight</item>
         <item name="android:forceDarkAllowed">false</item>
         <item name="rebootIconColor">@color/white</item>

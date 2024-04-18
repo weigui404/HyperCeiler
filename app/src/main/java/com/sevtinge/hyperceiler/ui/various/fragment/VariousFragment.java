@@ -25,11 +25,11 @@ import com.sevtinge.hyperceiler.utils.PrefsUtils;
 
 import fan.preference.DropDownPreference;
 import fan.preference.PreferenceCategory;
-import fan.preference.PreferenceFragmentCompat;
+import fan.preference.PreferenceFragment;
 import fan.preference.SeekBarPreference;
 import fan.preference.SwitchPreference;
 
-public class VariousFragment extends PreferenceFragmentCompat {
+public class VariousFragment extends PreferenceFragment {
 
     public String TAG = "VariousFragment";
 

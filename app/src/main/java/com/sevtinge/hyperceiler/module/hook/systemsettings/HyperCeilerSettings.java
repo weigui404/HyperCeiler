@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.robv.android.xposed.XposedHelpers;
-import fan.core.utils.SystemProperties;
+import fan.os.SystemProperties;
 
 public class HyperCeilerSettings extends BaseHook {
 

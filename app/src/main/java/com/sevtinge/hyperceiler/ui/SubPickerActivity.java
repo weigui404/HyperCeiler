@@ -1,6 +1,6 @@
 /*
   * This file is part of HyperCeiler.
-  
+
   * HyperCeiler is free software: you can redistribute it and/or modify
   * it under the terms of the GNU Affero General Public License as
   * published by the Free Software Foundation, either version 3 of the
@@ -19,10 +19,8 @@
 package com.sevtinge.hyperceiler.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.sevtinge.hyperceiler.callback.IAppSelectCallback;
-import com.sevtinge.hyperceiler.ui.base.SettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.sub.AppPicker;
 
 public class SubPickerActivity extends SettingsActivity {

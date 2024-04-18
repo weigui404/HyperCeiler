@@ -22,9 +22,10 @@ import android.content.Intent;
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.PrefsUtils;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.ColorPickerPreference;
 import fan.preference.DropDownPreference;
@@ -46,7 +47,7 @@ public class BatteryIndicatorSettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartDialog(
+        return view -> RestartHelper.showRestartDialog(requireContext(),
             getResources().getString(R.string.system_ui),
             "com.android.systemui"
         );

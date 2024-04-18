@@ -1,19 +1,19 @@
 <resources>
-    <style name="Base.Theme.HyperCeiler.DayNight" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="windowSplitActionBar">true</item>
-        <item name="windowActionBarOverlay">false</item>
+    <style name="Base.Theme.HyperCeiler.DayNight" parent="Theme.AppCompat.DayNight">
+        <item name="endActionMenuEnabled">true</item>
         <item name="preferenceTheme">@style/ThemeOverlay.Preference.DayNight</item>
         <item name="rebootIconColor">@color/black</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="SeekBarPreferenceStyle">@style/Preference.SeekBarPreference</item>
+        <item name="android:windowBackground">@drawable/miuix_appcompat_window_bg_light</item>
     </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.HyperCeiler.DayNight"/>
 
-    <style name="AppTheme.Translucent" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme.Translucent" parent="Theme.AppCompat.DayNight">
         <item name="android:windowBackground">@color/miuix_appcompat_transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowTranslucentStatus">true</item>

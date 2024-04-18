@@ -73,6 +73,6 @@
         android:layout_gravity="center|end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/miuix_appcompat_intent_arrow_right" />
+        android:src="?arrowRight" />
 
 </LinearLayout>

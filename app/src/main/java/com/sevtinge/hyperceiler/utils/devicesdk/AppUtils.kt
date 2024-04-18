@@ -31,7 +31,7 @@ import android.util.TypedValue
 import com.github.kyuubiran.ezxhelper.EzXHelper
 import com.sevtinge.hyperceiler.utils.PrefsUtils.getSharedPrefs
 import com.sevtinge.hyperceiler.utils.PropUtils
-import fan.os.DeviceHelper
+import fan.core.utils.DeviceHelper
 import java.util.*
 
 fun dp2px(dpValue: Float): Int = TypedValue.applyDimension(
@@ -65,7 +65,7 @@ fun isAlpha(): Boolean =
 
 fun isTablet(): Boolean = Resources.getSystem().getConfiguration().smallestScreenWidthDp >= 600
 
-fun isPadDevice(): Boolean = isTablet() || DeviceHelper.isFoldDevice()
+fun isPadDevice(): Boolean = isTablet()
 
 fun checkVersionCode(): Long = getPackageInfoCompat(EzXHelper.appContext.packageName).longVersionCode
 

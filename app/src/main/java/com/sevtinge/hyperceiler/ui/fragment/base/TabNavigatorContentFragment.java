@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -24,15 +26,16 @@ import com.sevtinge.hyperceiler.ui.SubSettings;
 import com.sevtinge.hyperceiler.ui.fragment.base.navigation.AboutPageFragment;
 import com.sevtinge.hyperceiler.ui.fragment.base.navigation.HomePageFragment;
 import com.sevtinge.hyperceiler.ui.fragment.base.navigation.SettingsPageFragment;
+import com.sevtinge.hyperceiler.utils.DialogHelper;
 import com.sevtinge.hyperceiler.utils.Helpers;
 import com.sevtinge.hyperceiler.utils.SearchModeHelper;
-import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
+import com.fan.common.utils.SettingLauncherHelper;
 import com.sevtinge.hyperceiler.utils.blur.MiBlurUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fan.appcompat.app.Fragment;
+import fan.appcompat.app.AppCompatActivity;
 import fan.view.SearchActionMode;
 
 public class TabNavigatorContentFragment extends Fragment {
@@ -81,18 +84,25 @@ public class TabNavigatorContentFragment extends Fragment {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setThemeRes(R.style.TabNavigatorContentFragmentTheme);
+        //setThemeRes(R.style.TabNavigatorContentFragmentTheme);
     }
 
     public int getBottomTabMenu() {
         return R.menu.menu_navigation;
     }
 
+    @Nullable
     @Override
-    public View onInflateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContainer = inflater.inflate(R.layout.activity_navigation, container, false);
         return mContainer;
     }
+
+    /*@Override
+    public View onInflateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mContainer = inflater.inflate(R.layout.activity_navigation, container, false);
+        return mContainer;
+    }*/
 
     @Override
     public void onViewCreated(View view, Bundle bundle) {
@@ -122,16 +132,14 @@ public class TabNavigatorContentFragment extends Fragment {
         mNavigationPagerAdapter = new NavigationPagerAdapter(getParentFragmentManager(), mFragmentList);
         mFragmentPage.setAdapter(mNavigationPagerAdapter);
 
-        setTabTitle(mFragmentPage.getCurrentItem());
+        updateNavigatorInfo(mFragmentPage.getCurrentItem());
 
-        int i;
-        if (Helpers.isDarkMode(getActivity())) i = 140; else i = 180;
-        int a;
-        if (Helpers.isDarkMode(getActivity())) a = 80; else a = 100;
-        MiBlurUtils.setContainerPassBlur(mNavigationView, i);
+        int blurRadius = Helpers.isDarkMode(requireContext()) ? 140 : 180;
+        int alpha = Helpers.isDarkMode(requireContext()) ? 80 : 100;
+        MiBlurUtils.setContainerPassBlur(mNavigationView, blurRadius);
         MiBlurUtils.setMiViewBlurMode(mNavigationView, 3);
         MiBlurUtils.clearMiBackgroundBlendColor(mNavigationView);
-        MiBlurUtils.addMiBackgroundBlendColor(mNavigationView, Color.argb(a, 0, 0, 0), 103);
+        MiBlurUtils.addMiBackgroundBlendColor(mNavigationView, Color.argb(alpha, 0, 0, 0), 103);
         mFragmentPage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -162,7 +170,7 @@ public class TabNavigatorContentFragment extends Fragment {
 
     private SearchActionMode startSearchMode() {
         return SearchModeHelper.startSearchMode(
-            this,
+            (AppCompatActivity) getActivity(),
             mSearchResultView,
             mFragmentPage,
             mSearchView,
@@ -173,14 +181,20 @@ public class TabNavigatorContentFragment extends Fragment {
 
     private void changeSelect(int position) {
         mFragmentPage.setCurrentItem(position);
-        setTabTitle(position);
+        updateNavigatorInfo(position);
     }
 
-    protected void setTabTitle(int position) {
+    protected void updateNavigatorInfo(int position) {
         switch (position) {
-            case 0 -> setTitle("首页");
-            case 1 -> setTitle("设置");
-            case 2 -> setTitle("关于");
+            case 0 -> {
+                setTitle("首页");
+            }
+            case 1 -> {
+                setTitle("设置");
+            }
+            case 2 -> {
+                setTitle("关于");
+            }
         }
     }
 
@@ -189,13 +203,14 @@ public class TabNavigatorContentFragment extends Fragment {
     }
 
     protected void setTitle(CharSequence title) {
-        getActionBar().setTitle(title);
+        getActivity().setTitle(title);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(getBottomTabMenu(), menu);
-        return super.onCreateOptionsMenu(menu);
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuItem item = menu.add(R.id.miuix_action_end_menu_group, 1, 0, R.string.soft_reboot);
+        item.setIcon(R.drawable.ic_reboot_small);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
@@ -207,6 +222,8 @@ public class TabNavigatorContentFragment extends Fragment {
             changeSelect(1);
         } else if (itemId == R.id.navigation_about) {
             changeSelect(2);
+        } else if (itemId == 1) {
+            DialogHelper.showRestartDialog(requireContext());
         }
         return super.onOptionsItemSelected(item);
     }

@@ -25,8 +25,9 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreMiuiVer
 import android.view.View;
 
 import com.sevtinge.hyperceiler.R;
-import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
+import com.fan.common.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
+import com.sevtinge.hyperceiler.utils.RestartHelper;
 
 import fan.preference.PreferenceCategory;
 import fan.preference.SwitchPreference;
@@ -43,7 +44,7 @@ public class FreeFormSettings extends SettingsPreferenceFragment {
 
     @Override
     public View.OnClickListener addRestartListener() {
-        return view -> ((BaseSettingsActivity)getActivity()).showRestartSystemDialog();
+        return view -> RestartHelper.showRestartSystemDialog(requireContext());
     }
 
     @Override
