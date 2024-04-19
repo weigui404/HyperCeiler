@@ -32,19 +32,19 @@ android {
 }
 
 dependencies {
-    /*implementation files(roots.animation)*/
-    api files(roots.appcompat)
-    api files(roots.core)
-    api files(roots.haptic)
-    api files(roots.folme)
-    api files(roots.nestedheader)
-    api files(roots.preference)
-    api files(roots.recyclerview)
-    api files(roots.smooth)
-    api files(roots.springback)
-    /*implementation files(roots.external)*/
-    api files(roots.graphics)
-    /*implementation files(roots.os)*/
+    /*implementation files("libs/animation-debug.aar")*/
+    api files("libs/appcompat-debug.aar")
+    api files("libs/core-debug.aar")
+    api files("libs/haptic-debug.aar")
+    api files("libs/folme-debug.aar")
+    api files("libs/nestedheader-debug.aar")
+    api files("libs/preference-debug.aar")
+    api files("libs/recyclerview-debug.aar")
+    api files("libs/smooth-debug.aar")
+    api files("libs/springback-debug.aar")
+    /*implementation files("libs/external-debug.aar")*/
+    api files("libs/graphics-debug.aar")
+    /*implementation files("libs/os-debug.aar")*/
 
     api libs.core
     api libs.collection
