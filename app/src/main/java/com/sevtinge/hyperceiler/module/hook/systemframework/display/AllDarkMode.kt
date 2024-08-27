@@ -18,33 +18,33 @@
 */
 package com.sevtinge.hyperceiler.module.hook.systemframework.display
 
-import android.content.pm.ApplicationInfo
+import android.content.pm.*
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
 import com.github.kyuubiran.ezxhelper.ClassUtils.setStaticObject
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHooks
 import com.github.kyuubiran.ezxhelper.ObjectUtils.invokeMethodBestMatch
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.utils.api.IS_INTERNATIONAL_BUILD
+import com.sevtinge.hyperceiler.module.base.*
 import com.sevtinge.hyperceiler.utils.api.LazyClass.clazzMiuiBuild
+import com.sevtinge.hyperceiler.utils.devicesdk.*
+import de.robv.android.xposed.*
 
-//from SetoHook by SetoSkins
+// from SetoHook by SetoSkins
 class AllDarkMode : BaseHook() {
     override fun init() {
-        if (IS_INTERNATIONAL_BUILD) return
+        if (isInternational()) return
         val clazzForceDarkAppListManager =
             loadClass("com.android.server.ForceDarkAppListManager")
         clazzForceDarkAppListManager.methodFinder().filterByName("getDarkModeAppList").toList()
             .createHooks {
                 before {
+                    val originalValue = XposedHelpers.getStaticBooleanField(clazzMiuiBuild, "IS_INTERNATIONAL_BUILD")
                     setStaticObject(clazzMiuiBuild, "IS_INTERNATIONAL_BUILD", true)
+                    it.setObjectExtra("originalValue", originalValue)
                 }
                 after {
-                    setStaticObject(
-                        clazzMiuiBuild,
-                        "IS_INTERNATIONAL_BUILD",
-                        IS_INTERNATIONAL_BUILD
-                    )
+                    val originalValue = it.getObjectExtra("originalValue")
+                    setStaticObject(clazzMiuiBuild, "IS_INTERNATIONAL_BUILD", originalValue)
                 }
             }
         clazzForceDarkAppListManager.methodFinder().filterByName("shouldShowInSettings").toList()

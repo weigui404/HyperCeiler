@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <Preference android:summary="@string/about_use_desc" />
     <PreferenceCategory android:title="@string/open_source">
@@ -36,6 +53,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/MinaMichita/AntiAntiDefraud" />
+        </Preference>
+        <Preference
+            android:summary="焕晨 HChen | GPL-3.0"
+            android:title="AutoSEffSwitch">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/HChenX/AutoSEffSwitch" />
         </Preference>
         <Preference
             android:summary="GSWXXN | AGPL-3.0"
@@ -164,6 +188,13 @@
                 android:data="https://github.com/JetBrains/kotlin" />
         </Preference>
         <Preference
+            android:summary="LSPosed | Apache-2.0"
+            android:title="LSParanoid">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/LSPosed/LSParanoid" />
+        </Preference>
+        <Preference
             android:summary="YifePlayte | GPL-3.0"
             android:title="MaxFreeForm">
             <intent
@@ -178,6 +209,13 @@
                 android:data="https://github.com/YuKongA/MediaControl-BlurBg" />
         </Preference>
         <Preference
+            android:summary="Art-Chen | AGPL-3.0"
+            android:title="MIUI Extra">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Art-Chen/MIUI-Extra-YukiAPI" />
+        </Preference>
+        <Preference
             android:summary="qqlittleice | GPL-3.0"
             android:title="MiuiHomeR">
             <intent
@@ -190,6 +228,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/RC1844/MIUI_IME_Unlock" />
+        </Preference>
+        <Preference
+            android:summary="gykkuo | GPL-3.0"
+            android:title="MIUI NoGuard">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/gykkuo/MIUI_NoGuard" />
         </Preference>
         <Preference
             android:summary="chsbuffer | No License"

@@ -19,7 +19,6 @@
 package com.sevtinge.hyperceiler.ui.fragment.systemui;
 
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isHyperOSVersion;
-import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreAndroidVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
 import android.content.Intent;
@@ -41,14 +40,18 @@ import com.sevtinge.hyperceiler.utils.devicesdk.TelephonyManager;
 import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
 import com.sevtinge.hyperceiler.utils.prefs.PrefsUtils;
 
+import moralnorm.preference.ColorPickerPreference;
 import moralnorm.preference.DropDownPreference;
 import moralnorm.preference.Preference;
+import moralnorm.preference.PreferenceCategory;
 import moralnorm.preference.SeekBarPreferenceEx;
 import moralnorm.preference.SwitchPreference;
 
 public class ControlCenterSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     Preference mExpandNotification;
+    PreferenceCategory mMusic;
+    PreferenceCategory mCard;
     SwitchPreference mNotice;
     SwitchPreference mNoticex;
     SeekBarPreferenceEx mNewCCGrid;
@@ -59,9 +62,10 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
     SwitchPreference mRoundedRect;
     SeekBarPreferenceEx mRoundedRectRadius;
     SwitchPreference mThemeBlur;
-    SwitchPreference mMusicCtrlPanelMix;
     DropDownPreference mProgressMode;
     SeekBarPreferenceEx mProgressModeThickness;
+    ColorPickerPreference mSliderColor;
+    ColorPickerPreference mProgressBarColor;
 
     SwitchPreference mTaplus;
     SwitchPreference mNotifrowmenu;
@@ -76,13 +80,15 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
     @Override
     public View.OnClickListener addRestartListener() {
         return view -> ((BaseSettingsActivity) getActivity()).showRestartDialog(
-            getResources().getString(R.string.system_ui),
-            "com.android.systemui"
+                getResources().getString(R.string.system_ui),
+                "com.android.systemui"
         );
     }
 
     @Override
     public void initPrefs() {
+        mMusic = findPreference("prefs_key_system_ui_control_center_media_control_media_custom");
+        mCard = findPreference("prefs_key_system_ui_controlcenter_card");
         mExpandNotification = findPreference("prefs_key_system_ui_control_center_expand_notification");
         mNewCCGrid = findPreference("prefs_key_system_control_center_cc_rows");
         mNewCCGridColumns = findPreference("prefs_key_system_control_center_cc_columns");
@@ -95,41 +101,57 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
         mRoundedRectRadius = findPreference("prefs_key_system_ui_control_center_rounded_rect_radius");
         mTaplus = findPreference("prefs_key_security_center_taplus");
         mThemeBlur = findPreference("prefs_key_system_ui_control_center_unlock_blur_supported");
-        mMusicCtrlPanelMix = findPreference("prefs_key_system_ui_control_center_media_control_panel_background_mix");
         mNotifrowmenu = findPreference("prefs_key_system_ui_control_center_notifrowmenu");
         mProgressMode = findPreference("prefs_key_system_ui_control_center_media_control_progress_mode");
         mProgressModeThickness = findPreference("prefs_key_system_ui_control_center_media_control_progress_thickness");
+        mSliderColor = findPreference("prefs_key_system_ui_control_center_media_control_seekbar_thumb_color");
+        mProgressBarColor = findPreference("prefs_key_system_ui_control_center_media_control_seekbar_color");
         handler = new Handler();
 
         mExpandNotification.setOnPreferenceClickListener(
-            preference -> {
-                Intent intent = new Intent(getActivity(), SubPickerActivity.class);
-                intent.putExtra("mode", AppPicker.LAUNCHER_MODE);
-                intent.putExtra("key", preference.getKey());
-                startActivity(intent);
-                return true;
-            }
+                preference -> {
+                    Intent intent = new Intent(getActivity(), SubPickerActivity.class);
+                    intent.putExtra("mode", AppPicker.LAUNCHER_MODE);
+                    intent.putExtra("key", preference.getKey());
+                    startActivity(intent);
+                    return true;
+                }
         );
 
         mTaplus.setOnPreferenceChangeListener(
-            (preference, o) -> {
-                killTaplus();
-                return true;
-            }
+                (preference, o) -> {
+                    killTaplus();
+                    return true;
+                }
         );
 
-        mNewCCGrid.setVisible(!isHyperOSVersion(1f));
-        mNewCCGridColumns.setVisible(!isHyperOSVersion(1f));
-        mNewCCGridLabel.setVisible(!isHyperOSVersion(1f));
-        mNotice.setVisible(!isMoreHyperOSVersion(1f));
-        mNoticex.setVisible(isMoreAndroidVersion(33));
-        mBluetoothSytle.setVisible(!isHyperOSVersion(1f));
+        if (isMoreHyperOSVersion(1f)) {
+            mNewCCGrid.setVisible(false);
+            mCard.setVisible(false);
+            mNewCCGridColumns.setVisible(false);
+            mNewCCGridLabel.setVisible(false);
+            mNotice.setVisible(false);
+            mBluetoothSytle.setVisible(false);
+            mNotifrowmenu.setVisible(false);
+            mMusic.setVisible(true);
+            mThemeBlur.setVisible(true);
+            mRoundedRectRadius.setVisible(PrefsUtils.getSharedBoolPrefs(getContext(), "prefs_key_system_ui_control_center_rounded_rect", false));
+        } else {
+            mNewCCGrid.setVisible(true);
+            mCard.setVisible(true);
+            mNewCCGridColumns.setVisible(true);
+            mNewCCGridLabel.setVisible(true);
+            mNotice.setVisible(true);
+            mBluetoothSytle.setVisible(true);
+            mNotifrowmenu.setVisible(true);
+            mMusic.setVisible(false);
+            mThemeBlur.setVisible(false);
+            mRoundedRectRadius.setVisible(false);
+        }
         mFiveG.setVisible(TelephonyManager.getDefault().isFiveGCapable());
-        mThemeBlur.setVisible(isMoreHyperOSVersion(1f));
-        mRoundedRectRadius.setVisible(PrefsUtils.getSharedBoolPrefs(getContext(), "prefs_key_system_ui_control_center_rounded_rect", false) && isMoreHyperOSVersion(1f));
-        mMusicCtrlPanelMix.setVisible(isMoreHyperOSVersion(1f));
-        mNotifrowmenu.setVisible(!isMoreHyperOSVersion(1f));
         mProgressModeThickness.setVisible(Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_system_ui_control_center_media_control_progress_mode", "0")) == 2);
+        mSliderColor.setVisible(Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_system_ui_control_center_media_control_progress_mode", "0")) != 2);
+        mProgressBarColor.setVisible(Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_system_ui_control_center_media_control_progress_mode", "0")) != 2);
 
         mRoundedRect.setOnPreferenceChangeListener(this);
         mProgressMode.setOnPreferenceChangeListener(this);
@@ -159,7 +181,9 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
         mRecommend = new RecommendPreference(getContext());
         getPreferenceScreen().addPreference(mRecommend);
 
-        if(isMoreHyperOSVersion(1f)) args1.putString(":settings:fragment_args_key", "prefs_key_new_clock_status"); else args1.putString(":settings:fragment_args_key", "prefs_key_old_clock_status");
+        if (isMoreHyperOSVersion(1f))
+            args1.putString(":settings:fragment_args_key", "prefs_key_new_clock_status");
+        else args1.putString(":settings:fragment_args_key", "prefs_key_old_clock_status");
         mRecommend.addRecommendView(getString(R.string.system_ui_statusbar_clock_title),
                 null,
                 StatusBarSettings.class,
@@ -171,7 +195,7 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
 
     public void killTaplus() {
         ThreadPoolManager.getInstance().submit(() -> handler.post(() ->
-            KillApp.killApps("com.miui.contentextension")));
+                KillApp.killApps("com.miui.contentextension")));
     }
 
     @Override
@@ -190,5 +214,7 @@ public class ControlCenterSettings extends SettingsPreferenceFragment implements
 
     private void setCanBeVisibleProgressMode(int mode) {
         mProgressModeThickness.setVisible(mode == 2);
+        mSliderColor.setVisible(mode != 2);
+        mProgressBarColor.setVisible(mode != 2);
     }
 }

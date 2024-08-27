@@ -14,8 +14,6 @@
 
 MIUI and HyperOS for Android 13-14
 
-Note: Android 11-12 will gradually stop supporting it in subsequent versions. The current System Framework, System UI, System launcher, and Security scope do not support the MIUI of Android 11-12.
-
 ## Pre-use instructions
 
 Please enable HyperCeiler in [LSPosed](https://github.com/LSPosed/LSPosed/releases), then enable the corresponding feature in the HyperCeiler app and restart the scope (root access required).
@@ -24,7 +22,7 @@ This module <b>does not support</b> `third-party MIUI/Xiaomi HyperOS ROMs with a
 
 Before submitting feedback, please pay attention to whether there is already the same feedback to avoid causing trouble to developers. Spending the same energy reading the same feedback is a waste of time.
 
-HyperCeiler has stopped maintaining the MIUI ROM for Android 11-12. Currently, except for core scopes such as the System Framework and System UI, in principle other scopes can be used normally. If you want to use the core scope, please stay in [this version](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130).
+HyperCeiler has stopped maintaining MIUI ROM for Android 11-12. If you want to use it, please stay at [this version](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130)
 
 ## Supported apps
 
@@ -41,9 +39,9 @@ HyperCeiler has stopped maintaining the MIUI ROM for Android 11-12. Currently, e
 | Mi Settings                | com.xiaomi.misettings              |
 | Security                   | com.miui.securitycenter            |
 | Notes                      | com.miui.notes                     |
-| Mi Wallpaper               | com.miui.miwallpaper               |
+| Wallpaper                  | com.miui.miwallpaper               |
 | Taplus                     | com.miui.contentextension          |
-| Bullet screen notification | com.xiaomi.barrage                 |
+| Bullet screen notification | com.xiaomi.barrage                 |
 | Phone                      | com.android.incallui               |
 | Phone Service              | com.android.phone                  |
 | Battery and performance    | com.miui.powerkeeper               |
@@ -58,7 +56,6 @@ HyperCeiler has stopped maintaining the MIUI ROM for Android 11-12. Currently, e
 | Sogou Keyboard for MIUI    | com.sohu.inputmethod.sogou.xiaomi  |
 | Weather                    | com.miui.weather2                  |
 | Cast                       | com.milink.service                 |
-| Xiaomi Interconnectivity   | com.xiaomi.mirror                  |
 | External Storage           | com.android.externalstorage        |
 | Always-on display          | com.miui.aod                       |
 | File Manager               | com.android.fileexplorer           |
@@ -70,13 +67,13 @@ HyperCeiler has stopped maintaining the MIUI ROM for Android 11-12. Currently, e
 | Mi Share                   | com.miui.mishare.connectivity      |
 | Gallery Editor             | com.miui.mediaeditor               |
 | Xiaomi Cloud               | com.miui.cloudservice              |
-| Smart Cards                | com.miui.tsmclient                 |
+| Smart cards                | com.miui.tsmclient                 |
 | iFlytek IME for MIUI       | com.iflytek.inputmethod.miui       |
 | Package installer          | com.miui.packageinstaller          |
 | GetApps                    | com.xiaomi.market                  |
 | App vault                  | com.miui.personalassistant         |
 | Themes                     | com.android.thememanager           |
-| HyperOS Security Components| com.miui.guardprovider             |
+| System security components | com.miui.guardprovider             |
 | Camera                     | com.android.camera                 |
 | Mi AI Translate            | com.xiaomi.aiasst.vision           |
 | Scanner                    | com.xiaomi.scanner                 |
@@ -105,6 +102,8 @@ Join our group to report issues or get the latest updates.
 
 You can provide translations for the HyperCeiler project [here](https://crwd.in/cemiuiler).
 
+Note: When the translation progress of the new language is greater than or equal to 90%, it will enter the merge process. If the translation progress of the added language is less than or equal to 30% of the source text, it will be temporarily removed until the translation progress is greater than or equal to 90%
+
 ## Thanks!
 
 > <b>HyperCeiler</b> uses some or all of the following projects, thanks to the developers of these projects for their support (in no particular order).
@@ -113,6 +112,7 @@ You can provide translations for the HyperCeiler project [here](https://crwd.in/
 - [「Android」 by Android Open Source Project, Google Inc.](https://source.android.google.cn/license)
 - [「AndroidHiddenApiBypass」 by LSPosed](https://github.com/LSPosed/AndroidHiddenApiBypass)
 - [「AndroidX」 by Android Open Source Project, Google Inc.](https://github.com/androidx/androidx)
+- [「AutoSEffSwitch」 by 焕晨 HChen](https://github.com/HChenX/AutoSEffSwitch)
 - [「AntiAntiDefraud」 by MinaMichita](https://github.com/MinaMichita/AntiAntiDefraud)
 - [「Auto NFC」 by GSWXXN](https://github.com/GSWXXN/AutoNFC)
 - [「BypassSignCheck」 by Weverses](https://github.com/Weverses/BypassSignCheck)

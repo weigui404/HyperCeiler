@@ -1,13 +1,13 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 android {
-    compileSdk = 34
     namespace = "com.android.internal"
+    compileSdk = 35
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
         }
@@ -19,20 +19,19 @@ android {
             isMinifyEnabled = false
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
         }
-        getByName("debug") {
+        debug {
             isMinifyEnabled = false
             setProguardFiles(listOf(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"))
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.majorVersion
-    }
+    kotlin.jvmToolchain(21)
 }
 
 dependencies {
-    implementation("androidx.annotation:annotation:1.7.1")
+    implementation(libs.annotation)
 }

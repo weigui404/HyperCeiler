@@ -20,19 +20,21 @@ package com.sevtinge.hyperceiler.module.hook.packageinstaller
 
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
-import com.sevtinge.hyperceiler.utils.findClassOrNull
-import com.sevtinge.hyperceiler.utils.setBooleanField
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
+import com.sevtinge.hyperceiler.utils.*
 
 object DisableSafeModelTip : BaseHook() {
     override fun init() {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("android.provider.MiuiSettings\$Ad")
-            }
-        }.single().getMethodInstance(lpparam.classLoader).createHook {
+        DexKit.getDexKitBridge("DisableSafeModelTip") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("android.provider.MiuiSettings\$Ad")
+                }
+            }.firstOrNull()?.getMethodInstance(lpparam.classLoader)
+        }.toMethod().createHook {
             returnConstant(false)
         }
 

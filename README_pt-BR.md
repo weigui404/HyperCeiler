@@ -14,78 +14,75 @@
 
 MIUI e HyperOS para Android 13-14
 
-Observação: O Android 11-12 deixará gradualmente de oferecer suporte nas versões subsequentes. O Framework do Sistema, a UI do Sistema, a Launcher do sistema e o escopo de Segurança atuais não são compatíveis com a MIUI do Android 11-12.
-
 ## Instruções de pré-uso
 
-Por favor, ative o HyperCeiler no [LSPosed](https://github.com/LSPosed/LSPosed/releases), em seguida, ative o recurso correspondente no app HyperCeiler e reinicie o escopo (é necessário acesso root).
+Por favor, ative o HyperCeiler no [LSPosed](https://github.com/LSPosed/LSPosed/releases), em seguida, ative o recurso correspondente no app HyperCeiler e reinicie o escopo (necessário root).
 
 Este módulo <b>não suporta</b> `ROM MIUI/Xiaomi HyperOS de terceiros com muitas modificações`, `software de sistema com muitas modificações` e algumas `ROM MIUI/Xiaomi HyperOS internacionais`.
 
 Antes de enviar feedback, preste atenção se já existe o mesmo feedback para evitar problemas aos desenvolvedores. Gastar a mesma energia lendo o mesmo feedback é uma perda de tempo.
 
-O HyperCeiler deixou de ser mantido em ROM MIUI para o Android 11-12. Atualmente, com exceção dos escopos principais, como Framework do Sistema e Ui do Sistema, em princípio, outros escopos podem ser usados ​​normalmente. Se você quisaer usar o escopo principal, fique [nesta versão](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130).
+O HyperCeiler deixou de ser mantido em ROM MIUI para o Android 11-12. Se você quiser usá-lo, fique [nesta versão](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130).
 
 ## Apps suportados
 
 <details>
     <summary>Clique para ver os apps suportados</summary>
 
-| Nome do app                         | Nome do pacote                     |
-|:------------------------------------|:-----------------------------------|
-| Framework do Sistema                | system                             |
-| UI do Sistema                       | com.android.systemui               |
-| Launcher do sistema                 | com.miui.home                      |
-| Atualizações                        | com.android.updater                |
-| Joyose                              | com.xiaomi.joyose                  |
-| Configurações Mi                    | com.xiaomi.misettings              |
-| Segurança                           | com.miui.securitycenter            |
-| Notas                               | com.miui.notes                     |
-| Papéis de Parede Mi                 | com.miui.miwallpaper               |
-| Taplus                              | com.miui.contentextension          |
-| Bullet screen notification          | com.xiaomi.barrage                 |
-| Ui de chamadas                      | com.android.incallui               |
-| Serviços do smartphone              | com.android.phone                  |
-| Bateria e desempenho                | com.miui.powerkeeper               |
-| Mensagens                           | com.android.mms                    |
-| Captura de tela                     | com.miui.screenshot                |
-| Calendário                          | com.android.calendar               |
-| Navegador                           | com.android.browser                |
-| Rueban (MTB)                        | com.xiaomi.mtb                     |
-| Gravador de Tela                    | com.miui.screenrecorder            |
-| Permissões                          | com.lbe.security.miui              |
-| Configurações                       | com.android.settings               |
-| Sogou Keyboard for MIUI             | com.sohu.inputmethod.sogou.xiaomi  |
-| Clima                               | com.miui.weather2                  |
-| Transmitir                          | com.milink.service                 |
-| Interconectividade Xiaomi           | com.xiaomi.mirror                  |
-| Armazenamento externo               | com.android.externalstorage        |
-| Tela ambiente                       | com.miui.aod                       |
-| Arquivos                            | com.android.fileexplorer           |
-| Plugin de serviço de sistema        | com.miui.securityadd               |
-| Downloads                           | com.android.providers.downloads.ui |
-| Downloads                           | com.android.providers.downloads    |
-| Galeria                             | com.miui.gallery                   |
-| Mi Canvas                           | com.miui.creation                  |
-| Compartilhamento Mi                 | com.miui.mishare.connectivity      |
-| Editor da Galeria                   | com.miui.mediaeditor               |
-| MiCloud                             | com.miui.cloudservice              |
-| Smart Cards                         | com.miui.tsmclient                 |
-| iFlytek IME for MIUI                | com.iflytek.inputmethod.miui       |
-| Instalador de Pacotes               | com.miui.packageinstaller          |
-| GetApps                             | com.xiaomi.market                  |
-| Assistente                          | com.miui.personalassistant         |
-| Temas                               | com.android.thememanager           |
-| Componentes de segurança do HyperOS | com.miui.guardprovider             |
-| Câmera                              | com.android.camera                 |
-| Mi AI Translate                     | com.xiaomi.aiasst.vision           |
-| Scanner                             | com.xiaomi.scanner                 |
-| Mi AI                               | com.miui.voiceassist               |
-| Serviço NFC                         | com.android.nfc                    |
-| Fones de ouvido                     | com.miui.misound                   |
-| Backup                              | com.miui.backup                    |
-| Mi Mover                            | com.miui.huanji                    |
-| MiTrustService                      | com.xiaomi.trustservice            |
+| Nome do app                                    | Nome do pacote                     |
+|:-----------------------------------------------|:-----------------------------------|
+| Framework do Sistema                           | system                             |
+| UI do Sistema                                  | com.android.systemui               |
+| Launcher do sistema                            | com.miui.home                      |
+| Atualizações                                   | com.android.updater                |
+| Joyose                                         | com.xiaomi.joyose                  |
+| Configurações Mi                               | com.xiaomi.misettings              |
+| Segurança                                      | com.miui.securitycenter            |
+| Notas                                          | com.miui.notes                     |
+| Plano de fundo Mi                              | com.miui.miwallpaper               |
+| Taplus                                         | com.miui.contentextension          |
+| Barragem                                       | com.xiaomi.barrage                 |
+| Ui de chamadas                                 | com.android.incallui               |
+| Serviços do smartphone                         | com.android.phone                  |
+| Bateria e desempenho                           | com.miui.powerkeeper               |
+| Mensagens                                      | com.android.mms                    |
+| Captura de tela                                | com.miui.screenshot                |
+| Calendário                                     | com.android.calendar               |
+| Navegador                                      | com.android.browser                |
+| Rueban (MTB)                                   | com.xiaomi.mtb                     |
+| Gravador de Tela                               | com.miui.screenrecorder            |
+| Permissões                                     | com.lbe.security.miui              |
+| Configurações                                  | com.android.settings               |
+| Sogou Keyboard for MIUI                        | com.sohu.inputmethod.sogou.xiaomi  |
+| Clima                                          | com.miui.weather2                  |
+| Serviços de interconectividade                 | com.milink.service                 |
+| Armazenamento externo                          | com.android.externalstorage        |
+| Tela ambiente e editor da Tela de bloqueio     | com.miui.aod                       |
+| Arquivos                                       | com.android.fileexplorer           |
+| Plugin de serviço de sistema                   | com.miui.securityadd               |
+| Downloads                                      | com.android.providers.downloads.ui |
+| Downloads                                      | com.android.providers.downloads    |
+| Galeria                                        | com.miui.gallery                   |
+| Mi Canvas                                      | com.miui.creation                  |
+| Compartilhamento Mi                            | com.miui.mishare.connectivity      |
+| Editor da Galeria                              | com.miui.mediaeditor               |
+| MiCloud                                        | com.miui.cloudservice              |
+| Smart Cards                                    | com.miui.tsmclient                 |
+| iFlytek IME for MIUI                           | com.iflytek.inputmethod.miui       |
+| Instalador de pacotes                          | com.miui.packageinstaller          |
+| GetApps                                        | com.xiaomi.market                  |
+| Assistente                                     | com.miui.personalassistant         |
+| Temas                                          | com.android.thememanager           |
+| Componentes de segurança do sistema            | com.miui.guardprovider             |
+| Câmera                                         | com.android.camera                 |
+| Mi AI Translate                                | com.xiaomi.aiasst.vision           |
+| Scanner                                        | com.xiaomi.scanner                 |
+| Mi AI                                          | com.miui.voiceassist               |
+| Serviço NFC                                    | com.android.nfc                    |
+| Fones de ouvido                                | com.miui.misound                   |
+| Backup                                         | com.miui.backup                    |
+| Mi Mover                                       | com.miui.huanji                    |
+| MiTrustService                                 | com.xiaomi.trustservice            |
 
 </details>
 
@@ -105,6 +102,8 @@ Junte-se ao nosso grupo para relatar problemas ou obter as atualizações mais r
 
 Você pode fornecer traduções para o projeto [aqui](https://crwd.in/cemiuiler).
 
+Observação: Quando o progresso da tradução do novo idioma for maior ou igual a 90%, ele entrará no processo de mesclagem. Se o progresso da tradução do idioma adicionado for menor ou igual a 30% do texto original, ele será removido temporariamente até que o progresso da tradução seja maior ou igual a 90%.
+
 ## Obrigado!
 
 > O <b>HyperCeiler</b> usa alguns ou todos os projetos a seguir, graças ao apoio dos desenvolvedores desses projetos (em nenhuma ordem em particular).
@@ -113,6 +112,7 @@ Você pode fornecer traduções para o projeto [aqui](https://crwd.in/cemiuiler)
 - [「Android」 por Android Open Source Project, Google Inc.](https://source.android.google.cn/license)
 - [「AndroidHiddenApiBypass」 por LSPosed](https://github.com/LSPosed/AndroidHiddenApiBypass)
 - [「AndroidX」 por Android Open Source Project, Google Inc.](https://github.com/androidx/androidx)
+- [「AutoSEffSwitch」 por 焕晨 HChen](https://github.com/HChenX/AutoSEffSwitch)
 - [「AntiAntiDefraud」 por MinaMichita](https://github.com/MinaMichita/AntiAntiDefraud)
 - [「Auto NFC」 por GSWXXN](https://github.com/GSWXXN/AutoNFC)
 - [「BypassSignCheck」 por Weverses](https://github.com/Weverses/BypassSignCheck)

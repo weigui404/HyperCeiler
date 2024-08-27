@@ -20,24 +20,27 @@ package com.sevtinge.hyperceiler.module.hook.securitycenter.other
 
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.sevtinge.hyperceiler.module.base.*
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toElementList
 import org.luckypray.dexkit.query.enums.*
 
 object BypassSimLockMiAccountAuth : BaseHook() {
     private val findMethod by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                declaredClass {
-                    addUsingString("SimLockUtils", StringMatchType.Contains)
+        DexKit.getDexKitBridgeList("BypassSimLockMiAccountAuth") {
+            it.findMethod {
+                matcher {
+                    declaredClass {
+                        addUsingString("SimLockUtils", StringMatchType.Contains)
+                    }
+                    addCall {
+                        addUsingString("SimLockStartFragment::simLockSetUpFlow::step =", StringMatchType.Contains)
+                    }
+                    paramCount = 1
+                    paramTypes("android.content.Context")
+                    returnType = "boolean"
                 }
-                addCall {
-                    addUsingString("SimLockStartFragment::simLockSetUpFlow::step =", StringMatchType.Contains)
-                }
-                paramCount = 1
-                paramTypes("android.content.Context")
-                returnType = "boolean"
-            }
-        }.map { it.getMethodInstance(lpparam.classLoader) }.toSet()
+            }.toElementList()
+        }.toMethodList()
     }
 
     override fun init() {

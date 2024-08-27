@@ -18,20 +18,22 @@
 */
 package com.sevtinge.hyperceiler.module.hook.packageinstaller
 
-import android.content.pm.ApplicationInfo
-import com.github.kyuubiran.ezxhelper.EzXHelper
+import android.content.pm.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHooks
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toElementList
 
 object AllAsSystemApp : BaseHook() {
     private val systemMethod by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                paramTypes = listOf("android.content.pm.ApplicationInfo")
-                returnType = "boolean"
-            }
-        }.map { it.getMethodInstance(EzXHelper.safeClassLoader) }
+        DexKit.getDexKitBridgeList("AllAsSystemApp") {
+            it.findMethod {
+                matcher {
+                    paramTypes = listOf("android.content.pm.ApplicationInfo")
+                    returnType = "boolean"
+                }
+            }.toElementList()
+        }.toMethodList()
     }
 
     override fun init() {

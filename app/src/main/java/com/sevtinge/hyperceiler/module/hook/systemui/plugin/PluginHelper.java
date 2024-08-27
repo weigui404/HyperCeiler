@@ -22,6 +22,7 @@ import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVers
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
 import android.content.pm.ApplicationInfo;
+import android.text.TextUtils;
 
 import com.sevtinge.hyperceiler.module.base.BaseHook;
 import com.sevtinge.hyperceiler.module.hook.systemui.NotificationVolumeSeparateSlider;
@@ -29,6 +30,12 @@ import com.sevtinge.hyperceiler.module.hook.systemui.ShowVolumePct;
 import com.sevtinge.hyperceiler.module.hook.systemui.controlcenter.BluetoothTileStyle;
 import com.sevtinge.hyperceiler.module.hook.systemui.controlcenter.CCGrid;
 import com.sevtinge.hyperceiler.module.hook.systemui.controlcenter.CCGridForHyperOS;
+import com.sevtinge.hyperceiler.module.hook.systemui.controlcenter.CustomCardTiles;
+import com.sevtinge.hyperceiler.module.hook.systemui.controlcenter.QSColor;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PluginHelper extends BaseHook {
 
@@ -116,6 +123,8 @@ public class PluginHelper extends BaseHook {
 
     public void setClassLoader(ClassLoader classLoader) {
         // CCGrid.loadCCGrid(classLoader);
+        if (mPrefsMap.getBoolean("system_ui_control_center_hide_edit_botton"))
+            HideEditButton.initHideEditButton(classLoader);
         if (mPrefsMap.getBoolean("system_ui_plugin_enable_volume_blur"))
             EnableVolumeBlur.initEnableVolumeBlur(classLoader);
         if (mPrefsMap.getStringAsInt("system_ui_control_center_mi_smart_hub_entry", 0) != 0)
@@ -140,5 +149,21 @@ public class PluginHelper extends BaseHook {
                 mPrefsMap.getBoolean("system_control_center_qs_tile_label")) && !isMoreHyperOSVersion(1f)) {
             CCGrid.loadCCGrid(classLoader);
         }
+        if (mPrefsMap.getBoolean("system_ui_control_center_qs_open_color") ||
+                mPrefsMap.getBoolean("system_ui_control_center_qs_big_open_color"))
+            QSColor.pluginHook(classLoader);
+        List<String> mCardStyleTiles = getTileList();
+        if (mPrefsMap.getBoolean("systemui_plugin_card_tiles_enabled") && !mPrefsMap.getString("systemui_plugin_card_tiles", "").isEmpty()) {
+            CustomCardTiles.initCustomCardTiles(classLoader, mCardStyleTiles);
+        }
+        if (mPrefsMap.getStringAsInt("system_ui_control_center_hide_operator", 0) == 3)
+            ShowDeviceName.initShowDeviceName(classLoader);
+        if (mPrefsMap.getBoolean("system_ui_control_center_disable_device_managed"))
+            DisableDeviceManaged.initDisableDeviceManaged(classLoader);
+    }
+
+    private static List<String> getTileList() {
+        String cardTiles = mPrefsMap.getString("systemui_plugin_card_tiles", "").replace("List_", "");
+        return TextUtils.isEmpty(cardTiles.replace("List_", "")) ? new ArrayList<>() : Arrays.asList(cardTiles.split("\\|"));
     }
 }

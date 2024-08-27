@@ -18,7 +18,7 @@
  */
 package com.sevtinge.hyperceiler.utils.search;
 
-import static com.sevtinge.hyperceiler.utils.api.VoyagerApisKt.isPad;
+import static com.sevtinge.hyperceiler.utils.devicesdk.MiDeviceAppUtilsKt.isPad;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 
 import android.content.Context;
@@ -35,13 +35,14 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SearchHelper {
 
     public static final int MARK_COLOR_VIBRANT = Color.rgb(255, 0, 0);
     public static final String NEW_MODS_SEARCH_QUERY = "\uD83C\uDD95";
-    public static ArrayList<ModData> allModsList = new ArrayList<>();
+    public static List<ModData> allModsList = new ArrayList<>();
 
     public static String TAG = "SearchHelper";
 
@@ -242,6 +243,9 @@ public class SearchHelper {
                 "com.sevtinge.hyperceiler.ui.fragment.SystemSettingsFragment");
 
         // 其他杂项
+        parsePrefXml(context, R.xml.analytics,
+                "com.sevtinge.hyperceiler.ui.fragment.AnalyticsFragment");
+
         parsePrefXml(context, R.xml.browser,
                 "com.sevtinge.hyperceiler.ui.fragment.BrowserFragment");
 
@@ -256,6 +260,9 @@ public class SearchHelper {
 
         parsePrefXml(context, R.xml.mms,
                 "com.sevtinge.hyperceiler.ui.fragment.MmsFragment");
+
+        parsePrefXml(context, R.xml.remotecontroller,
+                "com.sevtinge.hyperceiler.ui.fragment.RemoteControllerFragment");
 
         parsePrefXml(context, R.xml.nfc,
                 "com.sevtinge.hyperceiler.ui.fragment.NfcFragment");
@@ -310,17 +317,43 @@ public class SearchHelper {
         parsePrefXml(context, R.xml.screenshot,
                 "com.sevtinge.hyperceiler.ui.fragment.ScreenShotFragment");
 
-        parsePrefXml(context, R.xml.security_center,
-                "com.sevtinge.hyperceiler.ui.fragment.SecurityCenterFragment");
+        parsePrefXml(context, R.xml.security_center_app,
+                "com.sevtinge.hyperceiler.ui.fragment.securitycenter.ApplicationsSettings",
+                R.string.security_center);
+
+        parsePrefXml(context, R.xml.security_center_battery,
+                "com.sevtinge.hyperceiler.ui.fragment.securitycenter.BatterySettings",
+                R.string.security_center);
+
+        parsePrefXml(context, R.xml.security_center_privacy_safety,
+                "com.sevtinge.hyperceiler.ui.fragment.securitycenter.PrivacySafetySettings",
+                R.string.security_center);
+
+        parsePrefXml(context, R.xml.security_center_sidebar,
+                "com.sevtinge.hyperceiler.ui.fragment.securitycenter.SidebarSettings",
+                R.string.security_center);
+
+        parsePrefXml(context, R.xml.security_center_other,
+                "com.sevtinge.hyperceiler.ui.fragment.securitycenter.OtherSettings",
+                R.string.security_center);
 
         parsePrefXml(context, R.xml.tsmclient,
                 "com.sevtinge.hyperceiler.ui.fragment.TsmClientFragment");
+
+        parsePrefXml(context, R.xml.html_viewer,
+                "com.sevtinge.hyperceiler.ui.fragment.HtmlViewerFragment");
 
         parsePrefXml(context, R.xml.weather,
                 "com.sevtinge.hyperceiler.ui.fragment.WeatherFragment");
 
         parsePrefXml(context, R.xml.aiasst,
                 "com.sevtinge.hyperceiler.ui.fragment.AiAsstFragment");
+
+        parsePrefXml(context, R.xml.voicetrigger,
+                "com.sevtinge.hyperceiler.ui.fragment.VoiceTriggerFragment");
+
+        parsePrefXml(context, R.xml.telecom,
+                "com.sevtinge.hyperceiler.ui.fragment.TelecomFragment");
 
         parsePrefXml(context, R.xml.tsmclient,
                 "com.sevtinge.hyperceiler.ui.fragment.TsmClientFragment");
@@ -333,9 +366,6 @@ public class SearchHelper {
 
         parsePrefXml(context, R.xml.getapps,
                 "com.sevtinge.hyperceiler.ui.fragment.MarketFragment");
-
-        parsePrefXml(context, R.xml.mirror,
-                "com.sevtinge.hyperceiler.ui.fragment.MirrorFragment");
 
         parsePrefXml(context, R.xml.mtb,
                 "com.sevtinge.hyperceiler.ui.fragment.MtbFragment");
@@ -360,6 +390,9 @@ public class SearchHelper {
 
         parsePrefXml(context, R.xml.calendar,
                 "com.sevtinge.hyperceiler.ui.fragment.CalendarFragment");
+
+        parsePrefXml(context, R.xml.securityadd,
+                "com.sevtinge.hyperceiler.ui.fragment.SecurityAddFragment");
 
         parsePrefXml(context, R.xml.various,
                 "com.sevtinge.hyperceiler.ui.fragment.VariousFragment");

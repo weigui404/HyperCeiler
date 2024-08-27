@@ -18,38 +18,45 @@
 */
 package com.sevtinge.hyperceiler.module.hook.securitycenter.beauty
 
-import com.github.kyuubiran.ezxhelper.EzXHelper
+import com.github.kyuubiran.ezxhelper.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHooks
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toElementList
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
+
 object BeautyPrivacy : BaseHook() {
     private val R0 by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("persist.sys.privacy_camera")
-            }
-        }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        DexKit.getDexKitBridge("BeautyPrivacy") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("persist.sys.privacy_camera")
+                }
+            }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        }.toMethod()
     }
 
     private val invokeMethod by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                declaredClass {
-                    addUsingStringsEquals("persist.sys.privacy_camera")
-                }
-                paramTypes = emptyList()
-                returnType = "boolean"
-                addInvoke {
+        DexKit.getDexKitBridgeList("BeautyPrivacyList") {
+            it.findMethod {
+                matcher {
                     declaredClass {
                         addUsingStringsEquals("persist.sys.privacy_camera")
                     }
-                    returnType = R0.returnType.name
-                    paramTypes = listOf(R0.parameterTypes[0].name)
+                    paramTypes = emptyList()
+                    returnType = "boolean"
+                    addInvoke {
+                        declaredClass {
+                            addUsingStringsEquals("persist.sys.privacy_camera")
+                        }
+                        returnType = R0.returnType.name
+                        paramTypes = listOf(R0.parameterTypes[0].name)
+                    }
                 }
-            }
-        }.map { it.getMethodInstance(EzXHelper.classLoader) }.toList()
+            }.toElementList()
+        }.toMethodList()
     }
 
     override fun init() {

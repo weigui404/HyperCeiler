@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/system_ui_statusbar_clock_title">
@@ -21,6 +38,13 @@
             android:dependency="prefs_key_system_ui_statusbar_clock_all_status_enable"
             android:key="prefs_key_system_ui_statusbar_clock_big_bold"
             android:title="@string/system_ui_statusbar_clock_big_bold" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="prefs_key_system_ui_statusbar_clock_all_status_enable"
+            android:key="prefs_key_system_ui_clock_is_show_sec"
+            android:summary="@string/system_ui_clock_is_show_sec_desc"
+            android:title="@string/system_ui_clock_is_show_sec" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -54,7 +78,6 @@
 
         <Preference
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.clock.SmallClock"
-            android:summary="@string/system_ui_statusbar_clock_layout_n_desc"
             android:title="@string/system_ui_statusbar_clock_layout_n" />
 
     </PreferenceCategory>
@@ -63,7 +86,7 @@
         android:dependency="prefs_key_system_ui_statusbar_clock_all_status_enable"
         android:title="@string/system_ui_statusbar_clock_show">
         <EditTextPreference
-            android:defaultValue="HH:mm:ss"
+            android:defaultValue="HH:mm"
             android:key="prefs_key_system_ui_statusbar_clock_editor_s"
             android:title="@string/system_ui_statusbar_clock_editor_s" />
 

@@ -33,6 +33,7 @@ import com.sevtinge.hyperceiler.module.base.*
 import com.sevtinge.hyperceiler.utils.*
 import com.sevtinge.hyperceiler.utils.api.LazyClass.mNewClockClass
 import com.sevtinge.hyperceiler.utils.devicesdk.*
+import com.sevtinge.hyperceiler.utils.devicesdk.DisplayUtils.*
 import java.lang.reflect.*
 import java.util.*
 
@@ -95,9 +96,12 @@ object StatusBarClockNew : BaseHook() {
     private val clockAlign by lazy {
         mPrefsMap.getStringAsInt("system_ui_statusbar_clock_double_1", 0)
     }
+    private val isShowSec by lazy {
+        mPrefsMap.getBoolean("system_ui_clock_is_show_sec")
+    }
 
     // 时钟格式
-    private val getFormatS = mPrefsMap.getString("system_ui_statusbar_clock_editor_s", "HH:mm:ss")
+    private val getFormatS = mPrefsMap.getString("system_ui_statusbar_clock_editor_s", "HH:mm")
     private val getFormatN = mPrefsMap.getString("system_ui_statusbar_clock_editor_n", "")
     private val getClockStyle by lazy {
         mPrefsMap.getStringAsInt("system_ui_statusbar_clock_style", 0)
@@ -115,7 +119,7 @@ object StatusBarClockNew : BaseHook() {
                     setMiuiClockStyle(miuiClockName, miuiClock)
 
                     val isSec =
-                        miuiClockName in setOf("clock", "big_time", "horizontal_time", "date_time")
+                        miuiClockName in setOf("clock", "big_time", "date_time")
                     // miuiClockName 内部标签分类如下
                     // clock 竖屏状态栏时钟
                     // big_time 通知中心时钟
@@ -125,7 +129,7 @@ object StatusBarClockNew : BaseHook() {
                     if (getClockStyle != 0 && miuiClockName == "clock")
                         miuiClock.isSingleLine = false
 
-                    if (isSec) {
+                    if (isSec && isShowSec) {
                         val d: Method = miuiClock.javaClass.getDeclaredMethod("updateTime")
                         val r = Runnable {
                             d.isAccessible = true
@@ -154,10 +158,10 @@ object StatusBarClockNew : BaseHook() {
                     val context = textV.context
                     val miuiClockName =
                         textV.resources.getResourceEntryName(textV.id) ?: return@createBeforeHook
-                    if (miuiClockName in setOf("clock", "big_time", "horizontal_time", "date_time")) {
+                    if (miuiClockName in setOf("clock", "big_time", "date_time")) {
                         setMiuiClockStyle(miuiClockName, textV)
 
-                        if ((isSync && miuiClockName == "big_time") || (getFormatN.isEmpty() && miuiClockName in setOf("date_time", "horizontal_time"))) return@createBeforeHook
+                        if ((isSync && miuiClockName == "big_time") || (getFormatN.isEmpty() && miuiClockName == "date_time")) return@createBeforeHook
                         setMiuiClockFormat(context, miuiClockName, textV)
                         it.result = null
                     }
@@ -173,11 +177,13 @@ object StatusBarClockNew : BaseHook() {
                     val context = textV.context
                     val miuiClockName =
                         textV.resources.getResourceEntryName(textV.id) ?: return@createBeforeHook
-                    setMiuiClockStyle(miuiClockName, textV)
+                    if (miuiClockName in setOf("clock", "big_time", "date_time")) {
+                        setMiuiClockStyle(miuiClockName, textV)
 
-                    if ((isSync && miuiClockName == "big_time") || (getFormatN.isEmpty() && miuiClockName in setOf("date_time", "horizontal_time"))) return@createBeforeHook
-                    setMiuiClockFormat(context, miuiClockName, textV)
-                    it.result = null
+                        if ((isSync && miuiClockName == "big_time") || (getFormatN.isEmpty() && miuiClockName == "date_time")) return@createBeforeHook
+                        setMiuiClockFormat(context, miuiClockName, textV)
+                        it.result = null
+                    }
                 } catch (_: Exception) {
                 }
             }
@@ -288,12 +294,6 @@ object StatusBarClockNew : BaseHook() {
             "big_time" -> {
                 textSb = StringBuilder()
                 formatSb = StringBuilder(getFormatS.split("\n")[0])
-            }
-
-            "horizontal_time" -> {
-                textSb = StringBuilder()
-                formatSb =
-                    StringBuilder("${getFormatN.split("\n")[0]} ${getFormatS.split("\n")[0]}")
             }
 
             else -> {

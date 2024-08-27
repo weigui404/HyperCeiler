@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory>
         <Preference android:summary="@string/about_contributer_desc" />
@@ -15,6 +32,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/CLOUDERHEM" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@ItzDFPlayer"
+            android:title="Denys Kovalevskyi">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/ItzDFPlayer" />
         </Preference>
         <Preference
             android:summary="GitHub@heinu123"
@@ -73,11 +97,18 @@
                 android:data="https://github.com/igormiguell" />
         </Preference>
         <Preference
-            android:summary="GitHub@CHxCOOH"
+            android:summary="4PDA@Kosmosik96"
+            android:title="Kosmosik96">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://4pda.to/forum/index.php?showuser=10789718" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@NahidaBuer"
             android:title="Nahida">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/CHxCOOH" />
+                android:data="https://github.com/NahidaBuer" />
         </Preference>
         <Preference
             android:summary="GitHub@nakixii / CoolApk@nakixii"
@@ -122,6 +153,13 @@
                 android:data="https://github.com/nxibjzC" />
         </Preference>
         <Preference
+            android:summary="GitHub@oufm"
+            android:title="oufm">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/oufm" />
+        </Preference>
+        <Preference
             android:summary="GitHub@pzcn"
             android:title="PedroZ">
             <intent
@@ -150,6 +188,20 @@
                 android:data="https://github.com/ri-char" />
         </Preference>
         <Preference
+            android:summary="GitHub@FurryRbl"
+            android:title="SharpIce 锐冰龙">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/FurryRbl" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@yxsra"
+            android:title="SUMUS">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/yxsra" />
+        </Preference>
+        <Preference
             android:summary="GitHub@tehcneko"
             android:title="tehcneko">
             <intent
@@ -176,6 +228,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/Wansn-w" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@weigui404"
+            android:title="weigui404">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/weigui404" />
         </Preference>
         <Preference
             android:summary="GitHub@Weverses / CoolApk@Weverse"
@@ -213,11 +272,18 @@
                 android:data="https://github.com/xueshiji" />
         </Preference>
         <Preference
-            android:summary="GitHub@YuKongA"
-            android:title="YuKongA">
+            android:summary="GitHub@xzakota"
+            android:title="xzakota">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/YuKongA" />
+                android:data="https://github.com/xzakota" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@YifePlayte"
+            android:title="Yife Playte">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/YifePlayte" />
         </Preference>
         <Preference
             android:summary="GitHub@zcarroll4"
@@ -281,6 +347,13 @@
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/zjw2017" />
+        </Preference>
+        <Preference
+            android:summary="GitHub@YuKongA"
+            android:title="余空">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/YuKongA" />
         </Preference>
         <Preference
             android:summary="GitHub@pomelohan"

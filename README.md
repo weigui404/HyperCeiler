@@ -14,8 +14,6 @@
 
 Android 13-14 的 MIUI 和 HyperOS
 
-注：Android 11-12 将在后续版本陆续停止支持， 当前系统框架、系统界面、系统桌面、手机管家作用域不支持 Android 11-12 的 MIUI
-
 ## 使用前说明
 
 请在 [LSPosed](https://github.com/LSPosed/LSPosed/releases) 中启用 HyperCeiler， 然后在 HyperCeiler 应用内启用对应的功能，重启作用域 (需要 Root 权限)；
@@ -26,7 +24,7 @@ Android 13-14 的 MIUI 和 HyperOS
 
 提交反馈前请注意是否已有相同反馈，避免给开发者造成困扰。花相同精力看相同反馈是一件很浪费时间的事情
 
-HyperCeiler 已停止维护 Android 11-12 的 MIUI ROM，当前除系统框架、系统界面等核心作用域，原则上其他作用域可正常使用，核心作用域如需使用请停留[此版本](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130)
+HyperCeiler 已停止维护 Android 11-12 的 MIUI ROM，如需使用请停留[此版本](https://github.com/ReChronoRain/Cemiuiler/releases/tag/1.3.130)
 
 ## 作用域包含的应用
 
@@ -60,7 +58,6 @@ HyperCeiler 已停止维护 Android 11-12 的 MIUI ROM，当前除系统框架�
 | 搜狗输入法小米版              | com.sohu.inputmethod.sogou.xiaomi  |
 | 天气                    | com.miui.weather2                  |
 | 互联互通服务 (投屏)           | com.milink.service                 |
-| 跨屏协同服务 (MIUI+ Beta 版) | com.xiaomi.mirror                  |
 | 外部存储设备                | com.android.externalstorage        |
 | 息屏与锁屏编辑 (万象息屏)        | com.miui.aod                       |
 | 文件管理                  | com.android.fileexplorer           |
@@ -107,6 +104,8 @@ HyperCeiler 已停止维护 Android 11-12 的 MIUI ROM，当前除系统框架�
 
 您可以在[这里](https://crwd.in/cemiuiler)为 HyperCeiler 项目贡献翻译。
 
+注：当新语言翻译进度大于或等于 90% 时，将会进入合并流程，如果已添加的语言，翻译进度小于或等于源文本的 30%，将会暂时被移除，直到重新满足翻译进度大于或等于 90%
+
 ## 感谢
 
 > HyperCeiler 使用了以下开源项目的部分或全部内容，感谢这些项目的开发者提供的大力支持（排名顺序不分先后）。
@@ -115,6 +114,7 @@ HyperCeiler 已停止维护 Android 11-12 的 MIUI ROM，当前除系统框架�
 - [「Android」 by Android Open Source Project, Google Inc.](https://source.android.google.cn/license)
 - [「AndroidHiddenApiBypass」 by LSPosed](https://github.com/LSPosed/AndroidHiddenApiBypass)
 - [「AndroidX」 by Android Open Source Project, Google Inc.](https://github.com/androidx/androidx)
+- [「AutoSEffSwitch」 by 焕晨 HChen](https://github.com/HChenX/AutoSEffSwitch)
 - [「AntiAntiDefraud」 by MinaMichita](https://github.com/MinaMichita/AntiAntiDefraud)
 - [「Auto NFC」 by GSWXXN](https://github.com/GSWXXN/AutoNFC)
 - [「BypassSignCheck」 by Weverses](https://github.com/Weverses/BypassSignCheck)

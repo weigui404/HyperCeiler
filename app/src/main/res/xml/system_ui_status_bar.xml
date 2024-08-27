@@ -1,32 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/system_ui_statusbar_title">
 
     <Preference
-        android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.IconManageSettings"
         android:title="@string/system_ui_statusbar_iconmanage_title"
-        android:key="prefs_key_icon_manager_old"
-        app:isPreferenceVisible="false"/>
-
-    <Preference
-        android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.IconManageNewSettings"
-        android:title="@string/system_ui_statusbar_iconmanage_title"
-        android:key="prefs_key_icon_manager_new"
-        app:isPreferenceVisible="false"/>
+        android:key="prefs_key_icon_manager" />
 
     <Preference
         android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.NetworkSpeedIndicatorSettings"
         android:title="@string/system_ui_statusbar_network_speed_indicator_title" />
 
     <Preference
-        android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.ClockIndicatorSettings"
-        android:key="prefs_key_old_clock_status"
-        android:title="@string/system_ui_statusbar_clock_title" />
-
-    <Preference
-        android:fragment="com.sevtinge.hyperceiler.ui.fragment.systemui.statusbar.NewClockIndicatorSettings"
-        android:key="prefs_key_new_clock_status"
+        android:key="prefs_key_clock_status"
         android:title="@string/system_ui_statusbar_clock_title" />
 
     <Preference

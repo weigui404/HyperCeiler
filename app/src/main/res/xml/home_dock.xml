@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/home_dock">
@@ -43,6 +60,12 @@
             android:defaultValue="false"
             android:key="prefs_key_home_dock_bg_custom_enable"
             android:title="@string/home_dock_bg_enable" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_home_dock_bg_all_app"
+            android:summary="@string/home_dock_bg_all_app_more"
+            android:title="@string/home_dock_bg_all_app" />
 
         <DropDownPreference
             android:defaultValue="0"
@@ -117,11 +140,22 @@
             app:showSeekBarValue="true"
             app:stepValue="1" />
 
-        <moralnorm.preference.ColorPickerPreference
+        <!--<SeekBarPreferenceEx
+            android:defaultValue="200"
             android:dependency="prefs_key_home_dock_bg_custom_enable"
-            android:title="@string/home_dock_bg_color"
+            android:key="prefs_key_custom_background_blur_degree"
+            android:title="@string/custom_background_blur_degree"
+            app:defaultValueText="@string/array_default"
+            app:format="%d bl"
+            app:maxValue="500"
+            app:showSeekBarValue="true"
+            app:stepValue="1" />-->
+
+        <moralnorm.preference.ColorPickerPreference
+            android:defaultValue="0"
+            android:dependency="prefs_key_home_dock_bg_custom_enable"
             android:key="prefs_key_home_dock_bg_color"
-            android:defaultValue="-1"
+            android:title="@string/home_dock_bg_color"
             app:showAlphaSlider="true" />
 
         <!--<SeekBarPreferenceEx

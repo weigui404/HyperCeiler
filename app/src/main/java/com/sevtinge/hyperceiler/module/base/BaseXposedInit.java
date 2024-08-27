@@ -23,7 +23,6 @@ import static com.sevtinge.hyperceiler.utils.Helpers.getPackageVersionName;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getAndroidVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getHyperOSVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getMiuiVersion;
-import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
 import static com.sevtinge.hyperceiler.utils.log.LogManager.logLevelDesc;
 import static com.sevtinge.hyperceiler.utils.log.XposedLogUtils.logE;
 import static com.sevtinge.hyperceiler.utils.log.XposedLogUtils.logI;
@@ -36,7 +35,6 @@ import androidx.annotation.CallSuper;
 import com.sevtinge.hyperceiler.module.app.VariousSystemApps;
 import com.sevtinge.hyperceiler.module.app.VariousThirdApps;
 import com.sevtinge.hyperceiler.module.base.tool.ResourcesTool;
-import com.sevtinge.hyperceiler.module.base.tool.XmlTool;
 import com.sevtinge.hyperceiler.safe.CrashHook;
 import com.sevtinge.hyperceiler.utils.api.ProjectApi;
 import com.sevtinge.hyperceiler.utils.prefs.PrefsMap;
@@ -46,7 +44,6 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.Objects;
@@ -66,7 +63,7 @@ public abstract class BaseXposedInit {
     public static String mModulePath = null;
     public static PrefsMap<String, Object> mPrefsMap = new PrefsMap<>();
     public static ResourcesTool mResHook;
-    public static XmlTool mXmlTool;
+    // public static XmlTool mXmlTool;
     public static ArrayList<String> classPaths = new ArrayList<>();
     public final VariousThirdApps mVariousThirdApps = new VariousThirdApps();
     public final VariousSystemApps mVariousSystemApps = new VariousSystemApps();
@@ -75,7 +72,7 @@ public abstract class BaseXposedInit {
     public void initZygote(IXposedHookZygoteInit.StartupParam startupParam) throws Throwable {
         setXSharedPrefs();
         mResHook = new ResourcesTool(startupParam.modulePath);
-        mXmlTool = new XmlTool(startupParam);
+        // mXmlTool = new XmlTool(startupParam);
         mModulePath = startupParam.modulePath;
         if (classPaths.isEmpty()) {
             PathClassLoader pathClassLoader = new PathClassLoader(startupParam.modulePath, ClassLoader.getSystemClassLoader());
@@ -137,6 +134,7 @@ public abstract class BaseXposedInit {
         if (hookDone) {
             mVariousSystemApps.init(lpparam);
             if ("android".equals(packageName)) {
+                XposedBridge.log("[HyperCeiler][I]: Log level is " + logLevelDesc());
                 try {
                     new CrashHook(lpparam);
                     logI(TAG, "Success Hook Crash");
@@ -186,8 +184,9 @@ public abstract class BaseXposedInit {
                 String mPkg = hookExpand.pkg();
                 boolean isPad = hookExpand.isPad();
                 int android = hookExpand.tarAndroid();
-                boolean skip = hookExpand.skip();
-                if (skip) continue;
+                // 等待改写...
+                // boolean skip = hookExpand.skip();
+                // if (skip) continue;
                 if (mPkgName.equals(mPkg)) {
                     // 需要限制安卓版本和设备取消这些注释，并删除下面的invoke方法。
                     // if (!isAndroidVersion(android)) continue;
@@ -208,7 +207,7 @@ public abstract class BaseXposedInit {
     }
 
     private boolean invoke(LoadPackageParam lpparam, Class<?> clzz) {
-        Object newInstance = null;
+        Object newInstance;
         try {
             newInstance = clzz.newInstance();
             Method[] methods = clzz.getMethods();
@@ -219,8 +218,13 @@ public abstract class BaseXposedInit {
                         return true;
                     } catch (IllegalAccessException |
                              InvocationTargetException e) {
-                        logE(TAG, "The method failed to be called! " + e);
-                        return false;
+                        Throwable cause = e.getCause();
+                        if (cause != null) {
+                            throw new RuntimeException(TAG + ": The method failed to be called due to: \n" + cause +
+                                    " \ncause: " + cause.getCause());
+                        } else {
+                            throw new RuntimeException(TAG + ": The method failed to be called! \n" + e);
+                        }
                     }
                 }
             }
@@ -246,11 +250,11 @@ public abstract class BaseXposedInit {
     }
 
     private boolean isOtherRestrictions(String pkg) {
-        switch (pkg) {
-            case "com.lbe.security.miui" -> {
-                return isMoreHyperOSVersion(1f);
-            }
-        }
+        // switch (pkg) {
+        //     case "com.lbe.security.miui" -> {
+        //         return isMoreHyperOSVersion(1f);
+        //     }
+        // }
         return false;
     }
 

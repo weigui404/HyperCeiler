@@ -1,12 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory>
+
+        <Preference
+            android:layout="@layout/headtip_hyperceiler_birthday"
+            android:key="prefs_key_headtip_hyperceiler_birthday"
+            android:enabled="false"
+            android:title="@string/happy_birthday_hyperceiler"
+            app:isPreferenceVisible="false" />
+
+        <Preference
+            android:layout="@layout/headtip_hyperceiler"
+            android:key="prefs_key_headtip_hyperceiler"
+            android:enabled="false"
+            android:title="This is HyperCeiler tip of headtip."
+            app:isPreferenceVisible="false" />
+
         <Preference
             android:layout="@layout/headtip_warn"
             android:key="prefs_key_headtip_warn"
             android:enabled="false"
             android:title="This is warn of headtip."
+            app:isPreferenceVisible="false" />
+
+        <Preference
+            android:layout="@layout/headtip_notice"
+            android:key="prefs_key_headtip_notice"
+            android:enabled="false"
+            android:title="This is notice of headtip."
             app:isPreferenceVisible="false" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
@@ -31,16 +70,8 @@
             android:title="@string/calendar" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.CameraFragment"
             android:icon="@drawable/ic_camera"
-            android:key="prefs_key_camera"
-            android:summary="com.android.camera"
-            android:title="@string/camera" />
-
-        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.CameraNewFragment"
-            android:icon="@drawable/ic_camera"
-            android:key="prefs_key_camera_new"
+            android:key="prefs_key_camera_2"
             android:summary="com.android.camera"
             android:title="@string/camera" />
 
@@ -50,6 +81,13 @@
             android:key="prefs_key_file_explorer"
             android:summary="com.android.fileexplorer"
             android:title="@string/fileexplorer" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.HtmlViewerFragment"
+            android:icon="@drawable/ic_htmlviewer"
+            android:key="prefs_key_html_viewer"
+            android:summary="com.android.htmlviewer"
+            android:title="@string/html_viewer" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.InCallUiFragment"
@@ -87,11 +125,11 @@
             android:title="@string/downloads" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.SystemUIFragment"
-            android:icon="@drawable/ic_system_ui"
-            android:key="prefs_key_system_ui"
-            android:summary="com.android.systemui"
-            android:title="@string/system_ui" />
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.TelecomFragment"
+            android:icon="@drawable/ic_call"
+            android:key="prefs_key_telecom"
+            android:summary="com.android.server.telecom"
+            android:title="@string/telecom" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.SystemSettingsFragment"
@@ -99,6 +137,13 @@
             android:key="prefs_key_system_settings"
             android:summary="com.android.settings"
             android:title="@string/system_settings" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.SystemUIFragment"
+            android:icon="@drawable/ic_system_ui"
+            android:key="prefs_key_system_ui"
+            android:summary="com.android.systemui"
+            android:title="@string/system_ui" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.ThemeManagerFragment"
@@ -115,6 +160,13 @@
             android:title="@string/updater" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.RemoteControllerFragment"
+            android:icon="@drawable/ic_remotecontroller"
+            android:key="prefs_key_remotecontroller"
+            android:summary="com.duokan.phone.remotecontroller"
+            android:title="@string/remotecontroller" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.LbeFragment"
             android:icon="@drawable/ic_lbe"
             android:key="prefs_key_lbe"
@@ -127,6 +179,13 @@
             android:key="prefs_key_milink"
             android:summary="com.milink.service"
             android:title="@string/milink" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.AnalyticsFragment"
+            android:icon="@drawable/ic_default_icon"
+            android:key="prefs_key_analytics"
+            android:summary="com.miui.analytics"
+            android:title="@string/analytics" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.AodFragment"
@@ -143,18 +202,18 @@
             android:title="@string/backup" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.ContentExtensionFragment"
-            android:icon="@drawable/ic_contentextension"
-            android:key="prefs_key_content_extension"
-            android:summary="com.miui.contentextension"
-            android:title="@string/content_extension" />
-
-        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.MiCloudServiceFragment"
             android:icon="@drawable/ic_micloud_service"
             android:key="prefs_key_micloud_service"
             android:summary="com.miui.cloudservice"
             android:title="@string/micloud_service" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.ContentExtensionFragment"
+            android:icon="@drawable/ic_contentextension"
+            android:key="prefs_key_content_extension"
+            android:summary="com.miui.contentextension"
+            android:title="@string/content_extension" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.CreationFragment"
@@ -255,6 +314,13 @@
             android:title="@string/screenshot" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.SecurityAddFragment"
+            android:icon="@drawable/ic_securityadd"
+            android:key="prefs_key_securityadd"
+            android:summary="com.miui.securityadd"
+            android:title="@string/securityadd" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.SecurityCenterFragment"
             android:icon="@drawable/ic_security_center"
             android:key="prefs_key_security_center"
@@ -274,6 +340,13 @@
             android:key="prefs_key_voiceassist"
             android:summary="com.miui.voiceassist"
             android:title="@string/voiceassist" />
+
+        <com.sevtinge.hyperceiler.prefs.PreferenceHeader
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.VoiceTriggerFragment"
+            android:icon="@drawable/ic_voiceassist"
+            android:key="prefs_key_voicetrigger"
+            android:summary="com.miui.voicetrigger"
+            android:title="@string/voicetrigger" />
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.WeatherFragment"
@@ -316,13 +389,6 @@
             android:key="prefs_key_market"
             android:summary="com.xiaomi.market"
             android:title="@string/market" />
-
-        <!--<com.sevtinge.hyperceiler.prefs.PreferenceHeader
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.MirrorFragment"
-            android:icon="@drawable/ic_miui_plus"
-            android:key="prefs_key_mirror"
-            android:summary="com.xiaomi.mirror"
-            android:title="@string/mirror" />-->
 
         <com.sevtinge.hyperceiler.prefs.PreferenceHeader
             android:fragment="com.sevtinge.hyperceiler.ui.fragment.MiSettingsFragment"

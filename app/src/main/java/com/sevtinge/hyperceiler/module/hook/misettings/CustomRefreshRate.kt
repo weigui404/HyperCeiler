@@ -18,22 +18,25 @@
 */
 package com.sevtinge.hyperceiler.module.hook.misettings
 
+import com.github.kyuubiran.ezxhelper.*
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
-import com.github.kyuubiran.ezxhelper.EzXHelper
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.MemberExtensions.isFinal
 import com.github.kyuubiran.ezxhelper.MemberExtensions.isStatic
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
 
 object CustomRefreshRate : BaseHook() {
     private val resultMethod by lazy {
-        dexKitBridge.findMethod {
-           matcher {
-               addUsingStringsEquals("btn_preferce_category")
-           }
-        }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        DexKit.getDexKitBridge("CustomRefreshRate") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("btn_preferce_category")
+                }
+            }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        }.toMethod()
     }
     override fun init() {
         val resultClass = loadClass("com.xiaomi.misettings.display.RefreshRate.RefreshRateActivity")

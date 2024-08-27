@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/mihome">
@@ -112,6 +129,83 @@
             app:maxValue="200"
             app:minValue="45"
             app:stepValue="5" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefs_key_home_title_app_blur_hyper"
+        android:title="@string/home_title_app_blur_title">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_home_title_app_blur_enable"
+            android:title="@string/home_title_app_blur_enable" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="100"
+            android:dependency="prefs_key_home_title_app_blur_enable"
+            android:key="prefs_key_home_title_app_blur_radius"
+            android:title="@string/home_title_app_blur_radius"
+            app:defaultValueText="@string/array_default"
+            app:format="%s dp"
+            app:maxValue="200"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="50"
+            android:dependency="prefs_key_home_title_app_blur_enable"
+            android:key="prefs_key_home_title_app_dim_alpha"
+            android:title="@string/home_title_app_dim_alpha"
+            app:defaultValueText="@string/array_default"
+            app:format="%s"
+            app:maxValue="255"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="100"
+            android:dependency="prefs_key_home_title_app_blur_enable"
+            android:key="prefs_key_home_title_wallpaper_blur_radius"
+            android:title="@string/home_title_wallpaper_blur_radius"
+            app:defaultValueText="@string/array_default"
+            app:format="%s dp"
+            app:maxValue="200"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="50"
+            android:dependency="prefs_key_home_title_app_blur_enable"
+            android:key="prefs_key_home_title_wallpaper_dim_alpha"
+            android:title="@string/home_title_wallpaper_dim_alpha"
+            app:defaultValueText="@string/array_default"
+            app:format="%s"
+            app:maxValue="255"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="100"
+            android:key="prefs_key_home_title_minus_blur_radius"
+            android:title="home_title_minus_blur_radius"
+            app:defaultValueText="@string/array_default"
+            app:format="%s dp"
+            app:maxValue="200"
+            app:showSeekBarValue="true"
+            app:isPreferenceVisible="false"/>
+
+        <SeekBarPreferenceEx
+            android:defaultValue="50"
+            android:key="prefs_key_home_title_minus_dim_alpha"
+            android:title="home_title_minus_dim_alpha"
+            app:defaultValueText="@string/array_default"
+            app:format="%s"
+            app:maxValue="255"
+            app:showSeekBarValue="true"
+            app:isPreferenceVisible="false"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_home_title_fix_small_window"
+            android:summary="@string/home_title_fix_small_window_desc"
+            android:title="@string/home_title_fix_small_window"
+            app:isPreferenceVisible="false" />
 
     </PreferenceCategory>
 

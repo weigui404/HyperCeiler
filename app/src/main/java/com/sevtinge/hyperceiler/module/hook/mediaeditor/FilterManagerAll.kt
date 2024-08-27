@@ -18,28 +18,31 @@
 */
 package com.sevtinge.hyperceiler.module.hook.mediaeditor
 
-import android.os.Build
+import android.os.*
 import com.github.kyuubiran.ezxhelper.ClassLoaderProvider.safeClassLoader
 import com.github.kyuubiran.ezxhelper.ClassUtils.setStaticObject
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
 import com.sevtinge.hyperceiler.utils.api.LazyClass.AndroidBuildCls
 
 
 object FilterManagerAll : BaseHook() {
     private lateinit var device: String
     private val methodResult by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("wayne")
-            }
-        }.filter { it.isMethod }.map { it.getMethodInstance(safeClassLoader) }.toTypedArray().firstOrNull()
+        DexKit.getDexKitBridge("FilterManagerAll") { dexkit ->
+            dexkit.findMethod {
+                matcher {
+                    addUsingStringsEquals("wayne")
+                }
+            }.filter { it.isMethod }.map { it.getMethodInstance(safeClassLoader) }.toTypedArray().firstOrNull()
+        }.toMethod()
     }
 
     override fun init() {
-        methodResult?.createHook {
+        methodResult.createHook {
             before {
                 if (!this@FilterManagerAll::device.isInitialized) {
                     device = Build.DEVICE

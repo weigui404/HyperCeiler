@@ -21,35 +21,40 @@ package com.sevtinge.hyperceiler.module.hook.mediaeditor
 import com.github.kyuubiran.ezxhelper.EzXHelper.safeClassLoader
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.sevtinge.hyperceiler.module.base.*
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
 import java.lang.reflect.*
 
 object UnlockDisney : BaseHook() {
     private val mickey by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addCall {
-                    addUsingStringsEquals("magic_recycler_matting_0", "magic_recycler_clear_icon")
-                    // returnType = "java.util.List" // 你米 1.6.5.10.2 改成了 java.util.ArrayList，所以找不到
+        DexKit.getDexKitBridge("UnlockDisneyMickey") {
+            it.findMethod {
+                matcher {
+                    addCall {
+                        addUsingStringsEquals("magic_recycler_matting_0", "magic_recycler_clear_icon")
+                        // returnType = "java.util.List" // 你米 1.6.5.10.2 改成了 java.util.ArrayList，所以找不到
+                        paramCount = 0
+                    }
+                    modifiers = Modifier.STATIC
+                    returnType = "boolean"
                     paramCount = 0
                 }
-                modifiers = Modifier.STATIC
-                returnType = "boolean"
-                paramCount = 0
-            }
-        }.single().getMethodInstance(safeClassLoader)
+            }.single().getMethodInstance(safeClassLoader)
+        }.toMethod()
     }
 
     private val bear by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                declaredClass = mickey.declaringClass.name
-                modifiers = Modifier.STATIC
-                returnType = "boolean"
-                paramCount = 0
-            }
-        }.last().getMethodInstance(safeClassLoader)
+        DexKit.getDexKitBridge("UnlockDisneyBear") {
+            it.findMethod {
+                matcher {
+                    declaredClass = mickey.declaringClass.name
+                    modifiers = Modifier.STATIC
+                    returnType = "boolean"
+                    paramCount = 0
+                }
+            }.last().getMethodInstance(safeClassLoader)
+        }.toMethod()
     }
 
     private val isType by lazy {

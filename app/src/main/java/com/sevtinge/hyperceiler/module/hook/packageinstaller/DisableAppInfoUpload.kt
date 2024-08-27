@@ -18,15 +18,16 @@
 */
 package com.sevtinge.hyperceiler.module.hook.packageinstaller
 
-import android.content.Context
+import android.content.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.sevtinge.hyperceiler.*
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit
-import org.luckypray.dexkit.query.matchers.base.AccessFlagsMatcher
-import org.luckypray.dexkit.result.MethodDataList
-import java.lang.reflect.Modifier
-import java.util.stream.Collectors
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toElementList
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
+import org.luckypray.dexkit.query.matchers.base.*
+import java.lang.reflect.*
+import java.util.stream.*
 
 
 object DisableAppInfoUpload : BaseHook() {
@@ -44,20 +45,22 @@ object DisableAppInfoUpload : BaseHook() {
         /**
          * methods invoke api '/avl/upload/'
          */
-        val avlUploadInvokerList = DexKit.dexKitBridge.findMethod {
-            matcher {
-                paramCount(4)
-                paramTypes(
-                    null,
-                    findClass("com.miui.packageInstaller.model.ApkInfo"),
-                    Boolean::class.javaPrimitiveType,
-                    null
-                )
-                usingStrings("appSourcepackageName", "packageName")
-                returnType(Void::class.javaPrimitiveType as Class<*>)
-                modifiers(AccessFlagsMatcher.create(Modifier.STATIC))
-            }
-        }
+        val avlUploadInvokerList = DexKit.getDexKitBridgeList("avlUploadInvokerList") {
+            it.findMethod {
+                matcher {
+                    paramCount(4)
+                    paramTypes(
+                        null,
+                        findClass("com.miui.packageInstaller.model.ApkInfo"),
+                        Boolean::class.javaPrimitiveType,
+                        null
+                    )
+                    usingStrings("appSourcepackageName", "packageName")
+                    returnType(Void::class.javaPrimitiveType as Class<*>)
+                    modifiers(AccessFlagsMatcher.create(Modifier.STATIC))
+                }
+            }.toElementList()
+        }.toMethodList()
 
         if (avlUploadInvokerList.isEmpty()) {
             throw IllegalStateException("cannot find MethodData invoking '/avl/upload/'")
@@ -65,7 +68,7 @@ object DisableAppInfoUpload : BaseHook() {
         logD("/avl/upload/", avlUploadInvokerList)
 
         avlUploadInvokerList.forEach {
-            it.getMethodInstance(lpparam.classLoader).createHook {
+            it.createHook {
                 replace { }
             }
         }
@@ -75,21 +78,23 @@ object DisableAppInfoUpload : BaseHook() {
         /**
          * methods invoke api '/v4/game/interceptcheck/'
          */
-        val interceptCheckInvokerList = DexKit.dexKitBridge.findMethod {
-            matcher {
-                paramCount(6)
-                paramTypes(
-                    Context::class.java,
-                    null,
-                    Int::class.javaPrimitiveType,
-                    findClass("com.miui.packageInstaller.model.ApkInfo"),
-                    HashMap::class.java,
-                    null
-                )
-                returnType(Object::class.java)
-                usingStrings("device_type", "packageName", "installationMode", "apk_bit")
-            }
-        }
+        val interceptCheckInvokerList = DexKit.getDexKitBridgeList("interceptCheckInvokerList") {
+            it.findMethod {
+                matcher {
+                    paramCount(6)
+                    paramTypes(
+                        Context::class.java,
+                        null,
+                        Int::class.javaPrimitiveType,
+                        findClass("com.miui.packageInstaller.model.ApkInfo"),
+                        HashMap::class.java,
+                        null
+                    )
+                    returnType(Object::class.java)
+                    usingStrings("device_type", "packageName", "installationMode", "apk_bit")
+                }
+            }.toElementList()
+        }.toMethodList()
 
         if (interceptCheckInvokerList.isEmpty()) {
             throw IllegalStateException("cannot find MethodData invoking 'interceptcheck'")
@@ -97,7 +102,7 @@ object DisableAppInfoUpload : BaseHook() {
         logD("/interceptcheck", interceptCheckInvokerList)
 
         interceptCheckInvokerList.forEach {
-            it.getMethodInstance(lpparam.classLoader).createHook {
+            it.createHook {
                 returnConstant(null)
             }
         }
@@ -107,28 +112,29 @@ object DisableAppInfoUpload : BaseHook() {
         /**
          * methods invoke api '/info/layout'
          */
-        val infoLayoutInvokerList = DexKit.dexKitBridge.findMethod {
-            matcher {
-                paramCount(7)
-                paramTypes(
-                    String::class.java,
-                    String::class.java,
-                    String::class.java,
-                    Integer::class.java,
-                    String::class.java,
-                    String::class.java,
-                    null
-                )
-            }
-        }
+        val infoLayoutInvokerList = DexKit.getDexKitBridgeList("interceptCheckInvokerList") {
+            it.findMethod {
+                matcher {
+                    paramCount(7)
+                    paramTypes(
+                        String::class.java,
+                        String::class.java,
+                        String::class.java,
+                        Integer::class.java,
+                        String::class.java,
+                        String::class.java,
+                        null
+                    )
+                }
+            }.toElementList()
+        }.toMethodList()
 
         if (infoLayoutInvokerList.isEmpty()) {
             throw IllegalStateException("cannot find MethodData invoking '/info/layout'")
         }
         logD("/info/layout'", infoLayoutInvokerList)
 
-        infoLayoutInvokerList.forEach {
-            val method = it.getMethodInstance(lpparam.classLoader)
+        infoLayoutInvokerList.forEach { method ->
             method.createHook {
                 if (method.returnType == Object::class.java) {
                     returnConstant(null)
@@ -142,14 +148,12 @@ object DisableAppInfoUpload : BaseHook() {
         mResHook.setResReplacement("com.miui.packageinstaller", "layout", "safe_mode_layout_network_error", R.layout.replacement_empty)
     }
 
-    private fun logD(prefix: String, list: MethodDataList) {
+    private fun logD(prefix: String, list:  List<Method>) {
         logD(
             TAG, lpparam.packageName,
             "'${prefix}' find methods: " + list.stream().map {
-                "${it.getClassInstance(lpparam.classLoader).name}#${
-                    it.getMethodInstance(
-                        lpparam.classLoader
-                    ).name
+                "${it.javaClass.name}#${
+                    it.toMethod().name
                 }"
             }.collect(Collectors.joining(" | "))
         )

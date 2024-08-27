@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:key="prefs_key_various_enable_super_function"
@@ -9,7 +26,7 @@
         <Preference
             android:icon="@drawable/ic_sevtinge"
             android:layout="@layout/preference_round_layout"
-            android:summary="\@Sevtinge | Main design &amp; Hook"
+            android:summary="\@Sevtinge | Main Design &amp; Architecture &amp; Hook"
             android:title="绀漓 | Sevtinge">
             <intent
                 android:action="android.intent.action.VIEW"
@@ -27,19 +44,19 @@
         </Preference>
 
         <Preference
-            android:icon="@drawable/ic_nekoqiqi"
+            android:icon="@drawable/ic_lingqiqi"
             android:layout="@layout/preference_round_layout"
-            android:summary="\@mu7220 | Hook"
-            android:title="Neko Qiqi">
+            android:summary="\@lingqiqi5211 | Architecture &amp; Hook"
+            android:title="铃柒柒">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/mu7220" />
+                android:data="https://github.com/lingqiqi5211" />
         </Preference>
 
         <Preference
             android:icon="@drawable/ic_hchenx"
             android:layout="@layout/preference_round_layout"
-            android:summary="\@HChenX | Hook"
+            android:summary="\@HChenX | Architecture &amp; Hook"
             android:title="焕晨HChen">
             <intent
                 android:action="android.intent.action.VIEW"
@@ -47,24 +64,14 @@
         </Preference>
 
         <Preference
-            android:icon="@drawable/ic_yifeplayte"
-            android:layout="@layout/preference_round_layout"
-            android:summary="\@YifePlayte | Hook"
-            android:title="Yife Playte">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/YifePlayte" />
-        </Preference>
-
-        <Preference
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.about.AboutContributerFragment"
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.base.about.AboutContributerFragment"
             android:key="prefs_key_about_contributer"
             android:title="@string/about_contributer" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/about_translator_title">
         <Preference
-            android:title="@string/language"
-            android:summary="@string/translator">
+            android:title="@string/translator"
+            android:summary="@string/language">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/translator_url" />
@@ -111,7 +118,7 @@
         </Preference>
 
         <Preference
-            android:fragment="com.sevtinge.hyperceiler.ui.fragment.about.AboutUseFragment"
+            android:fragment="com.sevtinge.hyperceiler.ui.fragment.base.about.AboutUseFragment"
             android:key="prefs_key_about_use"
             android:title="@string/about_use" />
 

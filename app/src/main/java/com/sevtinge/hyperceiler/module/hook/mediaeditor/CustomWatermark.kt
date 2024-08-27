@@ -21,7 +21,8 @@ package com.sevtinge.hyperceiler.module.hook.mediaeditor
 import com.github.kyuubiran.ezxhelper.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.sevtinge.hyperceiler.module.base.*
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
 import org.luckypray.dexkit.query.enums.*
 
 object CustomWatermark : BaseHook() {
@@ -31,14 +32,16 @@ object CustomWatermark : BaseHook() {
 
     // by StarVoyager
     private val search by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingString("K30 Pro Zoom E", StringMatchType.Equals)
-                // modifiers = Modifier.FINAL // 1.6.5.10.2 改成了 STATIC，所以寄了
-                returnType = "java.lang.String"
-                paramCount = 2
-            }
-        }.single().getMethodInstance(EzXHelper.classLoader)
+        DexKit.getDexKitBridge("CustomWatermark") {
+            it.findMethod {
+                matcher {
+                    addUsingString("K30 Pro Zoom E", StringMatchType.Equals)
+                    // modifiers = Modifier.FINAL // 1.6.5.10.2 改成了 STATIC，所以寄了
+                    returnType = "java.lang.String"
+                    paramCount = 2
+                }
+            }.single().getMethodInstance(EzXHelper.classLoader)
+        }.toMethod()
     }
 
     override fun init() {

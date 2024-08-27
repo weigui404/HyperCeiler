@@ -18,37 +18,45 @@
 */
 package com.sevtinge.hyperceiler.module.hook.updater
 
-import android.os.Build
-import android.text.TextUtils
-import com.github.kyuubiran.ezxhelper.EzXHelper
+import android.os.*
+import android.text.*
+import com.github.kyuubiran.ezxhelper.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHooks
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
-import de.robv.android.xposed.XposedHelpers
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toElementList
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toMethod
+import de.robv.android.xposed.*
 
 object VersionCodeNew : BaseHook() {
     private val mBigMethod by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("ro.miui.ui.version.name")
-            }
-        }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        DexKit.getDexKitBridge("VersionCodeNew1") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("ro.miui.ui.version.name")
+                }
+            }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        }.toMethod()
     }
     private val mOSMethod by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("ro.mi.os.version.incremental")
-            }
-        }.map { it.getMethodInstance(EzXHelper.classLoader) }.toList()
+        DexKit.getDexKitBridgeList("VersionCodeNew2") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("ro.mi.os.version.incremental")
+                }
+            }.toElementList()
+        }.toMethodList()
     }
     private val mOSCode by lazy {
-        dexKitBridge.findMethod {
-            matcher {
-                addUsingStringsEquals("ro.mi.os.version.name", "OS")
-            }
-        }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        DexKit.getDexKitBridge("VersionCodeNew3") {
+            it.findMethod {
+                matcher {
+                    addUsingStringsEquals("ro.mi.os.version.name", "OS")
+                }
+            }.single().getMethodInstance(EzXHelper.safeClassLoader)
+        }.toMethod()
     }
 
     private val mOldVersionCode =

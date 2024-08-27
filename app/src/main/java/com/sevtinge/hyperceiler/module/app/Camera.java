@@ -20,8 +20,11 @@ package com.sevtinge.hyperceiler.module.app;
 
 import com.sevtinge.hyperceiler.module.base.BaseModule;
 import com.sevtinge.hyperceiler.module.base.HookExpand;
+import com.sevtinge.hyperceiler.module.hook.camera.BlackLeica;
+import com.sevtinge.hyperceiler.module.hook.camera.CustomCameraColor;
 import com.sevtinge.hyperceiler.module.hook.camera.CustomWatermark;
 import com.sevtinge.hyperceiler.module.hook.camera.EnableLabOptions;
+import com.sevtinge.hyperceiler.module.hook.camera.MaxScreenBrightness;
 import com.sevtinge.hyperceiler.module.hook.camera.Unlock120Fps;
 import com.sevtinge.hyperceiler.module.hook.camera.Unlock60Fps;
 import com.sevtinge.hyperceiler.module.hook.camera.UnlockAiEnhance;
@@ -67,7 +70,7 @@ import com.sevtinge.hyperceiler.module.hook.camera.UnlockVideosky;
 import com.sevtinge.hyperceiler.module.hook.camera.UnlockVlog;
 import com.sevtinge.hyperceiler.module.hook.camera.UnlockVlogPro;
 
-@HookExpand(pkg = "com.android.camera", isPad = false, tarAndroid = 34)
+@HookExpand(pkg = "com.android.camera", isPad = false, tarAndroid = 33)
 public class Camera extends BaseModule {
 
     @Override
@@ -103,6 +106,7 @@ public class Camera extends BaseModule {
         initHook(new UnlockColorEnhance(), mPrefsMap.getBoolean("camera_shot_color_enhance"));
         initHook(new UnlockHandGesture(), mPrefsMap.getBoolean("camera_shot_hand_gesture"));
         initHook(new CustomWatermark(), mPrefsMap.getBoolean("camera_custom_watermark"));
+        initHook(new BlackLeica(), mPrefsMap.getBoolean("camera_black_leica"));
 
         // 录像
         initHook(new Unlock60Fps(), mPrefsMap.getBoolean("camera_record_60fps"));
@@ -129,5 +133,8 @@ public class Camera extends BaseModule {
         initHook(new UnlockMenMakeup(), mPrefsMap.getBoolean("camera_settings_men_makeup"));
         initHook(new EnableLabOptions(), mPrefsMap.getBoolean("camera_settings_lab_options"));
         initHook(new UnlockTrackEyes(), mPrefsMap.getBoolean("camera_settings_track_eyes"));
+
+        initHook(new MaxScreenBrightness(), mPrefsMap.getBoolean("camera_max_brightness"));
+        initHook(new CustomCameraColor(), mPrefsMap.getBoolean("camera_custom_theme_color"));
     }
 }

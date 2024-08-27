@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/system_framework_other_title">
@@ -20,6 +37,12 @@
             android:key="prefs_key_system_framework_quick_screenshot"
             android:summary="@string/system_framework_quick_screenshot_desc"
             android:title="@string/system_framework_quick_screenshot" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_system_settings_anti_ques"
+            android:summary="@string/system_settings_anti_ques_desc"
+            android:title="@string/system_settings_anti_ques" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -86,8 +109,7 @@
             android:key="prefs_key_system_framework_guided_access_screen_int"
             android:title="@string/system_framework_guided_access_screen"
             app:entries="@array/guided_access_screen_area"
-            app:entryValues="@array/guided_access_screen_area_value"
-            />
+            app:entryValues="@array/guided_access_screen_area_value" />
         <SwitchPreference
             android:defaultValue="false"
             android:dependency="prefs_key_system_framework_guided_access"
@@ -118,7 +140,14 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="prefs_key_system_framework_other_disable_gesture_monitor"
+            android:summary="@string/system_framework_other_disable_gesture_monitor_desc"
+            android:title="@string/system_framework_other_disable_gesture_monitor" />
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="prefs_key_system_framework_hook_entry"
+            android:summary="@string/system_framework_hook_entry_desc"
             android:title="@string/system_framework_hook_entry" />
 
         <SwitchPreference
@@ -130,6 +159,11 @@
             android:defaultValue="false"
             android:key="prefs_key_system_framework_disablt_miuilite_check"
             android:title="@string/system_framework_disablt_miuilite_check" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_system_framework_posted_clipboard"
+            android:title="@string/system_framework_posted_clipboard" />
 
         <SwitchPreference
             android:defaultValue="false"
@@ -154,6 +188,11 @@
             android:summary="@string/system_framework_clipboard_whitelist_list_desc"
             android:title="@string/system_framework_clipboard_whitelist_list"
             app:isPreferenceVisible="false" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_system_framework_allow_disable_protected_package"
+            android:title="@string/system_framework_allow_disable_protected_package" />
 
     </PreferenceCategory>
 
@@ -180,5 +219,16 @@
             android:summary="@string/system_framework_clean_open_apps_desc"
             android:title="@string/system_framework_clean_open_apps" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/system_framework_other_title">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_system_framework_auto_start_apps_enable"
+            android:title="@string/system_framework_auto_start_apps" />
+        <Preference
+            android:dependency="prefs_key_system_framework_auto_start_apps_enable"
+            android:key="prefs_key_system_framework_auto_start_apps"
+            android:title="@string/system_framework_auto_start_apps" />
     </PreferenceCategory>
 </PreferenceScreen>

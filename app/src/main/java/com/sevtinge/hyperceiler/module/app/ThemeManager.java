@@ -20,17 +20,21 @@ package com.sevtinge.hyperceiler.module.app;
 
 import com.sevtinge.hyperceiler.module.base.BaseModule;
 import com.sevtinge.hyperceiler.module.base.HookExpand;
+import com.sevtinge.hyperceiler.module.hook.thememanager.AllowDownloadMore;
+import com.sevtinge.hyperceiler.module.hook.thememanager.AllowThirdTheme;
 import com.sevtinge.hyperceiler.module.hook.thememanager.DisableThemeAdNew;
 import com.sevtinge.hyperceiler.module.hook.thememanager.EnableFoldTheme;
 import com.sevtinge.hyperceiler.module.hook.thememanager.EnablePadTheme;
 import com.sevtinge.hyperceiler.module.hook.thememanager.VersionCodeModify;
 
-@HookExpand(pkg = "com.android.thememanager", isPad = false, tarAndroid = 34)
+@HookExpand(pkg = "com.android.thememanager", isPad = false, tarAndroid = 33)
 public class ThemeManager extends BaseModule {
 
     @Override
     public void handleLoadPackage() {
-        initHook(new DisableThemeAdNew(), mPrefsMap.getBoolean("various_theme_diable_ads"));
+        initHook(new AllowThirdTheme(), mPrefsMap.getBoolean("system_framework_allow_third_theme"));
+        initHook(new DisableThemeAdNew(), mPrefsMap.getBoolean("various_theme_disable_ads"));
+        initHook(new AllowDownloadMore(), mPrefsMap.getBoolean("theme_manager_allow_download_more"));
         initHook(new EnablePadTheme(), mPrefsMap.getBoolean("various_theme_enable_pad_theme"));
         initHook(new EnableFoldTheme(), mPrefsMap.getBoolean("various_theme_enable_fold_theme"));
 

@@ -18,6 +18,12 @@
  */
 package com.sevtinge.hyperceiler.ui;
 
+import static com.sevtinge.hyperceiler.utils.devicesdk.MiDeviceAppUtilsKt.isPad;
+import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
+import static com.sevtinge.hyperceiler.utils.log.LogManager.IS_LOGGER_ALIVE;
+import static com.sevtinge.hyperceiler.utils.log.LogManager.LOGGER_CHECKER_ERR_CODE;
+import static com.sevtinge.hyperceiler.utils.log.LogManager.isLoggerAlive;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +32,7 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
+import com.sevtinge.hyperceiler.BuildConfig;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.callback.IResult;
 import com.sevtinge.hyperceiler.prefs.PreferenceHeader;
@@ -42,6 +49,8 @@ import com.sevtinge.hyperceiler.utils.search.SearchHelper;
 import com.sevtinge.hyperceiler.utils.shell.ShellInit;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import moralnorm.appcompat.app.AlertDialog;
 
@@ -53,6 +62,7 @@ public class MainActivity extends NavigationActivity implements IResult {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        IS_LOGGER_ALIVE = isLoggerAlive();
         SharedPreferences mPrefs = PrefsUtils.mSharedPreferences;
         int count = Integer.parseInt(mPrefs.getString("prefs_key_settings_app_language", "-1"));
         if (count != -1) {
@@ -60,19 +70,51 @@ public class MainActivity extends NavigationActivity implements IResult {
         }
         handler = new Handler(this.getMainLooper());
         context = this;
-        int def = Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_log_level", "2"));
+        int def = Integer.parseInt(PrefsUtils.mSharedPreferences.getString("prefs_key_log_level", "3"));
         super.onCreate(savedInstanceState);
         new Thread(() -> SearchHelper.getAllMods(MainActivity.this, savedInstanceState != null)).start();
         Helpers.checkXposedActivateState(this);
+        if (!IS_LOGGER_ALIVE && BuildConfig.BUILD_TYPE != "release") {
+            handler.post(() -> new AlertDialog.Builder(context)
+                    .setCancelable(false)
+                    .setTitle(getResources().getString(R.string.warn))
+                    .setMessage(getResources().getString(R.string.headtip_notice_dead_logger_errcode, LOGGER_CHECKER_ERR_CODE))
+                    .setHapticFeedbackEnabled(true)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .show());
+        }
         ShellInit.init(this);
-        PropUtils.setProp("persist.hyperceiler.log.level",
-                (ProjectApi.isRelease() ? def : ProjectApi.isCanary() ? (def == 0 ? 3 : 4) : def));
-        appCrash = CrashData.needIntercept();
+        PropUtils.setProp("persist.hyperceiler.log.level", ProjectApi.isCanary() ? (def != 3 && def != 4 ? 3 : def) : def);
+        appCrash = CrashData.toPkgList();
         handler.postDelayed(() -> {
             if (haveCrashReport()) {
+                Map<String, String> appNameMap = new HashMap<>();
+                appNameMap.put("com.android.systemui", getString(R.string.system_ui));
+                appNameMap.put("com.android.settings", getString(R.string.system_settings));
+                appNameMap.put("com.miui.home", getString(R.string.mihome));
+                appNameMap.put("com.hchen.demo", getString(R.string.demo));
+                if (isMoreHyperOSVersion(1f)) {
+                    appNameMap.put("com.miui.securitycenter", getString(R.string.security_center_hyperos));
+                } else if (isPad()) {
+                    appNameMap.put("com.miui.securitycenter", getString(R.string.security_center_pad));
+                } else {
+                    appNameMap.put("com.miui.securitycenter", getString(R.string.security_center));
+                }
+                ArrayList<String> appList = new ArrayList<>();
+                for (String element : appCrash) {
+                    if (appNameMap.containsKey(element)) appList.add(appNameMap.get(element) + " (" + element + ")");
+                }
+                String appName = appList.toString();
+                String msg = getString(R.string.safe_mode_later_desc, " " + appName + " ");
+                msg = msg.replace("  ", " ");
+                msg = msg.replace("， ", "，");
+                msg = msg.replace("、 ", "、");
+                msg = msg.replace("[", "");
+                msg = msg.replace("]", "");
+                msg = msg.replaceAll("^\\s+|\\s+$", "");
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle(R.string.safe_mode_later_title)
-                        .setMessage(appCrash.toString() + " " + getString(R.string.safe_mode_later_desc))
+                        .setMessage(msg)
                         .setHapticFeedbackEnabled(true)
                         .setCancelable(false)
                         .setPositiveButton(R.string.safe_mode_cancel, (dialog, which) -> {
@@ -95,6 +137,7 @@ public class MainActivity extends NavigationActivity implements IResult {
                 .setPositiveButton(android.R.string.ok, null)
                 .show());
     }
+
 
     private boolean haveCrashReport() {
         return !appCrash.isEmpty();

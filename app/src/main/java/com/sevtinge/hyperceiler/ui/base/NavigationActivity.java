@@ -18,8 +18,8 @@
  */
 package com.sevtinge.hyperceiler.ui.base;
 
-import static com.sevtinge.hyperceiler.utils.DisplayUtils.dip2px;
 import static com.sevtinge.hyperceiler.utils.Helpers.isDarkMode;
+import static com.sevtinge.hyperceiler.utils.devicesdk.DisplayUtils.dp2px;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -46,9 +46,9 @@ import com.sevtinge.hyperceiler.data.ModData;
 import com.sevtinge.hyperceiler.data.adapter.ModSearchAdapter;
 import com.sevtinge.hyperceiler.data.adapter.NavigationPagerAdapter;
 import com.sevtinge.hyperceiler.ui.SubSettings;
-import com.sevtinge.hyperceiler.ui.fragment.AboutFragment;
 import com.sevtinge.hyperceiler.ui.fragment.MainFragment;
-import com.sevtinge.hyperceiler.ui.fragment.settings.ModuleSettingsFragment;
+import com.sevtinge.hyperceiler.ui.fragment.base.AboutFragment;
+import com.sevtinge.hyperceiler.ui.fragment.base.settings.ModuleSettingsFragment;
 import com.sevtinge.hyperceiler.utils.DialogHelper;
 import com.sevtinge.hyperceiler.utils.SettingLauncherHelper;
 import com.sevtinge.hyperceiler.utils.blur.MiBlurUtils;
@@ -133,7 +133,7 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
         int a;
         if (isDarkMode(this)) a = 100;
         else a = 140;
-        MiBlurUtils.setContainerPassBlur(mNavigationView, i);
+        MiBlurUtils.setContainerPassBlur(mNavigationView, i, true);
         MiBlurUtils.setMiViewBlurMode(mNavigationView, 3);
         MiBlurUtils.clearMiBackgroundBlendColor(mNavigationView);
         MiBlurUtils.addMiBackgroundBlendColor(mNavigationView, Color.argb(a, 0, 0, 0), 103);
@@ -174,7 +174,7 @@ public abstract class NavigationActivity extends BaseActivity implements Prefere
             public WindowInsetsCompat onApplyWindowInsets(@NonNull View v, @NonNull WindowInsetsCompat insets) {
                 Insets inset = Insets.max(insets.getInsets(WindowInsetsCompat.Type.systemBars()),
                         insets.getInsets(WindowInsetsCompat.Type.displayCutout()));
-                v.setPadding(0, dip2px(context, 10), 0, inset.bottom + dip2px(context, 18));
+                v.setPadding(0, dp2px(context, 10), 0, inset.bottom + dp2px(context, 14));
                 return insets;
             }
         });

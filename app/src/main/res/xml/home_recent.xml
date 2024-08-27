@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2024 HyperCeiler Contributions
+  -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:myLocation="@string/home_recent">
@@ -12,6 +29,37 @@
             android:key="prefs_key_home_recent_blur"
             android:title="@string/home_recent_blur"
             android:defaultValue="false" />
+
+        <SwitchPreference
+            android:key="prefs_key_home_recent_show_launch"
+            android:title="@string/home_recent_show_launch"
+            android:defaultValue="false" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="95"
+            android:dependency="prefs_key_home_recent_show_launch"
+            android:key="prefs_key_home_recent_show_launch_size"
+            android:title="@string/home_recent_show_launch_size"
+            app:defaultValueText="@string/array_default"
+            app:format="%s f"
+            app:maxValue="100"
+            app:minValue="20"
+            app:stepValue="1"
+            app:displayDividerValue="100"
+            app:showSeekBarValue="true" />
+
+        <SeekBarPreferenceEx
+            android:defaultValue="100"
+            android:dependency="prefs_key_home_recent_show_launch"
+            android:key="prefs_key_home_recent_show_launch_alpha"
+            android:title="@string/home_recent_show_launch_alpha"
+            app:defaultValueText="@string/array_default"
+            app:format="%s f"
+            app:maxValue="100"
+            app:minValue="0"
+            app:stepValue="1"
+            app:displayDividerValue="100"
+            app:showSeekBarValue="true" />
 
         <SwitchPreference
             android:key="prefs_key_home_recent_show_memory_info"
@@ -82,7 +130,7 @@
             android:title="@string/home_recent_task_view_card_rounded_corners"
             android:defaultValue="20"
             app:defaultValueText="@string/array_default"
-            app:maxValue="60"
+            app:maxValue="180"
             app:stepValue="1"
             app:format="%d dp" />
 

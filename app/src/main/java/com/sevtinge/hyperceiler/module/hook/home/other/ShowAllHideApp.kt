@@ -18,25 +18,28 @@
 */
 package com.sevtinge.hyperceiler.module.hook.home.other
 
-import com.github.kyuubiran.ezxhelper.EzXHelper
+import com.github.kyuubiran.ezxhelper.*
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
-import com.sevtinge.hyperceiler.module.base.BaseHook
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.addUsingStringsEquals
-import com.sevtinge.hyperceiler.module.base.dexkit.DexKit.dexKitBridge
+import com.sevtinge.hyperceiler.module.base.*
+import com.sevtinge.hyperceiler.module.base.dexkit.*
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.addUsingStringsEquals
+import com.sevtinge.hyperceiler.module.base.dexkit.DexKitTool.toClass
 
 object ShowAllHideApp : BaseHook() {
     override fun init() {
-        dexKitBridge.findClass {
-            matcher {
-                addUsingStringsEquals("appInfo.packageName", "activityInfo")
-            }
-        }.forEach {
-            it.getInstance(EzXHelper.classLoader).methodFinder()
-                .filterByName("isHideAppValid")
-                .single().createHook {
-                    returnConstant(true)
+        val getClass = DexKit.getDexKitBridge("ShowAllHideApp") { bridge ->
+            bridge.findClass {
+                matcher {
+                    addUsingStringsEquals("appInfo.packageName", "com.android.fileexplorer")
                 }
-        }
+            }.first().getInstance(EzXHelper.classLoader)
+        }.toClass()
+
+        getClass.methodFinder()
+            .filterByName("isHideAppValid")
+            .single().createHook {
+                returnConstant(true)
+            }
     }
 }

@@ -18,13 +18,14 @@
  */
 package com.sevtinge.hyperceiler.ui.fragment;
 
-import static com.sevtinge.hyperceiler.utils.DisplayUtils.dip2px;
-import static com.sevtinge.hyperceiler.utils.DisplayUtils.sp2px;
-import static com.sevtinge.hyperceiler.utils.api.VoyagerApisKt.isPad;
+import static com.sevtinge.hyperceiler.utils.devicesdk.DisplayUtils.dp2px;
+import static com.sevtinge.hyperceiler.utils.devicesdk.DisplayUtils.sp2px;
+import static com.sevtinge.hyperceiler.utils.devicesdk.MiDeviceAppUtilsKt.isPad;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getBaseOs;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.getRomAuthor;
-import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isAndroidVersion;
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreHyperOSVersion;
+import static com.sevtinge.hyperceiler.utils.log.LogManager.IS_LOGGER_ALIVE;
+import static com.sevtinge.hyperceiler.utils.log.LogManager.LOGGER_CHECKER_ERR_CODE;
 
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -41,21 +42,23 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sevtinge.hyperceiler.BuildConfig;
 import com.sevtinge.hyperceiler.R;
 import com.sevtinge.hyperceiler.prefs.PreferenceHeader;
 import com.sevtinge.hyperceiler.prefs.TipsPreference;
 import com.sevtinge.hyperceiler.ui.MainActivityContextHelper;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.ui.fragment.helper.HomepageEntrance;
-import com.sevtinge.hyperceiler.utils.PackagesUtils;
 import com.sevtinge.hyperceiler.utils.ThreadPoolManager;
 import com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt;
 import com.sevtinge.hyperceiler.utils.log.AndroidLogUtils;
+import com.sevtinge.hyperceiler.expansionpacks.utils.SignUtils;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Objects;
 
 import moralnorm.preference.Preference;
@@ -63,15 +66,14 @@ import moralnorm.preference.Preference;
 public class MainFragment extends SettingsPreferenceFragment implements HomepageEntrance.EntranceState {
 
     Preference mCamera;
-    Preference mCameraNew;
-    Preference mPowerSetting;
-    Preference mMTB;
     Preference mSecurityCenter;
     Preference mMiLink;
     Preference mAod;
     Preference mGuardProvider;
-    // Preference mMirror;
     Preference mHeadtipWarn;
+    Preference mHeadtipNotice;
+    Preference mHeadtipBirthday;
+    Preference mHeadtipHyperCeiler;
     Preference mHelpCantSeeApps;
     TipsPreference mTips;
     MainActivityContextHelper mainActivityContextHelper;
@@ -135,37 +137,31 @@ public class MainFragment extends SettingsPreferenceFragment implements Homepage
                 }
             }
         });
-        mCamera = findPreference("prefs_key_camera");
-        mCameraNew = findPreference("prefs_key_camera_new");
-        mPowerSetting = findPreference("prefs_key_powerkeeper");
-        mMTB = findPreference("prefs_key_mtb");
+        mCamera = findPreference("prefs_key_camera_2");
         mSecurityCenter = findPreference("prefs_key_security_center");
         mMiLink = findPreference("prefs_key_milink");
         mAod = findPreference("prefs_key_aod");
         mGuardProvider = findPreference("prefs_key_guardprovider");
-        // mMirror = findPreference("prefs_key_mirror");
         mTips = findPreference("prefs_key_tips");
         mHeadtipWarn = findPreference("prefs_key_headtip_warn");
+        mHeadtipNotice = findPreference("prefs_key_headtip_notice");
+        mHeadtipBirthday = findPreference("prefs_key_headtip_hyperceiler_birthday");
+        mHeadtipHyperCeiler = findPreference("prefs_key_headtip_hyperceiler");
         mHelpCantSeeApps = findPreference("prefs_key_help_cant_see_app");
 
         mHelpCantSeeApps.setVisible(!getSharedPreferences().getBoolean("prefs_key_help_cant_see_apps_switch", false));
 
-        mCamera.setVisible(!isMoreHyperOSVersion(1f) && !PackagesUtils.checkAppStatus(getContext(), "com.android.camera"));
-        mCameraNew.setVisible(isMoreHyperOSVersion(1f) && !PackagesUtils.checkAppStatus(getContext(), "com.android.camera"));
-        mPowerSetting.setVisible(!isAndroidVersion(30) && !PackagesUtils.checkAppStatus(getContext(), "com.miui.powerkeeper"));
-        mMTB.setVisible(!isAndroidVersion(30) && !PackagesUtils.checkAppStatus(getContext(), "com.xiaomi.mtb"));
-
         if (isMoreHyperOSVersion(1f)) {
+            mCamera.setFragment("com.sevtinge.hyperceiler.ui.fragment.CameraNewFragment");
             mAod.setTitle(R.string.aod_hyperos);
             mMiLink.setTitle(R.string.milink_hyperos);
             mGuardProvider.setTitle(R.string.guard_provider_hyperos);
-            // mMirror.setTitle(R.string.mirror_hyperos);
             mSecurityCenter.setTitle(R.string.security_center_hyperos);
         } else {
+            mCamera.setFragment("com.sevtinge.hyperceiler.ui.fragment.CameraFragment");
             mAod.setTitle(R.string.aod);
             mMiLink.setTitle(R.string.milink);
             mGuardProvider.setTitle(R.string.guard_provider);
-            // mMirror.setTitle(R.string.mirror);
             if (isPad()) {
                 mSecurityCenter.setTitle(R.string.security_center_pad);
             } else {
@@ -175,10 +171,28 @@ public class MainFragment extends SettingsPreferenceFragment implements Homepage
 
         mainActivityContextHelper = new MainActivityContextHelper(requireContext());
 
+        isBirthday();
+        isFuckCoolapkSDay();
         isOfficialRom();
+        isLoggerAlive();
         if (!getIsOfficialRom()) isSignPass();
 
         mTips = findPreference("prefs_key_tips");
+    }
+
+    public void isBirthday() {
+        Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        mHeadtipBirthday.setVisible(currentMonth == Calendar.MAY && currentDay == 1);
+    }
+
+    public void isFuckCoolapkSDay() {
+        Calendar calendar = Calendar.getInstance();
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        mHeadtipHyperCeiler.setVisible(currentMonth == Calendar.JULY && currentDay == 14);
+        mHeadtipHyperCeiler.setTitle(R.string.headtip_tip_fuck_coolapk);
     }
 
     public void isOfficialRom() {
@@ -186,27 +200,35 @@ public class MainFragment extends SettingsPreferenceFragment implements Homepage
         mHeadtipWarn.setVisible(getIsOfficialRom());
     }
 
+    public void isLoggerAlive() {
+        if (!IS_LOGGER_ALIVE && BuildConfig.BUILD_TYPE != "release") {
+            mHeadtipNotice.setTitle(R.string.headtip_notice_dead_logger);
+            mHeadtipNotice.setVisible(true);
+        }
+    }
+
     public boolean getIsOfficialRom() {
         return (
                 !getBaseOs().startsWith("V") &&
-                !getBaseOs().startsWith("Xiaomi") &&
-                !getBaseOs().startsWith("Redmi") &&
-                !getBaseOs().startsWith("POCO") &&
-                !getBaseOs().isEmpty()
+                        !getBaseOs().startsWith("Xiaomi") &&
+                        !getBaseOs().startsWith("Redmi") &&
+                        !getBaseOs().startsWith("POCO") &&
+                        !getBaseOs().equals("null")
         ) ||
                 !getRomAuthor().isEmpty() ||
                 Objects.equals(SystemSDKKt.getHost(), "xiaomi.eu") ||
                 (
                         !SystemSDKKt.getHost().startsWith("pangu-build-component-system") &&
-                        !SystemSDKKt.getHost().startsWith("non-pangu-pod") &&
-                        !Objects.equals(SystemSDKKt.getHost(), "xiaomi.com")
+                                !SystemSDKKt.getHost().startsWith("builder-system") &&
+                                !SystemSDKKt.getHost().startsWith("non-pangu-pod") &&
+                                !Objects.equals(SystemSDKKt.getHost(), "xiaomi.com")
                 );
     }
 
 
     public void isSignPass() {
         mHeadtipWarn.setTitle(R.string.headtip_warn_sign_verification_failed);
-        mHeadtipWarn.setVisible(!mainActivityContextHelper.isSignCheckPass());
+        mHeadtipWarn.setVisible(!SignUtils.isSignCheckPass(requireContext()));
     }
 
     @Override
@@ -221,7 +243,7 @@ public class MainFragment extends SettingsPreferenceFragment implements Homepage
                 Insets inset = Insets.max(insets.getInsets(WindowInsetsCompat.Type.systemBars()),
                         insets.getInsets(WindowInsetsCompat.Type.displayCutout()));
                 // 22dp + 2dp + 12sp + 10dp + 18dp + 0.5dp + inset.bottom + 4dp(?)
-                v.setPadding(inset.left, 0, inset.right, inset.bottom + dip2px(requireContext(), 56.5F) + sp2px(requireContext(), 12));
+                v.setPadding(inset.left, 0, inset.right, inset.bottom + dp2px(requireContext(), 56.5F) + sp2px(requireContext(), 12));
                 return insets;
             }
         });

@@ -20,7 +20,10 @@ package com.sevtinge.hyperceiler.ui.fragment;
 
 import static com.sevtinge.hyperceiler.utils.devicesdk.SystemSDKKt.isMoreAndroidVersion;
 
+import android.view.View;
+
 import com.sevtinge.hyperceiler.R;
+import com.sevtinge.hyperceiler.ui.base.BaseSettingsActivity;
 import com.sevtinge.hyperceiler.ui.fragment.base.SettingsPreferenceFragment;
 import com.sevtinge.hyperceiler.utils.devicesdk.TelephonyManager;
 import com.sevtinge.hyperceiler.utils.prefs.PrefsUtils;
@@ -33,11 +36,17 @@ public class SystemFrameworkFragment extends SettingsPreferenceFragment {
     SwitchPreference mShareUser;
     SwitchPreference mDisableIntegrity;
     SwitchPreference mDisableLowApiCheck;
+    SwitchPreference mDisablePersistent;
     Preference mNetwork;
 
     @Override
     public int getContentResId() {
         return R.xml.framework;
+    }
+
+    @Override
+    public View.OnClickListener addRestartListener() {
+        return view -> ((BaseSettingsActivity)getActivity()).showRestartSystemDialog();
     }
 
     @Override
@@ -47,12 +56,14 @@ public class SystemFrameworkFragment extends SettingsPreferenceFragment {
         mShareUser = findPreference("prefs_key_system_framework_core_patch_shared_user");
         mDisableIntegrity = findPreference("prefs_key_system_framework_core_patch_disable_integrity");
         mDisableLowApiCheck = findPreference("prefs_key_system_framework_disable_low_api_check");
+        mDisablePersistent = findPreference("prefs_key_system_framework_disable_persistent");
         mNetwork = findPreference("prefs_key_system_framework_network");
 
         mDisableIntegrity.setVisible(isMoreAndroidVersion(33) && !mCreak);
         mShareUser.setVisible(isMoreAndroidVersion(33)); // 暂时仅开放给 Android 13 及以上使用
         mNetwork.setVisible(TelephonyManager.getDefault().isFiveGCapable());
         mDisableLowApiCheck.setVisible(isMoreAndroidVersion(34));
+        mDisablePersistent.setVisible(isMoreAndroidVersion(34));
 
         mDisableCreak.setOnPreferenceChangeListener((preference, o) -> {
             if ((boolean) o) {

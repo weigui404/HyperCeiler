@@ -19,7 +19,7 @@
 package com.sevtinge.hyperceiler.module.base.tool;
 
 import static com.sevtinge.hyperceiler.module.base.tool.HookTool.mPrefsMap;
-import static com.sevtinge.hyperceiler.utils.devicesdk.AppUtilsKt.isDarkMode;
+import static com.sevtinge.hyperceiler.utils.devicesdk.DeviceSDKKt.isDarkMode;
 import static com.sevtinge.hyperceiler.utils.log.XposedLogUtils.logE;
 
 import android.app.Application;
@@ -183,7 +183,7 @@ public class OtherTool {
                     int a;
                     if (isDarkMode()) a = 120;
                     else a = 140;
-                    MiBlurUtils.setContainerPassBlur(getTextView(), i);
+                    MiBlurUtils.setContainerPassBlur(getTextView(), i, true);
                     MiBlurUtils.setMiViewBlurMode(getTextView(), 3);
                     MiBlurUtils.clearMiBackgroundBlendColor(getTextView());
                     MiBlurUtils.addMiBackgroundBlendColor(getTextView(), Color.argb(a, 0, 0, 0), 103);
