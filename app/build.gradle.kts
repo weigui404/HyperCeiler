@@ -1,39 +1,20 @@
-//file:noinspection DependencyNotationArgument
-import com.android.build.gradle.internal.api.*
-import java.io.*
-import java.text.*
-import java.time.*
-import java.time.format.*
-import java.util.*
+// file:noinspection DependencyNotationArgument
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+import com.android.build.gradle.tasks.PackageAndroidArtifact
+import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Properties
+import java.util.TimeZone
 
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.lsparanoid)
-    // alias(libs.plugins.lspluginResopt)
-}
-
-lsparanoid {
-    seed = 227263
-    classFilter = { true }
-    includeDependencies = true
-    variantFilter = { variant ->
-        variant.buildType != "debug"
-    }
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 val apkId = "HyperCeiler"
-val buildTypes = "release"
-val roots = mapOf(
-    "animation" to "libs/animation-${buildTypes}.aar",
-    "appcompat" to "libs/appcompat-${buildTypes}.aar",
-    "core" to "libs/core-${buildTypes}.aar",
-    "haptic" to "libs/haptic-${buildTypes}.aar",
-    "preference" to "libs/preference-${buildTypes}.aar",
-    "smooth" to "libs/smooth-${buildTypes}.aar",
-    "springback" to "libs/springback-${buildTypes}.aar",
-    "external" to "libs/external-${buildTypes}.aar"
-)
 
 val getGitCommitCount: () -> Int = {
     val output = ByteArrayOutputStream()
@@ -73,42 +54,51 @@ fun loadPropertiesFromFile(fileName: String): Properties? {
 
 android {
     namespace = "com.sevtinge.hyperceiler"
-    compileSdk = 35
-    buildToolsVersion = "35.0.0"
+    compileSdk = 36
+    buildToolsVersion = "36.0.0"
 
     defaultConfig {
         applicationId = namespace
-        minSdk = 33
-        targetSdk = 35
-        versionCode = 149
-        versionName = "2.4.149"
+        minSdk = 34
+        targetSdk = 36
+        versionCode = getVersionCode()
+        versionName = "2.6.160"
 
-        val buildTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").apply {
+            timeZone = TimeZone.getTimeZone("Asia/Shanghai")
+        }
+        val buildTime = sdf.format(Date())
+        val osName = System.getProperty("os.name")
+        // val osArch = System.getProperty("os.arch")
+        val userName = System.getProperty("user.name")
+        val javaVersion = System.getProperty("java.version")
+        // val javaVendor = System.getProperty("java.vendor") + " (" + System.getProperty("java.vendor.url") + ")"
+
         buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
+        buildConfigField("String", "BUILD_OS_NAME", "\"$osName\"")
+        // buildConfigField("String", "BUILD_OS_ARCH", "\"$osArch\"")
+        buildConfigField("String", "BUILD_USER_NAME", "\"$userName\"")
+        buildConfigField("String", "BUILD_JAVA_VERSION", "\"$javaVersion\"")
+        // buildConfigField("String", "BUILD_JAVA_VENDOR", "\"$javaVendor\"")
 
         ndk {
-            //noinspection ChromeOsAbiSupport
+            // noinspection ChromeOsAbiSupport
             abiFilters += "arm64-v8a"
         }
     }
 
     buildFeatures {
+        aidl = true
         buildConfig = true
     }
 
     androidResources {
-        additionalParameters += "--allow-reserved-package-id"
-        additionalParameters += "--package-id"
-        additionalParameters += "0x36"
+        additionalParameters += listOf("--allow-reserved-package-id", "--package-id", "0x36")
     }
 
     packaging {
         resources {
-            excludes += "/META-INF/**"
-            excludes += "/kotlin/**"
-            excludes += "/*.txt"
-            excludes += "/*.bin"
-            excludes += "/*.json"
+            excludes += listOf("/META-INF/**", "/kotlin/**", "/*.txt", "/*.bin", "/*.json")
         }
         dex {
             useLegacyPackaging = true
@@ -143,49 +133,53 @@ android {
             enableV3Signing = true
             enableV4Signing = true
         }
-        create("withoutProperties") {
-            enableV1Signing = true
-            enableV2Signing = true
-            enableV3Signing = true
-            enableV4Signing = true
-        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro", "proguard-log.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+                "proguard-log.pro"
+            )
             versionNameSuffix = "_${DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now())}"
             buildConfigField("String", "GIT_HASH", "\"$gitHash\"")
             buildConfigField("String", "GIT_CODE", "\"$gitCode\"")
-            if (properties != null) {
-                signingConfig = signingConfigs["hasProperties"]
+            signingConfig = if (properties != null) {
+                signingConfigs["hasProperties"]
             } else {
-                signingConfig = signingConfigs["withoutProperties"]
+                signingConfigs["debug"]
             }
         }
         create("beta") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             versionNameSuffix = "_${DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now())}"
             buildConfigField("String", "GIT_HASH", "\"${getGitHashLong()}\"")
             buildConfigField("String", "GIT_CODE", "\"$gitCode\"")
-            if (properties != null) {
-                signingConfig = signingConfigs["hasProperties"]
+            signingConfig = if (properties != null) {
+                signingConfigs["hasProperties"]
             } else {
-                signingConfig = signingConfigs["withoutProperties"]
+                signingConfigs["debug"]
             }
         }
         create("canary") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             versionNameSuffix = "_${gitHash}_r${gitCode}"
             buildConfigField("String", "GIT_HASH", "\"${getGitHashLong()}\"")
             buildConfigField("String", "GIT_CODE", "\"$gitCode\"")
-            if (properties != null) {
-                signingConfig = signingConfigs["hasProperties"]
+            signingConfig = if (properties != null) {
+                signingConfigs["hasProperties"]
             } else {
-                signingConfig = signingConfigs["withoutProperties"]
+                signingConfigs["debug"]
             }
         }
         debug {
@@ -198,48 +192,22 @@ android {
         }
     }
 
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
-    }
-
-    kotlin.jvmToolchain(21)
-
 }
 
+// https://stackoverflow.com/a/77745844
+tasks.withType<PackageAndroidArtifact> {
+    doFirst { appMetadata.asFile.orNull?.writeText("") }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+kotlin.jvmToolchain(21)
+
 dependencies {
-    compileOnly(project(":hidden-api"))
-    compileOnly(libs.xposed.api)
-
-    implementation(libs.dexkit)
-    implementation(libs.ezxhelper)
-    implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.hiddenapibypass)
-    implementation(libs.gson)
-    implementation(libs.commons.codec)
-    implementation(libs.hooktool)
-    implementation(libs.gson)
-
-    implementation(libs.core)
-    implementation(libs.collection)
-    implementation(libs.recyclerview)
-    implementation(libs.fragment)
-    implementation(libs.lifecycle.common)
-    implementation(libs.vectordrawable)
-    implementation(libs.vectordrawable.animated)
-    implementation(libs.customview)
-    implementation(libs.customview.poolingcontainer)
-    implementation(libs.constraintlayout)
-
-    implementation(files(roots["animation"]))
-    implementation(files(roots["appcompat"]))
-    implementation(files(roots["core"]))
-    implementation(files(roots["haptic"]))
-    implementation(files(roots["preference"]))
-    implementation(files(roots["smooth"]))
-    implementation(files(roots["springback"]))
-    implementation(files(roots["external"]))
-
-    implementation(files("libs/hyperceiler_expansion_packs-debug.aar"))
+    implementation(libs.expansion)
+    implementation(projects.library.commonUi)
 }
